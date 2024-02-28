@@ -56,7 +56,7 @@ export class DashboardComponent {
 
   }
 
-  viewDetails() {
-    this.router.navigateByUrl("/")
+  viewDetails(id:number) {
+    this.router.navigateByUrl(`/bank/account-details/${id}`);
   }
 }

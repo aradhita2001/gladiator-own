@@ -1,4 +1,3 @@
-<p>view-accountdetails works!</p>
 <div class="col-sm-7 mb-3 mb-sm-0 text-center">
     <div class="card">
       <div class="card-body">
@@ -13,6 +12,38 @@
               <th scope="col">Name</th>
               <th scope="col">Balance</th>
               <th scope="col">Last Transaction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ account.accountId }}</td>
+              <td>{{ account.user | json }}</td>
+              <td>{{ account.balance }}</td>
+              <td>{{ account.accountId }}</td>
+             
+            </tr>
+           
+          </tbody>
+        </table>
+        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-7">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Recent Transactions</h5>
+        <!-- <div class="card-header">
+          Transactions
+        </div> -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Source Acc</th>
+              <th scope="col">Dest Acc</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date</th>
             </tr>
           </thead>
           <tbody>

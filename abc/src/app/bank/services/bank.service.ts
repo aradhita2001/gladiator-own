@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class BankService {
+  
 
   private baseUrl=`${environment.apiUrl}`
 
@@ -18,6 +19,11 @@ export class BankService {
   getAccounts(): Observable<Account[]> {
     return this.http.get<Account[]>(`${this.baseUrl}/accounts`)
   }
+
+  getAccountById(accountId: number): Observable<Account> {
+    return this.http.get<Account>(`${this.baseUrl}/accounts/${accountId}`);
+  }
+
   getTransactionsByUser(strUserId: string | null): Observable<Transaction[]> {
   return this.http.get<Transaction[]>(`${this.baseUrl}/transaction/customer/${strUserId}`)
   }

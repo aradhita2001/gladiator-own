@@ -12,39 +12,70 @@ import { Account } from '../../types/account';
 })
 export class AccountCreationComponent {
  
-  accountForm:FormGroup;
-  accountError$: Observable<string> =of();
-  accountSuccess$: Observable<string>=of();
-  isFormSubmitted: boolean = false;
-  // transactionService: TransactionService;
-  constructor(private formBuilder: FormBuilder, private router:Router, private transactionService : TransactionService)
-    {
-      this.accountForm = this.formBuilder.group({
-        accountType:['',[Validators.required]],
-        balance:['',[Validators.required]]
-    });
-   }
-  // ngOnInit(): void {
-    onSubmit() {
-      this.isFormSubmitted = true;
-      this.accountSuccess$ = of('');
-      this.accountError$ = of('');
-      console.log(this.accountForm.value);
-      if (this.accountForm.invalid) {
-        this.router.navigateByUrl('');   //add
-      } else {
-        const data= this.accountForm.value;
-        console.log(data);
-        const account : Account = new Account(data);
-        this.transactionService.addAccount(account).subscribe(
-          (res: any) => {
-            this.accountSuccess$ = of("Account created successfully");
-          },
-          () => {
-            this.accountError$ = of("Unable to create account");
-          }
-        );
-      }
-    }
  
+  accountForm:any={AccountType:null}
+
+  accountError$: Observable<string> = of();
+
+  accountSuccess$: Observable<string> = of();
+
+  isFormSubmitted: boolean = false;
+
+  
+
+  constructor(private formBuilder: FormBuilder,private transactionService: TransactionService, private router:Router) 
+
+    {
+
+      this.accountForm = this.formBuilder.group({
+
+        Accounts:['',[Validators.required]]
+
+      });
+
+   }
+
+  // ngOnInit(): void {
+
+    onSubmit() {
+
+      this.isFormSubmitted = true;
+
+      this.accountSuccess$ = of('');
+
+      this.accountError$ = of('');
+
+      if (this.accountForm.invalid) {
+
+        return;
+
+      } else {
+
+        const data= this.accountForm.value;
+
+        console.log(data);
+
+        const account : Account = new Account(data);
+
+        // this.transactionService.addAccount(account).subscribe(
+
+        //   (res: any) => {
+
+        //     this.accountSuccess$ = of("Account created successfully");
+
+        //   },
+
+        //   () => {
+
+        //     this.accountError$ = of("Unable to create account");
+
+        //   }
+
+        // );
+
+      }
+
+    }
+
 }
+ 

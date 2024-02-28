@@ -8,7 +8,7 @@
  
           <div id="sidebar-nav" class="list-group border-white border-0 rounded-0 text-sm-start min-vh-100">
  
-            <a  class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
+            <a [routerLink]="['/bank/new-account']" routerLinkActive="router-link-active"  class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
               data-bs-parent="#sidebar"><i class=""></i> <span>Add Account</span> </a>
  
             <a  class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
@@ -153,7 +153,7 @@
                          
                          
  
-                          <td> <button class="btn btn-sm btn-outline-primary  " (click)="viewDetails()">View
+                          <td> <button class="btn btn-sm btn-outline-primary  " (click)="viewDetails(account.accountId)">View
                               Details</button></td>
  
                         </tr>

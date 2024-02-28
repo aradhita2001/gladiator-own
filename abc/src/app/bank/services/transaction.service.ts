@@ -10,6 +10,9 @@ import { Account } from "../types/account";
   providedIn: "root",
 })
 export class TransactionService {
+  getTransactionByAccount(accountId: number): Observable<Transaction[]> {
+    throw new Error('Method not implemented.');
+  }
  
  
   // private baseUrl = `${environment.apiUrl}`;
