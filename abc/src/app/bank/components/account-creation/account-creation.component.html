@@ -1,0 +1,42 @@
+<form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+ 
+    <div>
+        <label for="accountType" class="form-label ">Account Creation</label>
+<select name ="accountType" formControlName="accountType"  class="form-control" id="accountType">
+<option value="null">Select</option>
+<option value="savings">Savings</option>
+<option value="current">Current</option>
+</select>
+<div *ngIf="accountForm.controls['accountType'].invalid && (accountForm.controls['accountType'].dirty || accountForm.controls['accountType'].touched)"
+                class="ng-dirty">
+<span *ngIf="accountForm.controls['accountType'].errors">
+<span class="text-danger">Please Enter the Type of Account.</span>
+</span>
+</div>
+    </div>
+ 
+ 
+<div class="form-group">
+    <label for="balance">Balance:</label>
+    <input
+      type="text"
+      id="balance"
+      formControlName="balance"
+      class="form-control"
+    />
+  </div>
+ 
+  <button type="submit" class="btn-submit">Create Account</button>
+ 
+  <ng-container>
+    <div *ngIf="accountError$ | async as error" class="error">
+      {{ error }}
+    </div>
+    <div *ngIf="accountSuccess$ | async as msg" class="success">
+      {{ msg }}
+    </div>
+  </ng-container>
+ 
+  <a routerLink="/bank" class="task-list" class="task-list">Dashboard</a>
+ 
+</form>

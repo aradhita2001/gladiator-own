@@ -1,0 +1,37 @@
+<h1>Login page</h1>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+   
+<div>
+  <label for="username" class="form-label ">Username:</label>
+        <input type="text" name ="username" formControlName="username"  class="form-control"  placeholder="Enter username">
+        <div *ngIf="loginForm.controls['username']?.invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+        <span style="color: red;" *ngIf="loginForm.controls['username'].errors"> Please Enter user name
+         
+          <!-- <span style="color: red;" *ngIf="loginForm.get('username')?.hasError('minlength')">Your username must be greater than or equal to 6</span> -->
+          <!-- <span style="color: red;" *ngIf="loginForm.get('username')?.hasError('maxlength')">Your username must be less than or equal to 8</span> -->
+        </span>
+      </div>
+      </div>
+ 
+<div>
+   <label for ="password">Password:</label>
+      <input type="password" name = "password" formControlName="password" class="form-control" placeholder="Enter password">
+      <div *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+        <span style="color: red;" *ngIf="loginForm.controls['password'].errors">
+          Please Enter password
+          <!-- <span style="color: red;" *ngIf="loginForm.get('password')?.hasError('minlength')">Your username must be greaterthan or equal to 6</span> -->
+          <!-- <span style="color: red;" *ngIf="loginForm.get('password')?.hasError('maxlength')">Your username must be less than or equal to 8</span> -->
+       
+       </span>
+      </div>
+</div>
+ 
+<div>
+      <button type="submit">Log in</button>
+</div>
+     
+ 
+  </form>
+ 
+
+  <a [routerLink]="['/auth/sign-up']" >Sign Up</a>

@@ -1,0 +1,55 @@
+<h1>Make Your Transaction</h1>
+ 
+<form (ngSubmit)="onSubmit()" [formGroup]="transactionForm" class="transaction-Form">
+    <div class="form-group">
+        <label for="accounts">Account: </label>
+        <select formControlName="accounts">
+            <option value="">Select</option>
+ 
+            <div *ngIf="transactionForm.get('accounts')?.hasError('required') && transactionForm.get('accounts')?.touched || transactionForm.get('accounts')?.dirty" class="error">
+                <span>Account number is required</span>
+            </div>
+            <option *ngFor="let account of accounts$ | async" [value]="account.accountId">{{account.accountId}}</option>
+           
+        </select>
+    </div>
+ 
+    <div class="form-group">
+        <label for="destAccountNo">Destination Account No: </label>
+        <select formControlName="destAccountNo">
+          <option value="">Select</option>
+ 
+          <div *ngIf="transactionForm.get('destAccountNo')?.hasError('required') && transactionForm.get('destAccountNo')?.touched || transactionForm.get('destAccountNo')?.dirty" class="error">
+              <span>Account number is required</span>
+          </div>
+          <option *ngFor="let account of accounts$ | async" (value)="account.accountId">{{account.accountId}}</option>
+         
+      </select>
+       
+    </div>
+   
+ 
+    <div class="form-group">
+        <label for="amount">Amount: </label>
+        <input type="text" id="amount" formControlName="amount" />
+        <div *ngIf="transactionForm.get('amount')?.hasError('required') && transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty" class="error">
+            <span>Amount  is required</span>
+        </div>
+ 
+    </div>
+   
+ 
+      <div>
+        <button type="submit">Submit</button>
+        <ng-container>
+          <div *ngIf="transactionError$ | async as error" class="error">
+            {{ error }}
+          </div>
+          <div *ngIf="transactionSuccess$ | async as msg" class="success">
+            {{ msg }}
+          </div>
+        </ng-container>
+        <a routerLink="/bank" class="task-list" class="task-list">Dashboard</a>
+  </div>
+ 
+</form>
