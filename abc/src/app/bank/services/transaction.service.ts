@@ -14,7 +14,6 @@ export class TransactionService {
     throw new Error('Method not implemented.');
   }
  
- 
   // private baseUrl = `${environment.apiUrl}`;
   private baseUrl = `https://ec2-3-110-172-193_5000.projects.wecreateproblems.com`;
  

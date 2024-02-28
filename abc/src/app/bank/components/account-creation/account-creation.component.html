@@ -1,33 +1,42 @@
-<form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
- 
-    <div>
+<div class="card text-center w-25 mx-auto p-2" style="width:200px;">
+  <div class="card-header">
+    Create Your Account
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Please fill the form</h5>
+    <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
 
-        <label for="accounts" class="form-label ">Account Creation</label>
+      <div>
 
-<select name ="accounts"formControlName="accounts" [(ngModel)]="accountForm.accounts" class="form-control" id="accounts">
+        <label for="accounts" class="form-label ">Select Account Type</label>
 
-<option value="null">Select</option>
+        <select name="accounts" formControlName="accounts" [(ngModel)]="accountForm.accounts" class="form-control"
+          id="accounts">
 
-<option value="savings">Savings</option>
+          <option value="null">Select</option>
 
-<option value="current">Current</option>
+          <option value="savings">Savings</option>
 
-</select>
+          <option value="current">Current</option>
 
-<div *ngIf="accountForm.controls['accounts'].invalid && (accountForm.controls['accounts'].dirty || accountForm.controls['accounts'].touched)"
+        </select>
 
-                class="ng-dirty">
+        <div
+          *ngIf="accountForm.controls['accounts'].invalid && (accountForm.controls['accounts'].dirty || accountForm.controls['accounts'].touched)"
+          class="ng-dirty">
 
-<span *ngIf="accountForm.controls['accounts'].errors">
+          <span *ngIf="accountForm.controls['accounts'].errors">
 
-<span class="text-danger">Please Enter the Type of Account.</span>
+            <span class="text-danger">Please Enter the Type of Account.</span>
 
-</span>
+          </span>
 
+        </div>
+
+      </div>
+
+      <a routerLink="/bank/dashboard" class="task-list" class="task-list mt-5">Dashboard</a>
+
+    </form>
+  </div>
 </div>
-
-    </div>
- 
-  <a routerLink="/bank/dashboard" class="task-list" class="task-list">Dashboard</a>
- 
-</form>
