@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AccountCreationComponent } from './components/account-creation/account-creation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AccountDetailsComponent } from './components/account-details/account-details.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     TransactionComponent,
     DashboardComponent,
     AccountCreationComponent,
-    NavbarComponent
+    NavbarComponent,
+    AccountDetailsComponent,
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,8 @@ export class User {
     password:string;
     role:string;
     name:string;
-    email:string
+    email:string;
+    phone:string
  
   constructor(data: any) {
     // if(this.accountId)
@@ -12,5 +13,6 @@ export class User {
     this.role=data.role;
     this.name=data.name;
     this.email=data.email;
+    this.phone=data.phone;
 }
 }

@@ -1,3 +1,47 @@
+<!-- <app-logout></app-logout>
+ 
+<form (ngSubmit)="onSubmit()" [formGroup]="userForm" class="user-form">
+  <div class="form-group">
+    <label for="userId">UserId:</label>
+    <input
+      type="text"
+      id="userId"
+      formControlName="userId"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label for="role">Role:</label>
+    <select formControlName="role" class="form-control">
+      <option value="CLIENT">Client</option>
+      <option value="ADMIN">Admin</option>
+    </select>
+  </div>
+ 
+  <button type="submit" class="btn-submit">Create User</button>
+ 
+  <ng-container>
+    <div *ngIf="userError$ | async as error" class="error">
+      {{ error }}
+    </div>
+    <div *ngIf="userSuccess$ | async as msg" class="success">
+      {{ msg }}
+    </div>
+  </ng-container>
+ 
+  <a routerLink="/auth/users" class="task-list" class="task-list"
+    >Go to User List</a
+  >
+</form> -->
 <h1>USER</h1>
 <form (ngSubmit)="onSubmit()" [formGroup]="userForm"  class="login-form">
     <div>
@@ -15,6 +59,14 @@
       <div *ngIf="userForm.get('email')?.hasError('required') && (userForm.get('email')?.touched || userForm.get('email')?.dirty)" class="error">Email is Required</div>
       <div *ngIf="userForm.get('email')?.hasError('EmailValidator') && (userForm.get('email')?.touched || userForm.get('email')?.dirty)" class="error">Invalid Email Format</div>
     </div>
+ 
+    <div class="form-group">
+      <label >Mobile Number:</label>
+      <input type="text" id="phone" formControlName="phone" >
+      <div *ngIf="userForm.get('phone')?.hasError('required') && (userForm.get('phone')?.touched || userForm.get('phone')?.dirty)" class="error">Mobile Number is Required</div>
+      <div *ngIf="userForm.get('phone')?.hasError('MobileValidator') && (userForm.get('phone')?.touched || userForm.get('phone')?.dirty)" class="error">Mobile number is Invalid</div>
+     
+    </div>
    
    
     <div class="form-group">
@@ -23,7 +75,20 @@
       <div *ngIf="userForm.get('password')?.hasError('required') && (userForm.get('password')?.touched || userForm.get('password')?.dirty)" class="error">Password is Required</div>
       <div *ngIf="userForm.get('password')?.hasError('PasswordValidator') && (userForm.get('password')?.touched || userForm.get('password')?.dirty)" class="error">Password must be strong and contain number and special characters</div>
     </div>
-   
+ 
+    <!-- <div class="form-group">
+      <label >Retype Password:</label>
+      <input type="password" id="retypePassword" formControlName="retypePassword" >
+      <div *ngIf="userForm.get('retypePassword')?.hasError('required') && (userForm.get('retypePassword')?.touched || userForm.get('retypePassword')?.dirty)" class="error">Password is Required</div>
+      <div *ngIf="userForm.get('retypePassword')?.hasError('matchingPasswords') && (userForm.get('retypePassword')?.touched || userForm.get('retypePassword')?.dirty)" class="error">Password must be strong and contain number and special characters</div>
+    </div>
+    -->
+    <label for="retypePassword">Confirm Password:</label>
+    <input type="password" id="retypePassword" formControlName="retypePassword">
+    <div class="error-message" *ngIf="userForm.errors?.['PasswordNoMatch']">
+      Password does'nt match.
+    </div>
+ 
     <button type="submit" class="btn-submit">Create User</button>
    
     <ng-container>
@@ -35,6 +100,8 @@
       </div>
     </ng-container>
    
-    <a routerLink="/auth" class="task-list" class="task-list">Already have an account? Sign in instead</a>
+    <a routerLink="/auth" class="task-list" class="task-list">Sign in</a>
     </div>
   </form>
+   
+ 

@@ -1,16 +1,16 @@
 import { Account } from './account';
  
 export class Transaction {
-  sourceAccountNo : number;
-  destAccountNo : number;
+  sourceAccountId : number;
+  destinationAccountId : number;
   amount: number;
   transactionDate: Date;
  
  
   // transactionType: "CREDIT" | "DEBIT";
   constructor(data: any) {
-    this.sourceAccountNo = data.sourceAccountNo;
-    this.destAccountNo = data.destAccountNo;
+    this.sourceAccountId = data.sourceAccountId;
+    this.destinationAccountId = data.destinationAccountId;
     this.amount = data.amount;
     this.transactionDate=data.transactionDate;
   }
