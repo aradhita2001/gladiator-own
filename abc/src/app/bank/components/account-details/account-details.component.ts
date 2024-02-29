@@ -1,21 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { BankService } from '../../services/bank.service';
 import { TransactionService } from '../../services/transaction.service';
 import { Account } from '../../types/account';
+import { AccountDetails } from '../../types/AccountDetails';
 import { Transaction } from '../../types/transaction';
+import { TransactionForAccount } from '../../types/TransactionForAccount';
 
 @Component({
   selector: 'app-account-details',
   templateUrl: './account-details.component.html',
   styleUrls: ['./account-details.component.css']
 })
-export class AccountDetailsComponent {
+export class AccountDetailsComponent implements OnInit{
   accountId: number=0;
-  transactions$: Observable<Transaction[]>= of();
-  account$: Observable<Account> = of();
-  account!: Account;
+  transactions$: Observable<TransactionForAccount[]>= of();
+  account$: Observable<AccountDetails> = of();
+  account!: AccountDetails;
 
   constructor(private transactionService: TransactionService , private bankService: BankService , private route:ActivatedRoute){}
  
@@ -26,8 +28,10 @@ export class AccountDetailsComponent {
       this.account$ = this.bankService.getAccountById(this.accountId);
       this.account$.subscribe(data => {
         this.account = data;
-        console.log(this.account);
-        
+      })
+
+      this.transactions$ = this.transactionService.getTransactionsByAccount(this.accountId);
+      this.transactions$.subscribe(data => {console.log(data);
       })
     })
   }

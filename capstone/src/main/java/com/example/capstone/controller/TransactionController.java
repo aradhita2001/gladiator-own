@@ -1,6 +1,5 @@
 package com.example.capstone.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.capstone.dto.TransactionForAccount;
 import com.example.capstone.entity.Transaction;
 import com.example.capstone.service.TransactionService;
 
@@ -64,17 +64,22 @@ public class TransactionController {
     //     }
     // }
 
-    @GetMapping("/debit/{accountId}")
+    @GetMapping("/account/debit/{accountId}")
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<Transaction>> getAllDebitTransactionsByAccountId(@PathVariable long accountId) {
         List<Transaction> transactions = transactionService.getAllDebitTransactionsByAccountId(accountId);
         return new ResponseEntity<>(transactions, HttpStatus.OK);
     }
 
-    @GetMapping("/credit/{accountId}")
+    @GetMapping("/account/credit/{accountId}")
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<Transaction>> getAllCreditTransactionsByAccountId(@PathVariable long accountId) {
         List<Transaction> transactions = transactionService.getAllCreditTransactionsByAccountId(accountId);
         return new ResponseEntity<>(transactions, HttpStatus.OK);
+    }
+
+    @GetMapping("/account/{accountId}")
+    public ResponseEntity<List<TransactionForAccount>> getAllTransactionByAccountId(@PathVariable long accountId){
+        return new ResponseEntity<>(transactionService.getAllTransactionsByAccountId(accountId) ,HttpStatus.OK);
     }
 }

@@ -6,13 +6,14 @@ import { Transaction } from "../types/transaction";
 import { Observable } from "rxjs";
 import { Account } from "../types/account";
 import { getLocaleCurrencySymbol } from "@angular/common";
+import { TransactionForAccount } from "../types/TransactionForAccount";
  
 @Injectable({
   providedIn: "root",
 })
 export class TransactionService {
-  getTransactionByAccount(accountId: number): Observable<Transaction[]> {
-    throw new Error('Method not implemented.');
+  getTransactionsByAccount(accountId: number): Observable<TransactionForAccount[]> {
+    return this.http.get<TransactionForAccount[]>(`${this.baseUrl}/transactions/account/${accountId}`);
   }
  
   private baseUrl = `${environment.apiUrl}`;

@@ -5,10 +5,13 @@ import { Account } from "../types/account";
 import { HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { User } from '../../auth/types/user';
+import { AccountDetails } from '../types/AccountDetails';
+import { TransactionForAccount } from '../types/TransactionForAccount';
 @Injectable({
   providedIn: 'root'
 })
 export class BankService {
+  
   
   
 
@@ -22,8 +25,8 @@ export class BankService {
     return this.http.get<Account[]>(`${this.baseUrl}/accounts`)
   }
 
-  getAccountById(accountId: number): Observable<Account> {
-    return this.http.get<Account>(`${this.baseUrl}/accounts/${accountId}`);
+  getAccountById(accountId: number): Observable<AccountDetails> {
+    return this.http.get<AccountDetails>(`${this.baseUrl}/accounts/${accountId}`);
   }
 
   getTransactionsByUser(strUserId: string | null): Observable<Transaction[]> {

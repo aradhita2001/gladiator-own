@@ -39,7 +39,7 @@ public class AccountController {
     }
  
     @GetMapping("/{accountId}")
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<AccountDetails> getAccountById(@PathVariable long accountId) {
         AccountDetails accountDetails = accountService.getAccountById(accountId);
         if (accountDetails != null) {
