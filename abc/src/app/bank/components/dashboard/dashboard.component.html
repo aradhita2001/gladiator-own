@@ -6,11 +6,15 @@
 
           <a [routerLink]="['/bank/new-account']" routerLinkActive="router-link-active"
             class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
-            data-bs-parent="#sidebar"><span>Add Account</span> </a>
+            data-bs-parent="#sidebar"><span>+Account</span> </a>
 
           <a [routerLink]="['/bank/transfer']" routerLinkActive="router-link-active"
             class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
-            data-bs-parent="#sidebar"><i class=""></i> <span>Add Transaction</span></a>
+            data-bs-parent="#sidebar"><i class=""></i> <span>+Transaction</span></a>
+
+          <a [routerLink]="['/bank/transfer']" routerLinkActive="router-link-active"
+            class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
+            data-bs-parent="#sidebar"><i class=""></i> <span>+User</span></a>
         </div>
 
         <hr>
@@ -77,9 +81,6 @@
 
                   </table>
 
-                  <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-
-                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
 
                 </div>
 
@@ -129,23 +130,59 @@
                     </tbody>
 
                   </table>
-
-                  <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-
-                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-
                 </div>
 
               </div>
 
             </div>
-           
+            <div class="row mt-5 mx-auto">
+              <div class="col-sm-9 mb-4 mb-sm-0">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <table class="table ">
+  
+                      <thead>
+  
+                        <tr>
+  
+                          <th scope="col">User Id</th>
+  
+                          <th scope="col">Name</th>
+  
+                          <th scope="col">Phone</th>
+  
+                          <th scope="col">email</th>
+  
+                        </tr>
+  
+                      </thead>
+  
+                      <tbody>
+  
+                        <tr *ngFor="let user of users$ | async">
+  
+                          <td>{{user.userId}}</td>
+                          <td>{{ user.name }}</td>
+                          <td>{{user.phone}}</td>
+                          <td>{{user.email}}</td>
+  
+                        </tr>
+  
+                      </tbody>
+  
+                    </table>
+  
+  
+                  </div>
+  
+                </div>
+  
+              </div>
+
 
           </div>
 
         </div>
 
       </div>
-
-
-
