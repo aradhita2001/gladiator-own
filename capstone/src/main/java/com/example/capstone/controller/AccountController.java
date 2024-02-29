@@ -49,7 +49,7 @@ public class AccountController {
     }
    
     @GetMapping("/user/{userId}")
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<List<Account>> getAccountsByUser(@PathVariable long userId) {
         List<Account> accounts = accountService.getAccountsByUser(userId);
         return new ResponseEntity<>(accounts, HttpStatus.OK);

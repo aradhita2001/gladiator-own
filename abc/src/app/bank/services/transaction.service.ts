@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { Transaction } from "../types/transaction";
 import { Observable } from "rxjs";
 import { Account } from "../types/account";
+import { getLocaleCurrencySymbol } from "@angular/common";
  
 @Injectable({
   providedIn: "root",
@@ -14,8 +15,7 @@ export class TransactionService {
     throw new Error('Method not implemented.');
   }
  
-  // private baseUrl = `${environment.apiUrl}`;
-  private baseUrl = `https://ec2-3-110-172-193_5000.projects.wecreateproblems.com`;
+  private baseUrl = `${environment.apiUrl}`;
  
   constructor(private http: HttpClient) {}
  
@@ -38,6 +38,11 @@ export class TransactionService {
   getTranactionsByUser(userId: string): Observable<Transaction[]> {
    //@todo: Call the endpoint /all-transactions?userId=${userId} to get list of all transaction performed by user with given userId
    return this.http.get<Transaction[]>(`${this.baseUrl}/transactions`);
+  }
+
+  getAccountByUserId(userId:number):Observable<Account[]>
+  {    
+    return this.http.get<Account[]>(`${this.baseUrl}/accounts/user/${userId}`);
   }
 }
  

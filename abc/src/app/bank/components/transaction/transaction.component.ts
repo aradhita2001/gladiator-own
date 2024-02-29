@@ -13,13 +13,14 @@ import { Transaction } from "../../types/transaction";
   templateUrl: "./transaction.component.html",
   styleUrls: ["./transaction.component.css"],
 })
-export class TransactionComponent {
+export class TransactionComponent implements OnInit{
  
   transactionForm: FormGroup;
   accounts$: Observable<Account[]>=of();
   transactionError$: Observable<string>=of();
   transactionSuccess$: Observable<string>=of();
   isFormSubmitted: boolean = false;
+  userId: any;
  
   errorMessages: { [key: string]: string } = {
     NOT_ENOUGH_BALANCE: "Not enough balance to complete transaction",
@@ -34,10 +35,26 @@ export class TransactionComponent {
     private router: Router
   ) {
     this.transactionForm = this.formBuilder.group({
-      user: ["", [Validators.required]],
+      sourceAccountNo: ["", [Validators.required]],
       destAccountNo: ["",[Validators.required]],
       amount: ["", [Validators.required]],  //add min
     });
+  }
+
+  ngOnInit(): void {
+    if(!!localStorage.getItem("user_id")){
+      this.userId = Number(localStorage.getItem("user_id"));
+      console.log(this.userId);
+      
+      this.accounts$=this.transactionService.getAccountByUserId(this.userId);
+      
+    }else{
+      console.log("userId not found");
+      console.log("Login required");
+      this.router.navigateByUrl("/auth");
+
+      
+    }
   }
  
   onSubmit() {
@@ -45,8 +62,5 @@ export class TransactionComponent {
   }
  
  
-  getAllTransactions() {
-   
- 
-  }
+  
 }

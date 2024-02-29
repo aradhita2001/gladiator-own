@@ -29,7 +29,7 @@ export class AccountCreationComponent {
 
       this.accountForm = this.formBuilder.group({
 
-        Accounts:['',[Validators.required]]
+        accountType:['',[Validators.required]]
 
       });
 
@@ -56,22 +56,23 @@ export class AccountCreationComponent {
         console.log(data);
 
         const account : Account = new Account(data);
+        console.log(account);
 
-        // this.transactionService.addAccount(account).subscribe(
+        this.transactionService.addAccount(account).subscribe(
 
-        //   (res: any) => {
+          (res: any) => {
 
-        //     this.accountSuccess$ = of("Account created successfully");
+            this.accountSuccess$ = of("Account created successfully");
 
-        //   },
+          },
 
-        //   () => {
+          () => {
 
-        //     this.accountError$ = of("Unable to create account");
+            this.accountError$ = of("Unable to create account");
 
-        //   }
+          }
 
-        // );
+        );
 
       }
 

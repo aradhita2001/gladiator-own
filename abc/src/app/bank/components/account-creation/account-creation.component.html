@@ -8,10 +8,10 @@
 
       <div>
 
-        <label for="accounts" class="form-label ">Select Account Type</label>
+        <label for="accountType" class="form-label ">Select Account Type</label>
 
-        <select name="accounts" formControlName="accounts" [(ngModel)]="accountForm.accounts" class="form-control"
-          id="accounts">
+        <select name="accountType" formControlName="accountType" class="form-control"
+          id="accountType">
 
           <option value="null">Select</option>
 
@@ -22,10 +22,10 @@
         </select>
 
         <div
-          *ngIf="accountForm.controls['accounts'].invalid && (accountForm.controls['accounts'].dirty || accountForm.controls['accounts'].touched)"
+          *ngIf="accountForm.controls['accountType'].invalid && (accountForm.controls['accountType'].dirty || accountForm.controls['accountType'].touched)"
           class="ng-dirty">
 
-          <span *ngIf="accountForm.controls['accounts'].errors">
+          <span *ngIf="accountForm.controls['accountType'].errors">
 
             <span class="text-danger">Please Enter the Type of Account.</span>
 
@@ -34,6 +34,21 @@
         </div>
 
       </div>
+
+      <div>
+        <button type="submit" class="btn-submit">Create Account</button>
+
+        <ng-container>
+          <div *ngIf="accountError$ | async as error" class="error">
+            {{ error }}
+          </div>
+          <div *ngIf="accountSuccess$ | async as msg" class="success">
+            {{ msg }}
+          </div>
+        </ng-container>
+      </div>
+
+     
 
       <a routerLink="/bank/dashboard" class="task-list" class="task-list mt-5">Dashboard</a>
 
