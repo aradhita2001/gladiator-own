@@ -36,6 +36,8 @@ export class AuthService {
  
   createUser(user: User): Observable<User> {
     // @todo : should create a user in the system at the endpoint "/user"
+    console.log(user);
+    
     return this.http.post<User>(`${this.loginUrl}/sign-up`, user);
   }
 }
