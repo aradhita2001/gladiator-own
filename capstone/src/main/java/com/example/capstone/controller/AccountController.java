@@ -31,13 +31,14 @@ public class AccountController {
     }
  
     @GetMapping
-    // @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<Account>> getAllAccounts() {
         List<Account> accounts = accountService.getAllAccounts();
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
  
     @GetMapping("/{accountId}")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<Account> getAccountById(@PathVariable long accountId) {
         Account accounts = accountService.getAccountById(accountId);
         if (accounts != null) {
@@ -48,6 +49,7 @@ public class AccountController {
     }
    
     @GetMapping("/user/{userId}")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<Account>> getAccountsByUser(@PathVariable long userId) {
         List<Account> accounts = accountService.getAccountsByUser(userId);
         return new ResponseEntity<>(accounts, HttpStatus.OK);
@@ -60,6 +62,7 @@ public class AccountController {
     }
  
     @PutMapping("/{accountId}")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<Void> updateAccount(@PathVariable long accountId, @RequestBody Account accounts) {
         accounts.setAccountId(accountId);
         accountService.updateAccount(accounts);
@@ -67,6 +70,7 @@ public class AccountController {
     }
  
     @DeleteMapping("/{accountId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> deleteAccount(@PathVariable long accountId) {
         accountService.deleteAccount(accountId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

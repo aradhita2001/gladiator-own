@@ -7,7 +7,7 @@ import {
 } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AuthService } from "./auth/services/auth.service";
- 
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
@@ -17,13 +17,12 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // Get the token from your authentication service
 
-    
+    const token = this.authService.getToken();
+
     if (request.url.includes("login") || request.url.includes("sign-up")) {
       return next.handle(request);
     }
- 
-    const token = this.authService.getToken();
- 
+
     // Clone the request and add the Authorization header with the token
     if (token) {
       request = request.clone({
@@ -34,9 +33,8 @@ export class AuthInterceptor implements HttpInterceptor {
         },
       });
     }
- 
+
     // Pass the modified request to the next interceptor or to the HTTP handler
     return next.handle(request);
   }
 }
- 

@@ -13,6 +13,7 @@
  
             <a [routerLink]="['/bank/transfer']" class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
               data-bs-parent="#sidebar"><i class=""></i> <span>Add Transaction</span></a>
+
  
           </div>
  
@@ -31,7 +32,8 @@
  
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
  
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
+              <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
+              <li></li>
  
             </ul>
  

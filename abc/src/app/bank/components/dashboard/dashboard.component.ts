@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Account } from '../../types/account';
 import { Transaction } from '../../types/transaction';
 import { BankService } from "../../services/bank.service";
+import { LogoutComponent } from 'src/app/auth/components/logout/logout.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -58,5 +59,12 @@ export class DashboardComponent {
 
   viewDetails(id:number) {
     this.router.navigateByUrl(`/bank/account-details/${id}`);
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('user_id');
+    this.router.navigate(["/auth"]);
   }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,12 +29,14 @@ public class TransactionController {
     }
  
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<Transaction>> getAllTransactions() {
         List<Transaction> transactions = transactionService.getAllTransactions();
         return new ResponseEntity<>(transactions, HttpStatus.OK);
     }
  
     @GetMapping("/{transactionId}")
+    
     public ResponseEntity<Transaction> getTransactionById(@PathVariable long transactionId) {
         Transaction transaction = transactionService.getTransactionById(transactionId);
         if (transaction != null) {
@@ -44,6 +47,7 @@ public class TransactionController {
     }
  
     @PostMapping
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<Long> addTransaction(@RequestBody Transaction transaction) {
         long transactionId = transactionService.addTransaction(transaction);
         return new ResponseEntity<>(transactionId, HttpStatus.CREATED);
@@ -61,12 +65,14 @@ public class TransactionController {
     // }
 
     @GetMapping("/debit/{accountId}")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<Transaction>> getAllDebitTransactionsByAccountId(@PathVariable long accountId) {
         List<Transaction> transactions = transactionService.getAllDebitTransactionsByAccountId(accountId);
         return new ResponseEntity<>(transactions, HttpStatus.OK);
     }
 
     @GetMapping("/credit/{accountId}")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<Transaction>> getAllCreditTransactionsByAccountId(@PathVariable long accountId) {
         List<Transaction> transactions = transactionService.getAllCreditTransactionsByAccountId(accountId);
         return new ResponseEntity<>(transactions, HttpStatus.OK);

@@ -41,17 +41,15 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
-        //TODO: process POST request
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         if (authentication.isAuthenticated()) {
             User user = userService.getUserByUserEmail(loginRequest.getUsername());
             String role = user.getRole();
-            LoginResponse loginResponse = new LoginResponse(jwtUtil.generateToken(loginRequest.getUsername()), user.getRole());
+            long userId = user.getUserId();
+            LoginResponse loginResponse = new LoginResponse(jwtUtil.generateToken(loginRequest.getUsername()), role, userId);
             return new ResponseEntity<>(loginResponse, HttpStatus.OK);
         } else {
             throw new UserNameNotFoundException("invalid user request !");
         }
     }
-    
-    
 }
