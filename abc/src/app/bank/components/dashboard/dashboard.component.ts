@@ -5,6 +5,7 @@ import { Account } from '../../types/account';
 import { Transaction } from '../../types/transaction';
 import { BankService } from "../../services/bank.service";
 import { LogoutComponent } from 'src/app/auth/components/logout/logout.component';
+import { User } from 'src/app/auth/types/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,7 @@ import { LogoutComponent } from 'src/app/auth/components/logout/logout.component
 export class DashboardComponent {
   accounts$: Observable<Account[]> = of();
   transactions$: Observable<Transaction[]> = of();
+  users$:Observable<User[]>=of();
   role: String | null = "";
 
 
@@ -23,7 +25,7 @@ export class DashboardComponent {
     this.role = localStorage.getItem("role");
     const strUserId = localStorage.getItem("user_id");
     //   this.customers$ = this.bankService.getCustomers();
-
+    
     // console.log(this.customers$);
     console.log(this.role);
 
@@ -37,20 +39,17 @@ export class DashboardComponent {
       this.accounts$ = this.bankService.getAccounts();
       // console.log(this.accounts$);
       this.transactions$ = this.bankService.getAllTranactions();
+      this.users$ = this.bankService.getAllUsers();
 
     }
+    
 
     this.transactions$.subscribe((data) => {
       data.forEach(m=> {console.log(m)});
     })
 
   }
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
-  // datasource: new MatTableDataSource(ELEMENT_DATA);
-  // ngOnInit(){
-  //   this.datasource.paginator = this.paginator;
-  //   this.
-  // }
+
   editCustomer(): void {
     // this.router.navigate(['/bank/customer/edit', { customerId: customer.customerId,name:customer.name,email:customer.email,username:customer.username, password:customer.password,role:customer.role }]);
 

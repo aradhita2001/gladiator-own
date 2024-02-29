@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Transaction } from '../types/transaction';
 import { Account } from "../types/account";
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
+import { User } from '../../auth/types/user';
 @Injectable({
   providedIn: 'root'
 })
 export class BankService {
+  
   
 
   private baseUrl=`${environment.apiUrl}`
@@ -31,6 +33,10 @@ export class BankService {
 
   getAccountsByUser(strUserId: string | null): Observable<Account[]> {
     return this.http.get<Account[]>(`${this.baseUrl}/accounts/user/${strUserId}`);
+  }
+  
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.baseUrl}/users`);
   }
   
 
