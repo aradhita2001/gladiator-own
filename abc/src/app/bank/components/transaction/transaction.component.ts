@@ -35,11 +35,13 @@ export class TransactionComponent implements OnInit{
     private router: Router
   ) {
     this.transactionForm = this.formBuilder.group({
-      sourceAccountNo: ["", [Validators.required]],
-      destAccountNo: ["",[Validators.required]],
+      sourceAccountId: ["", [Validators.required]],
+      destinationAccountId: ["",[Validators.required]],
       amount: ["", [Validators.required]],  //add min
     });
   }
+
+  
 
   ngOnInit(): void {
     if(!!localStorage.getItem("user_id")){
@@ -55,12 +57,35 @@ export class TransactionComponent implements OnInit{
 
       
     }
+}
+onSubmit(): void{
+  this.isFormSubmitted = true;
+  if (this.transactionForm.invalid) {
+    return;
+
+  } else {
+
+    const data= this.transactionForm.value;
+
+    console.log(data);
+
+    const transaction : Transaction = new Transaction(data);
+    console.log(transaction);
+
+    this.transactionService.addTransaction(transaction).subscribe(
+    (res: any) => {
+  this.transactionSuccess$ = of("success");
+      },
+  () => {
+        this.transactionError$ = of("failed");
+
+      }
+
+    );
+
   }
- 
-  onSubmit() {
-    
-  }
- 
- 
-  
+
+}
+
+
 }

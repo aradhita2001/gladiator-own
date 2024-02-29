@@ -47,7 +47,7 @@ public class TransactionController {
     }
  
     @PostMapping
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<Long> addTransaction(@RequestBody Transaction transaction) {
         long transactionId = transactionService.addTransaction(transaction);
         return new ResponseEntity<>(transactionId, HttpStatus.CREATED);

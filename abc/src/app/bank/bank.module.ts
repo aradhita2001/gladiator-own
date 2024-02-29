@@ -9,7 +9,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 
-
 @NgModule({
   declarations: [
     TransactionComponent,

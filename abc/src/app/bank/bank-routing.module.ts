@@ -8,7 +8,8 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 const routes: Routes = [
   { 
     path: "", 
-    component: DashboardComponent },
+    component: DashboardComponent 
+  },
   {
     path: "dashboard",
     component: DashboardComponent

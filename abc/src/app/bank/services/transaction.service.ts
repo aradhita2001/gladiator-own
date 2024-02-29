@@ -22,6 +22,10 @@ export class TransactionService {
   addAccount(account: Account) {
     return this.http.post<Account>(`${this.baseUrl}/accounts`,account);
   }
+  addTransaction(transaction:Transaction)
+  {
+    return this.http.post<Transaction>(`${this.baseUrl}/transactions`,transaction)
+  }
  
   performTransaction(transaction: Transaction): Observable<Transaction> {
     // @todo : should make an API call to /transaction and perform the transaction
