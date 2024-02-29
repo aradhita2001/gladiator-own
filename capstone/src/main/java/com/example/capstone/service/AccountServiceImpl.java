@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.capstone.dto.AccountDetails;
 import com.example.capstone.entity.Account;
 import com.example.capstone.exception.AccountNotFoundException;
 import com.example.capstone.repository.AccountRepository;
@@ -32,11 +33,13 @@ public class AccountServiceImpl implements AccountService{
     }
  
     @Override
-    public Account getAccountById(long accountId) {
-        Optional<Account> accounts = accountRepository.findById(accountId);
-        if (accounts.isPresent()) {
-            return accounts.get();
-        }
+    public AccountDetails getAccountById(long accountId) {
+        Optional<Account> account = accountRepository.findById(accountId);
+        
+        if (account.isPresent()) {
+            AccountDetails accountDetails = new AccountDetails(account.get());
+            return accountDetails;
+        }        
         
         throw new AccountNotFoundException("No accounts found linked with this accountId");
     }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.capstone.dto.AccountDetails;
 import com.example.capstone.entity.Account;
 import com.example.capstone.service.AccountService;
 
@@ -39,10 +40,10 @@ public class AccountController {
  
     @GetMapping("/{accountId}")
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<Account> getAccountById(@PathVariable long accountId) {
-        Account accounts = accountService.getAccountById(accountId);
-        if (accounts != null) {
-            return new ResponseEntity<>(accounts, HttpStatus.OK);
+    public ResponseEntity<AccountDetails> getAccountById(@PathVariable long accountId) {
+        AccountDetails accountDetails = accountService.getAccountById(accountId);
+        if (accountDetails != null) {
+            return new ResponseEntity<>(accountDetails, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
