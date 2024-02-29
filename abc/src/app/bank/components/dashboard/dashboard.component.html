@@ -1,188 +1,151 @@
 <div class="container-fluid">
- 
-    <div class="row flex-nowrap">
- 
-      <div class="col-auto px-0">
- 
-        <div id="sidebar" class="collapse collapse-horizontal show border-end border-dark bg-dark">
- 
-          <div id="sidebar-nav" class="list-group border-dark border-0 rounded-0 text-sm-start min-vh-100">
- 
-            <a [routerLink]="['/bank/new-account']" routerLinkActive="router-link-active"  class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
-              data-bs-parent="#sidebar"><i class=""></i> <span>Add Account</span> </a>
- 
-            <a [routerLink]="['/bank/transfer']" class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
-              data-bs-parent="#sidebar"><i class=""></i> <span>Add Transaction</span></a>
+  <div class="row flex-nowrap">
+    <div class="col-auto px-0">
+      <div id="sidebar" class="collapse collapse-horizontal show border-end border-dark bg-dark">
+        <div id="sidebar-nav" class="list-group border-dark border-0 rounded-0 text-sm-start min-vh-100">
 
- 
-          </div>
- 
-          <hr>
- 
-          <div class="dropdown pb-4">
- 
-            <a  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-              id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
- 
-              <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
- 
-              <span class="d-none d-sm-inline mx-1">{{ role }}</span>
- 
-            </a>
- 
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
- 
-              <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
-              <li></li>
- 
-            </ul>
- 
-          </div>
- 
+          <a [routerLink]="['/bank/new-account']" routerLinkActive="router-link-active"
+            class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
+            data-bs-parent="#sidebar"><span>Add Account</span> </a>
+
+          <a [routerLink]="['/bank/transfer']" routerLinkActive="router-link-active"
+            class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
+            data-bs-parent="#sidebar"><i class=""></i> <span>Add Transaction</span></a>
         </div>
-       
- 
-      </div>
- 
-      <main class="col ps-md-2 pt-2">
- 
-        <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse"
-          class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i> Menu</a>
- 
-        <div class="page-header pt-3">
- 
-          <h2>Dashboard</h2>
- 
-        </div>
- 
-        <p class="lead">{{role}}</p>
- 
+
         <hr>
- 
-        <div class="row">
- 
-          <div class="col-12">
- 
-            <div class="row">
- 
-              <div class="col-sm-7 mb-3 mb-sm-0">
- 
-                <div class="card">
- 
-                  <div class="card-body">
- 
-                    <h5 class="card-title">Transactions</h5>
- 
-                    <!-- <div class="card-header">
- 
-              Transactions
- 
-            </div> -->
- 
-                    <table class="table">
- 
-                      <thead>
- 
-                        <tr>
- 
-                          <th scope="col">Account Id</th>
- 
-                          <th scope="col">Destination Account</th>
- 
-                          <th scope="col">Balance</th>
- 
-                          <th scope="col">Time</th>
- 
-                        </tr>
- 
-                      </thead>
- 
-                      <tbody>
- 
-                        <tr *ngFor="let transaction of transactions$ | async">
- 
-                          <td>{{ transaction.sourceAccountId }}</td>
-                          <td>{{ transaction.destinationAccountId }}</td>
-                          <td>{{transaction.amount | currency:'INR'}}</td>
-                          <td>{{transaction.transactionDate | date:'longDate'}}</td>
-                       
-                        </tr>
- 
-                      </tbody>
- 
-                    </table>
- 
-                    <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
- 
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
- 
-                  </div>
- 
-                </div>
- 
-              </div>
- 
-              <div class="col-sm-5">
- 
-                <div class="card">
- 
-                  <div class="card-body">
- 
-                    <h5 class="card-title">Accounts</h5>
- 
-                    <table class="table">
- 
-                      <thead>
- 
-                        <tr>
- 
-                          <th scope="col">Account Id</th>
- 
-                          <th scope="col">Balance</th>
- 
-                          <!-- <th scope="col">Handle</th> -->
- 
-                        </tr>
- 
-                      </thead>
- 
-                      <tbody>
- 
-                        <tr *ngFor="let account of accounts$ | async">
- 
-                            <td>{{account.accountId}}</td>
-                            <td>{{account.balance | currency:'INR'}}</td>
-                         
-                         
- 
-                          <td> <button class="btn btn-sm btn-outline-primary  " (click)="viewDetails(account.accountId)">View
-                              Details</button></td>
- 
-                        </tr>
- 
-                      </tbody>
- 
-                    </table>
- 
-                    <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
- 
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
- 
-                  </div>
- 
-                </div>
- 
-              </div>
- 
-            </div>
- 
-          </div>
- 
+
+        <div class="dropdown pb-4">
+          <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+            <span class="d-none d-sm-inline mx-1">{{ role }}</span>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
+          </ul>
         </div>
- 
-      </main>
- 
+      </div>
     </div>
- 
-  </div>
- 
+
+    <main class="col ps-md-2 pt-2 ">
+      <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse"
+        class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i> Menu</a>
+      <div class="page-header pt-3">
+        <h2>Dashboard</h2>
+      </div>
+      <p class="lead">{{role}}</p>
+      <hr>
+      <div class="row ">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-sm-7 mb-3 mb-sm-0">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Transactions</h5>
+                  <table class="table ">
+
+                    <thead>
+
+                      <tr>
+
+                        <th scope="col">Account Id</th>
+
+                        <th scope="col">Destination Account</th>
+
+                        <th scope="col">Balance</th>
+
+                        <th scope="col">Time</th>
+
+                      </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                      <tr *ngFor="let transaction of transactions$ | async">
+
+                        <td>{{ transaction.sourceAccountId }}</td>
+                        <td>{{ transaction.destinationAccountId }}</td>
+                        <td>{{transaction.amount | currency:'INR'}}</td>
+                        <td>{{transaction.transactionDate | date:'longDate'}}</td>
+
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+
+                  <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+
+                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-sm-5">
+
+              <div class="card">
+
+                <div class="card-body">
+
+                  <h5 class="card-title">Accounts</h5>
+
+                  <table class="table">
+
+                    <thead>
+
+                      <tr>
+
+                        <th scope="col">Account Id</th>
+
+                        <th scope="col">Balance</th>
+
+                        <!-- <th scope="col">Handle</th> -->
+
+                      </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                      <tr *ngFor="let account of accounts$ | async">
+
+                        <td>{{account.accountId}}</td>
+                        <td>{{account.balance | currency:'INR'}}</td>
+
+
+
+                        <td> <button class="btn btn-sm btn-outline-primary  "
+                            (click)="viewDetails(account.accountId)">View
+                            Details</button></td>
+
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+
+                  <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+
+                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+
+                </div>
+
+              </div>
+
+            </div>
+           
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+

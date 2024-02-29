@@ -1,80 +1,76 @@
-<section class="intro">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-    <!-- <div class="mask d-flex align-items-center h-100 gradient-custom"> -->
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 col-xl-10">
-            <div class="card">
-              <div class="card-body p-5">
- 
-                <div class="row d-flex align-items-center">
-                  <div class="col-md-6 col-xl-7">
- 
-                    <div class="text-center pt-md-5 pb-5 my-md-5" style="padding-right: 24px;">
-                      <!-- <i class="fas-fa-laptop" style="color: #D6D6D6;"></i> -->
-                      <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbHcPiJku54mDqbfKfEmiuu8rcZgOTaz5xqA&usqp=CAU"
-                        width="260" height="260">
-                    </div>
- 
-                  </div>
-                  <div class="col-md-6 col-xl-4 text-center">
- 
-                    <h2 class="fw-bold mb-4 pb-2">User Login</h2>
- 
-                    <div class="form-outline mb-3">
-                      <label class="form-label" for="typeEmail">Username</label>
-                      <input type="text" id="username" class="form-control form-control-lg"
-                        formControlName="username" />
- 
-                      <div
-                        *ngIf="loginForm.controls['username']?.invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
-                        <span *ngIf="loginForm.controls['username'].errors">
-                          <span>Please Enter username</span>
-                          <span style="color: red;" *ngIf="loginForm.get('username')?.hasError('minlength')">Your
-                            username must be greater than or equal to 6</span>
-                          <span style="color: red;" *ngIf="loginForm.get('username')?.hasError('maxlength')">Your
-                            username must be less than or equal to 8</span>
-                        </span>
-                      </div>
-                    </div>
- 
- 
- 
-                    <div class="form-outline mb-4">
-                      <label class="form-label" for="typePassword">Password</label>
-                      <input type="password" id="password" class="form-control form-control-lg"
-                        formControlName="password" />
- 
-                      <div
-                        *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
-                        <span *ngIf="loginForm.controls['password'].errors">
-                          <span>Please Enter password</span>
-                          <span style="color: red;" *ngIf="loginForm.get('password')?.hasError('minlength')">Your
-                            username must be greaterthan or equal to 6</span>
-                          <span style="color: red;" *ngIf="loginForm.get('password')?.hasError('maxlength')">Your
-                            username must be less than or equal to 8</span>
- 
-                        </span>
-                      </div>
-                    </div>
- 
- 
-                    <div class="text-center">
-                      <button class="btn btn-info btn-block btn-lg" type="submit">Login</button><br>
-                      <!-- <p class="small mt-3 mb-4 text-muted">Forgot <span class="fw-bold"><a href="#!" class="text-muted">Username</a> / <a href="#!" class="text-muted">Password</a>?</span></p> -->
-                      <a href="/bank/account-creation">Create your Account <i
-                          class="fas fa-long-arrow-alt-right"></i></a>
-                    </div>
- 
-                  </div>
-                </div>
- 
-              </div>
-            </div>
-          </div>
+<h1>Welcome Back</h1>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+
+  <div>
+    <label for="username" class="form-label ">Username:</label>
+    <input type="text" name="username" formControlName="username" class="form-control" placeholder="Enter username">
+    <div
+      *ngIf="loginForm.controls['username']?.invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+      <span style="color: red;" *ngIf="loginForm.controls['username'].errors"> Please Enter user name
+
+        <!-- <span style="color: red;" *ngIf="loginForm.get('username')?.hasError('minlength')">Your username must be greater than or equal to 6</span> -->
+        <!-- <span style="color: red;" *ngIf="loginForm.get('username')?.hasError('maxlength')">Your username must be less than or equal to 8</span> -->
+      </span>
+    </div>
+  </div>
+
+  <div class="row d-flex align-items-center">
+    <div class="col-md-6 col-xl-7">
+
+      <div class="text-center pt-md-5 pb-5 my-md-5" style="padding-right: 24px;">
+        <!-- <i class="fas-fa-laptop" style="color: #D6D6D6;"></i> -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbHcPiJku54mDqbfKfEmiuu8rcZgOTaz5xqA&usqp=CAU"
+          width="260" height="260">
+      </div>
+
+    </div>
+    <div class="col-md-6 col-xl-4 text-center">
+
+      <h2 class="fw-bold mb-4 pb-2">User Login</h2>
+
+      <div class="form-outline mb-3">
+        <label class="form-label" for="typeEmail">Username</label>
+        <input type="text" id="username" class="form-control form-control-lg" formControlName="username" />
+
+        <div
+          *ngIf="loginForm.controls['username']?.invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+          <span *ngIf="loginForm.controls['username'].errors">
+            <span>Please Enter username</span>
+            <span style="color: red;" *ngIf="loginForm.get('username')?.hasError('minlength')">Your
+              username must be greater than or equal to 6</span>
+            <span style="color: red;" *ngIf="loginForm.get('username')?.hasError('maxlength')">Your
+              username must be less than or equal to 8</span>
+          </span>
         </div>
       </div>
-    <!-- </div> -->
-  </form>
-</section>
+
+
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="typePassword">Password</label>
+        <input type="password" id="password" class="form-control form-control-lg" formControlName="password" />
+
+        <div
+          *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+          <span *ngIf="loginForm.controls['password'].errors">
+            <span>Please Enter password</span>
+            <span style="color: red;" *ngIf="loginForm.get('password')?.hasError('minlength')">Your
+              username must be greaterthan or equal to 6</span>
+            <span style="color: red;" *ngIf="loginForm.get('password')?.hasError('maxlength')">Your
+              username must be less than or equal to 8</span>
+
+          </span>
+        </div>
+      </div>
+
+
+      <div class="text-center">
+        <button class="btn btn-info btn-block btn-lg" type="submit">Login</button><br>
+        <!-- <p class="small mt-3 mb-4 text-muted">Forgot <span class="fw-bold"><a href="#!" class="text-muted">Username</a> / <a href="#!" class="text-muted">Password</a>?</span></p> -->
+        <a href="/bank/account-creation">Create your Account <i class="fas fa-long-arrow-alt-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+
+  
