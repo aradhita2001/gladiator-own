@@ -8,11 +8,11 @@
             class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
             data-bs-parent="#sidebar"><span>+Account</span> </a>
 
-          <a [routerLink]="['/bank/transfer']" routerLinkActive="router-link-active"
+          <a *ngIf="this.role==='USER'" [routerLink]="['/bank/transfer']" routerLinkActive="router-link-active"
             class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
             data-bs-parent="#sidebar"><i class=""></i> <span>+Transaction</span></a>
 
-          <a [routerLink]="['/bank/transfer']" routerLinkActive="router-link-active"
+          <a *ngIf="this.role==='ADMIN'" [routerLink]="['/bank/add-user']" routerLinkActive="router-link-active"
             class="list-group-item border-end-0 d-inline-block text-truncate bg-dark text-white"
             data-bs-parent="#sidebar"><i class=""></i> <span>+User</span></a>
         </div>
@@ -135,8 +135,8 @@
               </div>
 
             </div>
-            <div class="row mt-5 mx-auto">
-              <div class="col-sm-9 mb-4 mb-sm-0">
+            <div *ngIf="this.role==='ADMIN'" class="row mt-5 mx-auto">
+              <div class="col-sm-7">
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">Users</h5>

@@ -29,7 +29,8 @@ export class AccountCreationComponent {
 
       this.accountForm = this.formBuilder.group({
 
-        accountType:['',[Validators.required]]
+        accountType:['',[Validators.required]],
+        userId:['',Validators.required]
 
       });
 
