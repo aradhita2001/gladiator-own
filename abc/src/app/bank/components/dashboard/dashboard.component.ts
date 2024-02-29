@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Account } from '../../types/account';
@@ -15,6 +15,8 @@ export class DashboardComponent {
   accounts$: Observable<Account[]> = of();
   transactions$: Observable<Transaction[]> = of();
   role: String | null = "";
+
+
   constructor(private bankService: BankService, private router: Router) { }
 
   ngOnInit(): void {
@@ -69,4 +71,5 @@ export class DashboardComponent {
     
     this.router.navigate(["/auth"]);
   }
+ 
 }
