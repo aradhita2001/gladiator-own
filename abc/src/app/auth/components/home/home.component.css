@@ -1,45 +1,57 @@
 body {
-    background-image: url('../../assets/background.jpg') !important;  
+    background-image: url('../../assets/background.jpg') !important;
     background-size: auto;
     background-repeat: no-repeat;
     background-attachment: fixed;
     /* background-size: 1275px 1800px; */
     color: #fff;
-   }
-  .navbar {
+}
+
+.navbar {
     background-color: rgba(0, 0, 0, 0.5);
-  }
-  .navbar-brand, .nav-link {
+}
+
+.navbar-brand,
+.nav-link {
     color: #fff !important;
-  } */
-  .navbar-toggler {
+}
+
+*/ .navbar-toggler {
     border-color: #fff;
-  }
-  .card {
+}
+
+.card {
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
-  }
-  .card-title {
+}
+
+.card-title {
     color: #fff;
-  }
-  .about-section {
+}
+
+.about-section {
     display: none;
-  }
-  .cards {
+}
+
+.cards {
     display: flex;
     flex-direction: coloumn;
     gap: 15px;
-  }
-  .cards .red {
+}
+
+.cards .red {
     background-color: #f43f5e;
-  }
-  .cards .blue {
+}
+
+.cards .blue {
     background-color: #3b82f6;
-  }
-  .cards .green {
+}
+
+.cards .green {
     background-color: #22c55e;
-  }
-  .cards .card {
+}
+
+.cards .card {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,26 +64,31 @@ body {
     cursor: pointer;
     transition: 400ms transform, 400ms box-shadow, 400ms background-color;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  .cards .card p.tip {
+}
+
+.cards .card p.tip {
     font-size: 1em;
     font-weight: 700;
-  }
-  .cards .card p.second-text {
+}
+
+.cards .card p.second-text {
     font-size: 0.7em;
-  }
-  .cards .card:hover {
+}
+
+.cards .card:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     background-color: rgba(255, 255, 255, 0.1);
     color: #333;
-  }
-  .cards:hover > .card:not(:hover) {
+}
+
+.cards:hover>.card:not(:hover) {
     filter: blur(10px);
     transform: scale(0.9);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  }
-  .button {
+}
+
+.button {
     padding: 0.5em 1em;
     border: none;
     border-radius: 5px;
@@ -85,14 +102,16 @@ body {
     position: relative;
     overflow: hidden;
     outline: 2px solid #2c9caf;
-  }
-  button:hover {
+}
+
+button:hover {
     color: #ffffff;
     transform: scale(1.1);
     outline: 2px solid #70bdca;
     box-shadow: 4px 5px 17px -4px #268391;
-  }
-  button::before {
+}
+
+button::before {
     content: "";
     position: absolute;
     left: -50px;
@@ -103,8 +122,8 @@ body {
     transform: skewX(45deg);
     z-index: -1;
     transition: width 1000ms;
-  }
-  button:hover::before {
+}
+
+button:hover::before {
     width: 250%;
-  }
-   
+}
