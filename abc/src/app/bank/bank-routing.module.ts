@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BankComponent } from './bank.component';
 import { AccountCreationComponent } from './components/account-creation/account-creation.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
@@ -9,7 +10,10 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 const routes: Routes = [
   { 
     path: "", 
-    component: DashboardComponent 
+    component: BankComponent,
+    children: [
+      {path: "", component: DashboardComponent}
+    ] 
   },
   { 
     path: "add-user", 
