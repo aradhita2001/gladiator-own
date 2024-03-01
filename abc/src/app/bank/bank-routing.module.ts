@@ -8,33 +8,21 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { TransactionComponent } from './components/transaction/transaction.component';
 
 const routes: Routes = [
-  { 
-    path: "", 
+  {
+    path: "",
     component: BankComponent,
     children: [
-      {path: "", component: DashboardComponent}
-    ] 
+      { path: "", component: DashboardComponent },
+      { path: "dashboard", component: DashboardComponent },
+      { path: "add-user", component: AddUserComponent },
+      { path: "transaction", component: TransactionComponent },
+      { path: "create-account", component: AccountCreationComponent },
+      { path: "account/:id", component: AccountDetailsComponent },
+
+
+    ]
   },
-  { 
-    path: "add-user", 
-    component: AddUserComponent 
-  },
-  {
-    path: "dashboard",
-    component: DashboardComponent
-  },
-  {
-    path: "account-details/:id",
-    component: AccountDetailsComponent
-  },
-  {
-    path: 'new-account',
-    component: AccountCreationComponent
-  },
-  {
-    path: 'transfer',
-    component: TransactionComponent
-  }
+
 ];
 
 @NgModule({

@@ -59,7 +59,7 @@ export class DashboardComponent {
   }
 
   viewDetails(id:number) {
-    this.router.navigateByUrl(`/bank/account-details/${id}`);
+    this.router.navigateByUrl(`/bank/account/${id}`);
   }
 
   logout(){
