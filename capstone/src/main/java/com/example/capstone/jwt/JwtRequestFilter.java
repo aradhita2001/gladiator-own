@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.example.capstone.config.UserAuthorizationDetailsService;
+import com.example.capstone.dto.Constants;
 
 
 
@@ -30,11 +31,11 @@ public class JwtRequestFilter extends OncePerRequestFilter{
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String authHeader = request.getHeader("Authorization");
+        String authHeader = request.getHeader(Constants.SECURITY_HEADER);
         String token = null;
         String username = null;
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            token = authHeader.substring(7);
+        if (authHeader != null && authHeader.startsWith(Constants.JWT_TOKEN_PREFIX)) {
+            token = authHeader.substring(Constants.JWT_TOKEN_PREFIX.length());
             username = jwtUtil.extractUsername(token);
         }
 
