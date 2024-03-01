@@ -57,23 +57,24 @@ public class AccountController {
     }
  
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<Long> addAccount(@RequestBody Account accounts) {
         long accountId = accountService.addAccount(accounts);
         return new ResponseEntity<>(accountId, HttpStatus.CREATED);
     }
  
-    @PutMapping("/{accountId}")
-    @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<Void> updateAccount(@PathVariable long accountId, @RequestBody Account accounts) {
-        accounts.setAccountId(accountId);
-        accountService.updateAccount(accounts);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+    // @PutMapping("/{accountId}")
+    // @PreAuthorize("hasAuthority('USER')")
+    // public ResponseEntity<Void> updateAccount(@PathVariable long accountId, @RequestBody Account accounts) {
+    //     accounts.setAccountId(accountId);
+    //     accountService.updateAccount(accounts);
+    //     return new ResponseEntity<>(HttpStatus.OK);
+    // }
  
-    @DeleteMapping("/{accountId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Void> deleteAccount(@PathVariable long accountId) {
-        accountService.deleteAccount(accountId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+    // @DeleteMapping("/{accountId}")
+    // @PreAuthorize("hasAuthority('ADMIN')")
+    // public ResponseEntity<Void> deleteAccount(@PathVariable long accountId) {
+    //     accountService.deleteAccount(accountId);
+    //     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // }
 }

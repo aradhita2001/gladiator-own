@@ -67,6 +67,6 @@ export class BankComponent {
     localStorage.removeItem('user_id');
     console.log(localStorage);
     
-    this.router.navigate(["/auth"]);
+    this.router.navigate(["/login"]);
   }
 }

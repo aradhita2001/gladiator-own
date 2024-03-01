@@ -8,14 +8,14 @@
           <a class="nav-link mb-0 h1 text-white mt-2" [routerLink]="['/bank/new-account']" routerLinkActive="router-link-active" >Add Account</a>
         </li>
             <li class="nav-item active">
-              <a class="nav-link mb-0 h1 text-white mt-2" [routerLink]="['/bank/add-user']" routerLinkActive="router-link-active" >Add User</a>
+              <a *ngIf="role==='ADMIN'" class="nav-link mb-0 h1 text-white mt-2" [routerLink]="['/bank/add-user']" routerLinkActive="router-link-active" >Add User</a>
         </li>
 
-            <li class="nav-item active">
+            <li *ngIf="role==='USER'" class="nav-item active">
               <a class="nav-link mb-0 h1 text-white mt-2" [routerLink]="['/bank/transfer']" routerLinkActive="router-link-active" >Add Transaction</a>
             </li>
             <li class="nav-item active">
-                <button class="logout btn btn-danger nav-link text-white mt-2" [routerLink]="['/']" routerLinkActive="router-link-active" >Logout</button>
+                <button class="logout btn btn-danger nav-link text-white mt-2" (click)="logout()" >Logout</button>
               </li>
       </ul>
       

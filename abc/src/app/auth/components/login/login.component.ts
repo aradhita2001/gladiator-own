@@ -31,6 +31,10 @@ export class LoginComponent{
             localStorage.setItem("user_id",response.userId);
             // console.log(localStorage.getItem("role"));
             this.router.navigate(["bank/dashboard"]);
+        },
+        (error) => {
+          console.log("wrong credentials");
+          
         });
         
       // this.authService.login(this.loginForm.value).subscribe(

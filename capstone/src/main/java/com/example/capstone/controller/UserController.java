@@ -31,12 +31,14 @@ public class UserController {
  
  
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
  
     @GetMapping("/{userId}")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<User> getUserById(@PathVariable long userId) {
         User user = userService.getUserById(userId);
         if (user != null) {
@@ -64,16 +66,16 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{userId}")
-    public ResponseEntity<Void> updateUser(@PathVariable long userId, @RequestBody User user) {
-        userService.updateUser(userId, user);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+    // @PutMapping("/{userId}")
+    // public ResponseEntity<Void> updateUser(@PathVariable long userId, @RequestBody User user) {
+    //     userService.updateUser(userId, user);
+    //     return new ResponseEntity<>(HttpStatus.OK);
+    // }
  
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable long userId) {
-        userService.deleteUser(userId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+    // @DeleteMapping("/{userId}")
+    // public ResponseEntity<Void> deleteUser(@PathVariable long userId) {
+    //     userService.deleteUser(userId);
+    //     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // }
 }
 
