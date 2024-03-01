@@ -6,15 +6,6 @@ import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
 import { UserComponent } from "./components/user/user.component";
 
-// const routes: Routes = [
-//   { 
-//     path: "", 
-//     component: HomeComponent,
-//     children: [
-//       {path : "", component: LandingMainComponent}
-//     ]
-//   }
-// ];
 
 const routes: Routes = [
     { 
