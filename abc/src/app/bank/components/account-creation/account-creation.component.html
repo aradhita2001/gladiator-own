@@ -6,9 +6,9 @@
     <h5 class="card-title">Please fill the form</h5>
     <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
 
-<div>
+<div *ngIf="role==='ADMIN'">
   <label>UserId</label>
-  <input type="text" for="userId" formControlName="userId" >
+  <input type="text" for="userId" formControlName="userId">
   <div
   *ngIf="accountForm.controls['userId'].invalid && (accountForm.controls['userId'].dirty || accountForm.controls['userId'].touched)"
   class="ng-dirty">

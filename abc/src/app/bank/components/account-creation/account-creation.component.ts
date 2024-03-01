@@ -2,18 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { TransactionService } from '../../services/transaction.service';
 import { Account } from '../../types/account';
- 
+import { AccountCreationRequest } from '../../types/AccountCreationRequest';
+
 @Component({
   selector: 'app-account-creation',
   templateUrl: './account-creation.component.html',
   styleUrls: ['./account-creation.component.css']
 })
-export class AccountCreationComponent {
- 
- 
-  accountForm:any={AccountType:null}
+export class AccountCreationComponent implements OnInit {
+
+  role!: String | null;
+  userId!: Number;
+  accountType!: String;
+  accountForm: any = { AccountType: null }
 
   accountError$: Observable<string> = of();
 
@@ -21,63 +25,80 @@ export class AccountCreationComponent {
 
   isFormSubmitted: boolean = false;
 
-  
 
-  constructor(private formBuilder: FormBuilder,private transactionService: TransactionService, private router:Router) 
 
-    {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private authService: AuthService, 
+    private transactionService: TransactionService, 
+    private router: Router
+  ) {}
 
+
+  ngOnInit(): void {
+
+    this.role = this.authService.getRole();
+    this.userId = this.authService.getUserId();
+
+    if(this.role==="USER"){
       this.accountForm = this.formBuilder.group({
-
-        accountType:['',[Validators.required]],
-        userId:['',Validators.required]
-
+        accountType: ['', [Validators.required]],
+        userId: [this.userId, Validators.required]
       });
+    }
+    
 
-   }
+    else{
+      this.accountForm = this.formBuilder.group({
+        accountType: ['', [Validators.required]],
+        userId: ["", Validators.required]
+      })
+  
+    } 
+    console.log(this.accountForm.value);
+    
+  }
 
-  // ngOnInit(): void {
 
-    onSubmit() {
+  onSubmit() {
 
-      this.isFormSubmitted = true;
+    this.isFormSubmitted = true;
 
-      this.accountSuccess$ = of('');
+    this.accountSuccess$ = of('');
 
-      this.accountError$ = of('');
+    this.accountError$ = of('');
 
-      if (this.accountForm.invalid) {
+    if (this.accountForm.invalid) {
 
-        return;
+      return;
 
-      } else {
+    } else {
 
-        const data= this.accountForm.value;
+      const data = this.accountForm.value;
 
-        console.log(data);
+      console.log(data);
 
-        const account : Account = new Account(data);
-        console.log(account);
+      const account: AccountCreationRequest = new AccountCreationRequest(data);
+      console.log(account);
 
-        this.transactionService.addAccount(account).subscribe(
+      this.transactionService.addAccount(account).subscribe(
 
-          (res: any) => {
+        (res: any) => {
 
-            this.accountSuccess$ = of("Account created successfully");
+          this.accountSuccess$ = of("Account created successfully");
 
-          },
+        },
 
-          () => {
+        () => {
 
-            this.accountError$ = of("Unable to create account");
+          this.accountError$ = of("Unable to create account");
 
-          }
+        }
 
-        );
-
-      }
+      );
 
     }
 
+  }
+
 }
- 

@@ -7,6 +7,7 @@ import { Observable } from "rxjs";
 import { Account } from "../types/account";
 import { getLocaleCurrencySymbol } from "@angular/common";
 import { TransactionForAccount } from "../types/TransactionForAccount";
+import { AccountCreationRequest } from "../types/AccountCreationRequest";
  
 @Injectable({
   providedIn: "root",
@@ -20,7 +21,7 @@ export class TransactionService {
  
   constructor(private http: HttpClient) {}
  
-  addAccount(account: Account) {
+  addAccount(account: AccountCreationRequest) {
     return this.http.post<Account>(`${this.baseUrl}/accounts`,account);
   }
   addTransaction(transaction:Transaction)
