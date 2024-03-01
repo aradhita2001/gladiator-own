@@ -13,42 +13,7 @@ import { User } from 'src/app/auth/types/user';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  accounts$: Observable<Account[]> = of();
-  transactions$: Observable<Transaction[]> = of();
-  users$:Observable<User[]>=of();
-  role: String | null = "";
-
-
-  constructor(private bankService: BankService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.role = localStorage.getItem("role");
-    const strUserId = localStorage.getItem("user_id");
-    //   this.customers$ = this.bankService.getCustomers();
-    
-    // console.log(this.customers$);
-    console.log(this.role);
-
-    if (this.role === 'USER') {
-      this.accounts$ = this.bankService.getAccountsByUser(strUserId);
-
-      this.transactions$ = this.bankService.getTransactionsByUser(strUserId);
-
-    }
-    if (this.role === 'ADMIN') {
-      this.accounts$ = this.bankService.getAccounts();
-      // console.log(this.accounts$);
-      this.transactions$ = this.bankService.getAllTranactions();
-      this.users$ = this.bankService.getAllUsers();
-
-    }
-    
-
-    this.transactions$.subscribe((data) => {
-      data.forEach(m=> {console.log(m)});
-    })
-
-  }
+ 
 
   editCustomer(): void {
     // this.router.navigate(['/bank/customer/edit', { customerId: customer.customerId,name:customer.name,email:customer.email,username:customer.username, password:customer.password,role:customer.role }]);
@@ -58,17 +23,10 @@ export class DashboardComponent {
 
   }
 
-  viewDetails(id:number) {
-    this.router.navigateByUrl(`/bank/account-details/${id}`);
-  }
+  
 
   logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    localStorage.removeItem('user_id');
-    console.log(localStorage);
     
-    this.router.navigate(["/auth"]);
   }
  
 }

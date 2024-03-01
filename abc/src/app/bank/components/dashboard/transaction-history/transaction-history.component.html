@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Transactions</h5>
+      <table class="table ">
+
+        <thead>
+
+          <tr>
+
+            <th scope="col">Account Id</th>
+
+            <th scope="col">Destination Account</th>
+
+            <th scope="col">Balance</th>
+
+            <th scope="col">Time</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let transaction of transactions$ | async">
+
+            <td>{{ transaction.sourceAccountId }}</td>
+            <td>{{ transaction.destinationAccountId }}</td>
+            <td>{{transaction.amount | currency:'INR'}}</td>
+            <td>{{transaction.transactionDate | date:'longDate'}}</td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+
+    </div>
+
+  </div>

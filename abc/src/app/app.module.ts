@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
 import { BankComponent } from './bank/bank.component';
 import { AuthInterceptor } from './auth.interceptors';
+import { BankModule } from './bank/bank.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AuthInterceptor } from './auth.interceptors';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BankModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

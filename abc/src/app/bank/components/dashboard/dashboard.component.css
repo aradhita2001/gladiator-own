@@ -1,3 +1,14 @@
-#sidebar-nav{
-    width:130px;
+.main-content{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+.tables-container{
+    display:flex;
+    flex-direction:column;
+}
+.table{
+    flex:1;
+    margin-right: 20px;
 }
