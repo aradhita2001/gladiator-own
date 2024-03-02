@@ -13,6 +13,7 @@ import { TransactionTableComponent } from './components/transaction-table/transa
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { AccountTableComponent } from './components/account-table/account-table.component';
 import { LoanTableComponent } from './components/loan-table/loan-table.component';
+import { AccountRequestTableComponent } from './components/account-request-table/account-request-table.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { LoanTableComponent } from './components/loan-table/loan-table.component
     UserTableComponent,
     AccountTableComponent,
     LoanTableComponent,
+    AccountRequestTableComponent,
   ],
   imports: [
     CommonModule,
