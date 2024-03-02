@@ -15,7 +15,7 @@ import { User } from 'src/app/auth/types/user';
 export class DashboardComponent {
   accounts$: Observable<Account[]> = of();
   transactions$: Observable<Transaction[]> = of();
-  users$:Observable<User[]>=of();
+  users$: Observable<User[]> = of();
   role: String | null = "";
 
 
@@ -24,9 +24,9 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.role = localStorage.getItem("role");
     const strUserId = localStorage.getItem("user_id");
-    //   this.customers$ = this.bankService.getCustomers();
-    
-    // console.log(this.customers$);
+
+
+
     console.log(this.role);
 
     if (this.role === 'USER') {
@@ -37,15 +37,15 @@ export class DashboardComponent {
     }
     if (this.role === 'ADMIN') {
       this.accounts$ = this.bankService.getAccounts();
-      // console.log(this.accounts$);
+
       this.transactions$ = this.bankService.getAllTranactions();
       this.users$ = this.bankService.getAllUsers();
 
     }
-    
+
 
     this.transactions$.subscribe((data) => {
-      data.forEach(m=> {console.log(m)});
+      data.forEach(m => { console.log(m) });
     })
 
   }
@@ -58,17 +58,17 @@ export class DashboardComponent {
 
   }
 
-  viewDetails(id:number) {
+  viewDetails(id: number) {
     this.router.navigateByUrl(`/bank/account/${id}`);
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('user_id');
     console.log(localStorage);
-    
+
     this.router.navigate(["/auth"]);
   }
- 
+
 }
