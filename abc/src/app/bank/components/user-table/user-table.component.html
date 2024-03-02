@@ -1,0 +1,38 @@
+<div *ngIf="this.role==='ADMIN'" class="row mt-5 mx-auto">
+    
+    <div class="card col-8 mt-3 mx-auto p-2">
+        <div class="card-body">
+            <h5 class="card-title">Users</h5>
+            <table class="table ">
+
+                <thead>
+
+                    <tr>
+
+                        <th scope="col">User Id</th>
+
+                        <th scope="col">Name</th>
+
+                        <th scope="col">Phone</th>
+
+                        <th scope="col">email</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let user of users$ | async">
+
+                        <td>{{user.userId}}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{user.phone}}</td>
+                        <td>{{user.email}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

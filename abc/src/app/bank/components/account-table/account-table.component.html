@@ -1,0 +1,43 @@
+<div class="card col-5 mt-3 mx-auto p-2">
+
+    <div class="card-body">
+
+        <h5 class="card-title">Accounts</h5>
+
+        <table class="table">
+
+            <thead>
+
+                <tr>
+
+                    <th scope="col">Account Id</th>
+
+                    <th scope="col">Balance</th>
+
+                    <th scope="col">Handle</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let account of accounts$ | async">
+
+                    <td>{{account.accountId}}</td>
+                    <td>{{account.balance | currency:'INR'}}</td>
+
+
+
+                    <td> <button class="btn btn-sm btn-outline-primary  "
+                            (click)="viewDetails(account.accountId)">View
+                            Details</button></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

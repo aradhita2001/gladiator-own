@@ -7,13 +7,11 @@ import { environment } from 'src/environments/environment.development';
 import { User } from '../../auth/types/user';
 import { AccountDetails } from '../types/AccountDetails';
 import { TransactionForAccount } from '../types/TransactionForAccount';
+import { Loan } from '../types/Loan';
 @Injectable({
   providedIn: 'root'
 })
 export class BankService {
-  
-  
-  
 
   private baseUrl=`${environment.apiUrl}`
 
@@ -41,6 +39,11 @@ export class BankService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}/users`);
   }
-  
+  getAllLoans(): Observable<Loan[]> {
+    return this.http.get<Loan[]>(`${this.baseUrl}/loans`);
+  }
+  getAllLoansByUserId(userId: string | null): Observable<Loan[]> {
+   return this.http.get<Loan[]>(`${this.baseUrl}/loans/user/${userId}`);
+  }
 
 }
