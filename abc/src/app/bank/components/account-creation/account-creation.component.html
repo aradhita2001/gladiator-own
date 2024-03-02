@@ -6,26 +6,6 @@
     <h5 class="card-title">Please fill the form</h5>
     <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
 
-      <div *ngIf="role==='ADMIN'">
-        <label>UserId</label>
-        <input type="text" for="userId" formControlName="userId">
-        <div
-          *ngIf="accountForm.controls['userId'].invalid && (accountForm.controls['userId'].dirty || accountForm.controls['userId'].touched)"
-          class="ng-dirty">
-          <span *ngIf="accountForm.controls['userId'].errors">
-            <span class="text-danger">User id is required</span>
-          </span>
-        </div>
-        <div>
-          <div
-            *ngIf="!accountForm.get('userId')?.hasError('required') && accountForm.get('userId')?.hasError('UseridValidator') && (accountForm.get('userId')?.touched || accountForm.get('userId')?.dirty)"
-            class="error" class="text-danger">userId is Invalid
-          </div>
-        </div>
-
-
-      </div>
-
       <div>
 
         <label for="accountType" class="form-label ">Select Account Type</label>
@@ -46,12 +26,22 @@
 
           <span *ngIf="accountForm.controls['accountType'].errors">
 
-            <span class="text-danger">Please Enter the Type of Account.</span>
+            <span class="text-danger">
+              Please Select the Type of Account.
+            </span>
 
           </span>
 
         </div>
 
+
+      </div>
+      <div>
+        <label>Balance</label>
+        <input type="text" formControlName="balance">
+        <div
+          *ngIf="accountForm.get('balance')?.hasError('required') && (accountForm.get('balance')?.touched || accountForm.get('balance')?.dirty)"
+          class="error" class="text-danger">Balance is Required</div>
       </div>
 
       <div>

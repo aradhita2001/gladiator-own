@@ -19,82 +19,59 @@ export class AccountCreationComponent implements OnInit {
   userId!: Number;
   accountType!: String;
   accountForm: any = { AccountType: null }
-
   accountError$: Observable<string> = of();
-
   accountSuccess$: Observable<string> = of();
-
   isFormSubmitted: boolean = false;
 
 
 
   constructor(
-    private customValidators:CustomValidators,
-    private formBuilder: FormBuilder, 
-    private authService: AuthService, 
-    private transactionService: TransactionService, 
+    private customValidators: CustomValidators,
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private transactionService: TransactionService,
     private router: Router
-  ) {}
+  ) { }
 
 
   ngOnInit(): void {
-
     this.role = this.authService.getRole();
     this.userId = this.authService.getUserId();
 
-    if(this.role==="USER"){
-      this.accountForm = this.formBuilder.group({
-        accountType: ['', [Validators.required]],
-        userId: [this.userId, Validators.required, this.customValidators.UseridValidator]
-      });
+    if (this.role !== "USER") {
+      return;
     }
-    
 
-    else{
-      this.accountForm = this.formBuilder.group({
-        accountType: ['', [Validators.required]],
-        userId: ["", Validators.required]
-      })
-  
-    } 
+    this.accountForm = this.formBuilder.group({
+      accountType: ['', [Validators.required]],
+      userId: [this.userId, Validators.required],
+      balance: ['', [Validators.required]]
+    });
     console.log(this.accountForm.value);
-    
+
   }
 
 
   onSubmit() {
-
     this.isFormSubmitted = true;
-
     this.accountSuccess$ = of('');
-
     this.accountError$ = of('');
 
     if (this.accountForm.invalid) {
-
       return;
-
-    } else {
-
+    }
+    else {
       const data = this.accountForm.value;
-
       console.log(data);
 
       const account: AccountCreationRequest = new AccountCreationRequest(data);
       console.log(account);
-
       this.transactionService.addAccount(account).subscribe(
-
         (res: any) => {
-
           this.accountSuccess$ = of("Account created successfully");
-
         },
-
         () => {
-
           this.accountError$ = of("Unable to create account");
-
         }
 
       );

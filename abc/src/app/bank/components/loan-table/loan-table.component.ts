@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { User } from 'src/app/auth/types/user';
 import { BankService } from '../../services/bank.service';
-import { Loan } from '../../types/Loan';
+import { Loan } from '../../types/loan';
 
 @Component({
   selector: 'app-loan-table',

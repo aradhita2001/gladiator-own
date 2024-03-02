@@ -1,0 +1,69 @@
+<div class="card text-center w-50 mx-auto p-2" style="width:200px;">
+    <div class="card-header">
+        Apply for loan
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Please Fill Loan Details</h5>
+        <form (ngSubmit)="onSubmit()" [formGroup]="loanForm" class="loan-Form">
+            <div class="form-group mb-4">
+                <label for="loanType" class="me-2">Select Loan Type: </label>
+                <select class="mb-2" (change)="callChange()" formControlName="loanType">
+                    <option value="Home Loan">Home Loan</option>
+                    <option value="Education Loan">Education Loan</option>
+                    <option value="Personal Loan">Personal Loan</option>
+                    <option value="Car Loan">Car Loan</option>
+                    <!-- <option *ngFor="let account of accounts$ | async" [value]="account.accountId">{{account.accountId + " " +
+              account.accountType}}</option> -->
+                </select><br>
+
+                <div *ngIf="loanForm.get('loanType')?.hasError('required') && (loanForm.get('loanType')?.touched || loanForm.get('loanType')?.dirty)"
+                    class="error">
+                    <span>Loan Type is required</span>
+                </div>
+                <span>Rate of Intrest : {{intrest}}% p.a.</span>
+
+
+
+
+
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="amount" class="me-2">Loan Amount: </label>
+                <input formControlName="amount">
+                <div *ngIf="loanForm.get('amount')?.hasError('required') && (loanForm.get('amount')?.touched || loanForm.get('amount')?.dirty)"
+                    class="error">
+                    <span>Loan Amount is required</span>
+                </div>
+            </div>
+
+
+            <div class="form-group mb-4">
+                <label for="tenure" class="me-2">Loan Tenure: </label>
+                <input type="text" id="tenure" formControlName="tenure" />
+                <div *ngIf="loanForm.get('tenure')?.hasError('required') && (loanForm.get('tenure')?.touched || loanForm.get('tenure')?.dirty)"
+                    class="error">
+                    <span>Tenure is required</span>
+                </div>
+
+
+            </div>
+
+
+
+            <div>
+                <button type="submit" class="btn btn-success ">Submit</button>
+                <ng-container>
+                    <div *ngIf="loanError$ | async as error" class="error">
+                        {{ error }}
+                    </div>
+                    <div *ngIf="loanSuccess$ | async as msg" class="success">
+                        {{ msg }}
+                    </div>
+                </ng-container>
+                <a routerLink="/bank" class="task-list ms-3">Dashboard</a>
+            </div>
+
+        </form>
+    </div>
+</div>
