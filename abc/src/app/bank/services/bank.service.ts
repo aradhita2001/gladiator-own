@@ -8,6 +8,7 @@ import { User } from '../../auth/types/user';
 import { AccountDetails } from '../types/AccountDetails';
 import { TransactionForAccount } from '../types/TransactionForAccount';
 import { Loan } from '../types/loan';
+import { AccountCreationRequest } from '../types/AccountCreationRequest';
 @Injectable({
   providedIn: 'root'
 })
@@ -49,5 +50,7 @@ export class BankService {
   saveLoan(loan : Loan): Observable<any>{
     return this.http.post(`${this.baseUrl}/loans`, loan);
   }
-
+  addAccountRequest(account: AccountCreationRequest) {
+    return this.http.post<Account>(`${this.baseUrl}/accounts/account-request`,account);
+  }
 }

@@ -7,6 +7,7 @@ import { TransactionService } from '../../services/transaction.service';
 import { Account } from '../../types/account';
 import { AccountCreationRequest } from '../../types/AccountCreationRequest';
 import { CustomValidators } from 'src/app/validators/custom-validator';
+import { BankService } from '../../services/bank.service';
 
 @Component({
   selector: 'app-account-creation',
@@ -30,6 +31,7 @@ export class AccountCreationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private transactionService: TransactionService,
+    private bankService: BankService,
     private router: Router
   ) { }
 
@@ -66,7 +68,7 @@ export class AccountCreationComponent implements OnInit {
 
       const account: AccountCreationRequest = new AccountCreationRequest(data);
       console.log(account);
-      this.transactionService.addAccount(account).subscribe(
+      this.bankService.addAccountRequest(account).subscribe(
         (res: any) => {
           this.accountSuccess$ = of("Account created successfully");
         },
