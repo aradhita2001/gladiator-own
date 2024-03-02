@@ -22,7 +22,6 @@ public class UserAuthorizationDetailsService implements UserDetailsService {
         // TODO Auto-generated method stub
         Optional<User> user = userRepository.findByEmail(email);
 
-        // TODO
         return user.map(UserAuthorizationDetails::new).orElseThrow(()-> new UserNameNotFoundException()); 
 
     }

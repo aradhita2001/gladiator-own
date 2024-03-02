@@ -21,12 +21,11 @@ public class TransactionForAccount {
 
         if(transaction.getSourceAccountId() == accountId){
             transactionType = "Debit";
-            anotherAccountNumber = transaction.getSourceAccountId();
+            anotherAccountNumber = transaction.getDestinationAccountId();
         }
 
         amount = transaction.getAmount();
         transactionDate = transaction.getTransactionDate();
-
     }
 
     public long getAnotherAccountNumber() {
@@ -68,6 +67,4 @@ public class TransactionForAccount {
     public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
-
-    
 }

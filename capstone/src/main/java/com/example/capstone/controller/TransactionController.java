@@ -1,5 +1,6 @@
 package com.example.capstone.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.capstone.dto.TransactionForAccount;
+import com.example.capstone.dto.TransactionForUser;
 import com.example.capstone.entity.Transaction;
 import com.example.capstone.service.TransactionService;
 
@@ -36,7 +38,6 @@ public class TransactionController {
     }
  
     @GetMapping("/{transactionId}")
-    
     public ResponseEntity<Transaction> getTransactionById(@PathVariable long transactionId) {
         Transaction transaction = transactionService.getTransactionById(transactionId);
         if (transaction != null) {
@@ -54,14 +55,9 @@ public class TransactionController {
     }
 
     // @GetMapping("/user/{userId}")
-    // public ResponseEntity<List<Transaction>> getAllTransactionsByCustomerId(@PathVariable int customerId) {
-    //     try {
- 
-    //         List<Transaction> transactions = transactionService.getTransactionsByCustomerId(customerId);
-    //         return new ResponseEntity<>(transactions, HttpStatus.OK);
-    //     } catch (SQLException e) {
-    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
+    // public ResponseEntity<List<TransactionForUser>> getAllTransactionsByCustomerId(@PathVariable long customerId) {
+    //     List<TransactionForUser> transactions = transactionService.getAllTransactionsByUserId(customerId);
+    //     return new ResponseEntity<>(transactions, HttpStatus.OK);
     // }
 
     @GetMapping("/account/debit/{accountId}")
@@ -80,6 +76,11 @@ public class TransactionController {
 
     @GetMapping("/account/{accountId}")
     public ResponseEntity<List<TransactionForAccount>> getAllTransactionByAccountId(@PathVariable long accountId){
-        return new ResponseEntity<>(transactionService.getAllTransactionsByAccountId(accountId) ,HttpStatus.OK);
+        return new ResponseEntity<List<TransactionForAccount>>(transactionService.getAllTransactionsByAccountId(accountId) ,HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<TransactionForUser>> getAllTransactionByUserId(@PathVariable long userId){
+        return new ResponseEntity<List<TransactionForUser>>(transactionService.getAllTransactionsByUserId(userId) ,HttpStatus.OK);
     }
 }

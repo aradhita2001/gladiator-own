@@ -8,7 +8,7 @@ import { Account } from "../types/account";
 import { getLocaleCurrencySymbol } from "@angular/common";
 import { TransactionForAccount } from "../types/TransactionForAccount";
 import { AccountCreationRequest } from "../types/AccountCreationRequest";
- 
+
 @Injectable({
   providedIn: "root",
 })

@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent{
+  errorMessage: String = "";
   loginForm: FormGroup;
     
   constructor(private fb:FormBuilder, private authService : AuthService, private router: Router) {
@@ -31,6 +32,10 @@ export class LoginComponent{
             localStorage.setItem("user_id",response.userId);
             // console.log(localStorage.getItem("role"));
             this.router.navigate(["bank/dashboard"]);
+        },
+        (error) => {
+          this.errorMessage = "wrong credentials";
+          
         });
         
       // this.authService.login(this.loginForm.value).subscribe(
