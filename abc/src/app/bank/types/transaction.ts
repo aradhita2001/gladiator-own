@@ -12,6 +12,6 @@ export class Transaction {
     this.sourceAccountId = data.sourceAccountId;
     this.destinationAccountId = data.destinationAccountId;
     this.amount = data.amount;
-    this.transactionDate=data.transactionDate;
+    this.transactionDate=data.timeStamp;
   }
 }

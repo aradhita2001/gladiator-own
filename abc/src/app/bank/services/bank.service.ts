@@ -29,8 +29,8 @@ export class BankService {
     return this.http.get<AccountDetails>(`${this.baseUrl}/accounts/${accountId}`);
   }
 
-  getTransactionsByUser(strUserId: string | null): Observable<Transaction[]> {
-  return this.http.get<Transaction[]>(`${this.baseUrl}/transaction/customer/${strUserId}`)
+  getTransactionsByUser(userId: string | null): Observable<Transaction[]> {
+  return this.http.get<Transaction[]>(`${this.baseUrl}/transactions/user/${userId}`)
   }
  
 

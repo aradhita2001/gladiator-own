@@ -1,5 +1,6 @@
 package com.example.capstone.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,6 @@ public class TransactionController {
     }
  
     @GetMapping("/{transactionId}")
-    
     public ResponseEntity<Transaction> getTransactionById(@PathVariable long transactionId) {
         Transaction transaction = transactionService.getTransactionById(transactionId);
         if (transaction != null) {
@@ -55,14 +55,9 @@ public class TransactionController {
     }
 
     // @GetMapping("/user/{userId}")
-    // public ResponseEntity<List<Transaction>> getAllTransactionsByCustomerId(@PathVariable int customerId) {
-    //     try {
- 
-    //         List<Transaction> transactions = transactionService.getTransactionsByCustomerId(customerId);
-    //         return new ResponseEntity<>(transactions, HttpStatus.OK);
-    //     } catch (SQLException e) {
-    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
+    // public ResponseEntity<List<TransactionForUser>> getAllTransactionsByCustomerId(@PathVariable long customerId) {
+    //     List<TransactionForUser> transactions = transactionService.getAllTransactionsByUserId(customerId);
+    //     return new ResponseEntity<>(transactions, HttpStatus.OK);
     // }
 
     @GetMapping("/account/debit/{accountId}")
