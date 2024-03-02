@@ -7,6 +7,7 @@ import { User } from "src/app/auth/types/user";
 import { TransactionService } from "../../services/transaction.service";
 import { Account } from "../../types/account";
 import { Transaction } from "../../types/transaction";
+import { CustomValidators } from "src/app/validators/custom-validator";
  
 @Component({
   selector: "app-transaction",
@@ -28,7 +29,7 @@ export class TransactionComponent implements OnInit{
  
   constructor(
     private transactionService: TransactionService,
- 
+    private customValidator :CustomValidators,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private route: ActivatedRoute,
@@ -36,8 +37,8 @@ export class TransactionComponent implements OnInit{
   ) {
     this.transactionForm = this.formBuilder.group({
       sourceAccountId: ["", [Validators.required]],
-      destinationAccountId: ["",[Validators.required]],
-      amount: ["", [Validators.required]],  //add min
+      destinationAccountId: ["",[Validators.required,this.customValidator.AccountNumberValidator]],
+      amount: ["", [Validators.required,this.customValidator.AmountValidator]],  //add min
     });
   }
 

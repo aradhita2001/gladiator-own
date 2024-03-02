@@ -19,7 +19,7 @@
 
                                     <div *ngIf="userForm.get('name')?.hasError('required') && (userForm.get('name')?.touched || userForm.get('name')?.dirty)"
                                         class="error">
-                                        <span>Name is Required</span>
+                                        <span class="text-danger">Name is Required</span>
                                     </div>
                                 </div>
 
@@ -29,9 +29,9 @@
                                     <input type="email" class="form-control" id="email" formControlName="email" />
 
                                     <div *ngIf="userForm.get('email')?.hasError('required') && (userForm.get('email')?.touched || userForm.get('email')?.dirty)"
-                                        class="error"><span>Email required</span></div>
+                                        class="error"><span class="text-danger">Email required</span></div>
                                     <div *ngIf=" !userForm.get('email')?.hasError('required') && userForm.get('email')?.hasError('EmailValidator') &&  (userForm.get('email')?.touched || userForm.get('email')?.dirty)"
-                                        class="error"><span>Invalid Email Format</span></div>
+                                        class="error"><span class="text-danger">Invalid Email Format</span></div>
 
                                 </div>
 
@@ -40,9 +40,9 @@
                                     <input type="text" id="phone" class="form-control" formControlName="phone" />
 
                                     <div *ngIf="userForm.get('phone')?.hasError('required') && (userForm.get('phone')?.touched || userForm.get('phone')?.dirty)"
-                                        class="error">Mobile Number is Required</div>
+                                        class="error" class="text-danger">Mobile Number is Required</div>
                                     <div *ngIf="!userForm.get('phone')?.hasError('required') && userForm.get('phone')?.hasError('MobileValidator') && (userForm.get('phone')?.touched || userForm.get('phone')?.dirty)"
-                                        class="error">Mobile number is Invalid</div>
+                                        class="error" class="text-danger">Mobile number is Invalid</div>
                                 </div>
 
                                 <div class="form-outline">
@@ -55,7 +55,7 @@
                                     </select>
 
                                     <div *ngIf="userForm.get('role')?.hasError('required') && (userForm.get('role')?.touched || userForm.get('role')?.dirty)"
-                                        class="error">Role is required</div>
+                                        class="error" class="text-danger">Role is required</div>
                                 </div>
 
                                 <div class="form-outline">
@@ -64,13 +64,13 @@
                                         formControlName="password" />
 
                                     <div *ngIf="userForm.get('password')?.hasError('required') && (userForm.get('password')?.touched || userForm.get('password')?.dirty)"
-                                        class="error">Password is Required</div>
+                                        class="error" class="text-danger">Password is Required</div>
                                     <div *ngIf="!userForm.get('password')?.hasError('required') && userForm.get('password')?.hasError('PasswordValidator') && (userForm.get('password')?.touched || userForm.get('password')?.dirty)"
-                                        class="error">Password must be strong and contain number and special characters
+                                        class="error" class="text-danger">Password must be strong and contain number and special characters
                                     </div>
                                 </div>
 
-                                <div class="form-outline">
+                                <!-- <div class="form-outline">
                                     <label class="form-label" for="retypePassword">Confirm Password</label>
                                     <input type="password" id="retypePassword" class="form-control"
                                         formControlName="retypePassword" />
@@ -78,7 +78,7 @@
                                     <div class="error-message" *ngIf="userForm.errors?.['PasswordNoMatch']">
                                         Password does'nt match.
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="mt-4">
                                 <button class="btn btn-warning btn-lg" type="submit" value="Submit">Submit</button>

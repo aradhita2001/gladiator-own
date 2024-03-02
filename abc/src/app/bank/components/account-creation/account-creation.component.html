@@ -6,19 +6,25 @@
     <h5 class="card-title">Please fill the form</h5>
     <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
 
-<div *ngIf="role==='ADMIN'">
-  <label>UserId</label>
-  <input type="text" for="userId" formControlName="userId">
-  <div
-  *ngIf="accountForm.controls['userId'].invalid && (accountForm.controls['userId'].dirty || accountForm.controls['userId'].touched)"
-  class="ng-dirty">
-  <span *ngIf="accountForm.controls['userId'].errors">
-    <span class="text-danger">User id is required</span>
-  </span>
+      <div *ngIf="role==='ADMIN'">
+        <label>UserId</label>
+        <input type="text" for="userId" formControlName="userId">
+        <div
+          *ngIf="accountForm.controls['userId'].invalid && (accountForm.controls['userId'].dirty || accountForm.controls['userId'].touched)"
+          class="ng-dirty">
+          <span *ngIf="accountForm.controls['userId'].errors">
+            <span class="text-danger">User id is required</span>
+          </span>
+        </div>
+        <div>
+          <div
+            *ngIf="!accountForm.get('userId')?.hasError('required') && accountForm.get('userId')?.hasError('UseridValidator') && (accountForm.get('userId')?.touched || accountForm.get('userId')?.dirty)"
+            class="error" class="text-danger">userId is Invalid
+          </div>
+        </div>
 
-</div>
 
-</div>
+      </div>
 
       <div>
 

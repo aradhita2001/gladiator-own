@@ -12,7 +12,7 @@
               <option *ngFor="let account of accounts$ | async" [value]="account.accountId" >{{account.accountId + " " + account.accountType}}</option>
             </select>
               <div *ngIf="transactionForm.get('sourceAccountId')?.hasError('required') && (transactionForm.get('sourceAccountId')?.touched || transactionForm.get('sourceAccountId')?.dirty)" class="error">
-                  <span>Account number is required</span>
+                  <span class="text-danger">Account number is required</span>
               </div>
             
       </div>
@@ -21,7 +21,7 @@
           <label for="destAccountNo" class="me-2">Destination Account No: </label>
           <input formControlName="destinationAccountId">
             <div *ngIf="transactionForm.get('destinationAccountId')?.hasError('required') && (transactionForm.get('destinationAccountId')?.touched || transactionForm.get('destinationAccountId')?.dirty)" class="error">
-                <span>Account number is required</span>
+                <span class="text-danger">Account number is required</span>
             </div>
         </div>
      
@@ -30,7 +30,7 @@
           <label for="amount" class="me-2">Amount: </label>
           <input type="text" id="amount" formControlName="amount" />
           <div *ngIf="transactionForm.get('amount')?.hasError('required') && (transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty)" class="error">
-              <span>Amount  is required</span>
+              <span class="text-danger">Amount  is required</span>
           </div>
    
       </div>
