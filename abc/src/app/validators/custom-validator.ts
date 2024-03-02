@@ -1,7 +1,12 @@
+import { Injectable } from "@angular/core";
 import { FormBuilder, AbstractControl, ValidationErrors } from "@angular/forms";
 
-export class CustomValidatorsComponent {
-    constructor(private formBuilder: FormBuilder) {}
+@Injectable({
+  providedIn: "root",
+})
+
+export class CustomValidators {
+    // constructor(private formBuilder: FormBuilder) {}
    EmailValidator(control: AbstractControl):  ValidationErrors | null{
     const emailRegex: RegExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     let emailValue=control.value as string;
@@ -33,6 +38,16 @@ export class CustomValidatorsComponent {
     };
   }
   
+  UseridValidator(control:AbstractControl): ValidationErrors | null {
+    const regrex:RegExp=/^[0-9]{1,2}/;
+    const userValue=control.value.toString();
+    if(regrex.test(userValue))
+    {
+      return null;
+    }
+    return{UseridValidator:true};
+  }
+
   AccountNumberValidator(control:AbstractControl): ValidationErrors | null {
     const regrex:RegExp=/^[0-9]{1,2}/;
     const AccountValue=control.value.toString();

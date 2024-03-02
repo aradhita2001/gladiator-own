@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { TransactionService } from '../../services/transaction.service';
 import { Account } from '../../types/account';
 import { AccountCreationRequest } from '../../types/AccountCreationRequest';
+import { CustomValidators } from 'src/app/validators/custom-validator';
 
 @Component({
   selector: 'app-account-creation',
@@ -28,6 +29,7 @@ export class AccountCreationComponent implements OnInit {
 
 
   constructor(
+    private customValidators:CustomValidators,
     private formBuilder: FormBuilder, 
     private authService: AuthService, 
     private transactionService: TransactionService, 
@@ -43,7 +45,7 @@ export class AccountCreationComponent implements OnInit {
     if(this.role==="USER"){
       this.accountForm = this.formBuilder.group({
         accountType: ['', [Validators.required]],
-        userId: [this.userId, Validators.required]
+        userId: [this.userId, Validators.required, this.customValidators.UseridValidator]
       });
     }
     
