@@ -8,6 +8,7 @@ import { Account } from '../../types/account';
 import { AccountCreationRequest } from '../../types/AccountCreationRequest';
 import { CustomValidators } from 'src/app/validators/custom-validator';
 import { BankService } from '../../services/bank.service';
+import { AccountRequest } from '../../types/Account-request';
 
 @Component({
   selector: 'app-account-creation',
@@ -66,7 +67,7 @@ export class AccountCreationComponent implements OnInit {
       const data = this.accountForm.value;
       console.log(data);
 
-      const account: AccountCreationRequest = new AccountCreationRequest(data);
+      const account: AccountRequest = new AccountRequest(data);
       console.log(account);
       this.bankService.addAccountRequest(account).subscribe(
         (res: any) => {

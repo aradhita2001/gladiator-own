@@ -18,7 +18,10 @@
                 <button class="nav-link bg-info me-1 text-dark" id="users-tab" data-bs-toggle="tab" data-bs-target="#Users" type="button" role="tab" aria-controls="Users"aria-selected="true">Users</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link  bg-info text-dark" id="loans-tab" data-bs-toggle="tab" data-bs-target="#Loans" type="button" role="tab" aria-controls="Loans"aria-selected="true">Loans</button>
+                <button class="nav-link  bg-info me-1 text-dark" id="loans-tab" data-bs-toggle="tab" data-bs-target="#Loans" type="button" role="tab" aria-controls="Loans"aria-selected="true">Loans</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link  bg-info text-dark" id="account-request-tab" data-bs-toggle="tab" data-bs-target="#AccountRequest" type="button" role="tab" aria-controls="AccountRequest"aria-selected="true">Account Request</button>
               </li>
             </ul>
           </div>
@@ -29,5 +32,6 @@
             <app-account-table class="tab-pane fade" id="Accounts" role="tabpanel" aria-labelledby="accounts-tab"></app-account-table>
             <app-user-table class="tab-pane fade" id="Users" role="tabpanel" aria-labelledby="users-tab"></app-user-table>
             <app-loan-table class="tab-pane fade" id="Loans" role="tabpanel" aria-labelledby="loans-tab"></app-loan-table>
+            <app-account-request-table class="tab-pane fade" id="AccountRequest" role="tabpanel" aria-labelledby="account-request-tab"></app-account-request-table>
           </div>
 </main>

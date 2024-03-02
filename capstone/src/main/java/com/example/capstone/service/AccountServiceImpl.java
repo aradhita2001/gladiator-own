@@ -1,5 +1,6 @@
 package com.example.capstone.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,6 +76,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public long addAccountRequest(NewAccountRequest newAccountRequest) {
+        System.out.println(newAccountRequest.getUserId());
         User user = userRepository.findById(newAccountRequest.getUserId()).orElseThrow(BadDataException::new);
 
         AccountRequest accountRequest = new AccountRequest();
@@ -87,15 +89,35 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<AccountRequestDto> getAllAccountRequests() {
+        // List<AccountRequestDto> AccountRequestDtos = new ArrayList<AccountRequestDto>();
+        // List<AccountRequest> accountRequests = accountRequestRepository.findAll();
+        // for(AccountRequest accountRequest: accountRequests){
+        //     AccountRequestDtos.add(new AccountRequestDto(accountRequest));
+        // }
+        // return AccountRequestDtos;
         return accountRequestRepository.findAll().stream().map(AccountRequestDto::new).toList();
+
+    }
+
+    @Override
+    public List<AccountRequestDto> getAccountRequestsByUser(long userId) {
+        // List<AccountRequestDto> AccountRequestDtos = new ArrayList<AccountRequestDto>();
+        // List<AccountRequest> accountRequests = accountRequestRepository.findAll();
+        // for(AccountRequest accountRequest: accountRequests){
+        //     AccountRequestDtos.add(new AccountRequestDto(accountRequest));
+        // }
+        // return AccountRequestDtos;
+        return accountRequestRepository.getAccountRequestsByCustomerUserId(userId).stream().map(AccountRequestDto::new).toList();
     }
 
     @Override
     public void approveAccountRequest(long accountRequestId) {
+        System.out.println(accountRequestId);
         AccountRequest accountRequest = accountRequestRepository.findById(accountRequestId).orElseThrow(BadDataException::new);
         accountRequest.approve();
         Account account = new Account(accountRequest.getCustomer(), accountRequest.getAccountType(), accountRequest.getBalance());
         accountRepository.save(account);
+        System.out.println(accountRequest.getStatus());
         accountRequestRepository.save(accountRequest);
     }
 

@@ -15,5 +15,6 @@ export class User {
     this.name=data.name;
     this.email=data.email;
     this.phone=data.phone;
+    this.userId = data.userId;
 }
 }

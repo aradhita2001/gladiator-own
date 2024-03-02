@@ -1,1 +1,33 @@
-<p>account-request-table works!</p>
+<div>
+    <div class="card col-6 mt-3 mx-auto p-2">
+        <div class="card-body">
+            <h5 class="card-title">Account request</h5>
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Balance</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let account of accountsRequest$ | async">
+                        <td>{{account.username}}</td>
+                        <td>{{account.email}}</td>
+                        <td>{{account.balance}}</td>
+                        <td>{{account.accountType}}</td>
+                        <td>{{account.status}}</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+    </div>
+</div>

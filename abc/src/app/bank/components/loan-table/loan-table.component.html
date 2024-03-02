@@ -22,14 +22,14 @@
 
                 <tbody>
 
-                    <!-- <tr *ngFor="let transaction of transactions$ | async">
+                    <tr *ngFor="let loan of loans$ | async">
 
-                        <td>{{ loan.loanId }}</td>
+                        <td>{{ loan.id }}</td>
                         <td>{{ loan.loanType }}</td>
                         <td>{{loan.amount | currency:'INR'}}</td>
                         <td>{{loan.tenure | date:'longDate'}}</td>
 
-                    </tr> -->
+                    </tr>
 
                 </tbody>
 

@@ -12,6 +12,7 @@ public interface AccountService {
     AccountDetails getAccountById(long accountId);
     long addAccountRequest(NewAccountRequest newAccountRequest);
     List<AccountRequestDto> getAllAccountRequests();
+    List<AccountRequestDto> getAccountRequestsByUser(long userId);
     void approveAccountRequest(long accountRequestId);
     void declineAccountRequest(long accountRequestId);
     void updateAccount(Account accounts);

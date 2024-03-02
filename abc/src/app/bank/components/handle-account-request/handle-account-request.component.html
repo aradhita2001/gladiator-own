@@ -1,0 +1,39 @@
+<div>
+    <div class="card col-6 mt-3 mx-auto p-2">
+        <div class="card-body">
+            <h5 class="card-title">Account request</h5>
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Balance</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let accountRequest of accountRequests; index as i">
+                        <!-- <tr *ngFor="let account of accountRequests;index as i"> -->
+                        <td>{{accountRequest.username}}</td>
+                        <td>{{accountRequest.email}}</td>
+                        <td>{{accountRequest.balance}}</td>
+                        <td>{{accountRequest.accountType}}</td>
+                        <td>
+                            <button (click)="approve(i)">Approve</button>
+                        </td>
+                        <td>
+                            <button (click)="decline(i)">Decline</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+    </div>
+</div>

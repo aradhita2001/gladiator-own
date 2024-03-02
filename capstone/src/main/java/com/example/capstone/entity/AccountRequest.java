@@ -72,8 +72,11 @@ public class AccountRequest {
     }
 
     public boolean approve(){
-        if(this.status == "REQUESTED") {
+        if(this.status.equals("REQUESTED")) {
+            System.out.println("Before approve");
             this.status = "APPROVED";
+            System.out.println("After approve");
+
             return true;
         }
 
@@ -81,7 +84,7 @@ public class AccountRequest {
     }
 
     public boolean decline(){
-        if(this.status == "REQUESTED") {
+        if(this.status.equals("REQUESTED")) {
             this.status = "DECLINED";
             return true;
         }

@@ -68,8 +68,9 @@ public class AccountController {
     // }
 
     @PostMapping("/account-request")
-    public ResponseEntity<Long> addAccountRequest(@RequestBody NewAccountRequest NewAccountRequest){
-        return new ResponseEntity<Long>(accountService.addAccountRequest(NewAccountRequest), HttpStatus.CREATED);
+    public ResponseEntity<Long> addAccountRequest(@RequestBody NewAccountRequest newAccountRequest){
+        System.out.println(newAccountRequest.getUserId());
+        return new ResponseEntity<Long>(accountService.addAccountRequest(newAccountRequest), HttpStatus.CREATED);
     }
 
     @GetMapping("/account-request")
@@ -77,21 +78,21 @@ public class AccountController {
         return new ResponseEntity<List<AccountRequestDto>>(accountService.getAllAccountRequests(), HttpStatus.OK);
     }
 
-    // @GetMapping("/account-request/user/{userId}")
-    // public ResponseEntity<List<AccountRequestDto>> getAccountRequestsByUser(@PathVariable Long userId) {
-    //     return new ResponseEntity<List<AccountRequestDto>>(accountService.getAccountRequestsByUser(userId), HttpStatus.OK);
-    // }
+    @GetMapping("/account-request/user/{userId}")
+    public ResponseEntity<List<AccountRequestDto>> getAccountRequestsByUser(@PathVariable Long userId) {
+        return new ResponseEntity<List<AccountRequestDto>>(accountService.getAccountRequestsByUser(userId), HttpStatus.OK);
+    }
     
 
     @PutMapping("/account-request/approve/{id}")
     public ResponseEntity approveAccountRequest(@PathVariable Long id) {
-        
+        accountService.approveAccountRequest(id);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PutMapping("/account-request/decline/{id}")
     public ResponseEntity declineAccountRequest(@PathVariable Long id) {
-        
+        accountService.declineAccountRequest(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

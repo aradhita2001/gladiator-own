@@ -36,6 +36,7 @@ ngOnInit(): void {
   });
   this.errorMsg="";
 }
+
  
  hasSpecialCharacters(inputString:string):boolean {
   // Define a regular expression for special characters

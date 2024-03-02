@@ -9,10 +9,25 @@ import { AccountDetails } from '../types/AccountDetails';
 import { TransactionForAccount } from '../types/TransactionForAccount';
 import { Loan } from '../types/loan';
 import { AccountCreationRequest } from '../types/AccountCreationRequest';
+import { AccountRequest } from '../types/Account-request';
+import { AccountRequestDetails } from '../types/Account-request-details';
 @Injectable({
   providedIn: 'root'
 })
 export class BankService {
+  approveAccountRequest(accountRequestId: number) :Observable<any> {
+    return this.http.put(`${this.baseUrl}/accounts/account-request/approve/${accountRequestId}`,null)
+  }
+  declineAccountRequest(accountRequestId: number) {
+    return this.http.put(`${this.baseUrl}/accounts/account-request/decline/${accountRequestId}`,null)
+  }
+  getAccountRequests(): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request`);
+    
+  }
+  getAccountRequestsByUser(strUserId: string | null): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/user/${strUserId}`);
+  }
 
   private baseUrl=`${environment.apiUrl}`
 
@@ -50,7 +65,7 @@ export class BankService {
   saveLoan(loan : Loan): Observable<any>{
     return this.http.post(`${this.baseUrl}/loans`, loan);
   }
-  addAccountRequest(account: AccountCreationRequest) {
+  addAccountRequest(account: AccountRequest) {
     return this.http.post<Account>(`${this.baseUrl}/accounts/account-request`,account);
   }
 }
