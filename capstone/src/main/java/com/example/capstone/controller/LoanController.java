@@ -32,6 +32,12 @@ public class LoanController {
         }
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<Loan>> getLoanByUserId(@PathVariable Long id) {
+        List<Loan> loans = loanService.getLoanByUserId(id);
+        return new ResponseEntity<>(loans, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Loan> createLoan(@RequestBody Loan loan) {
         Loan createdLoan = loanService.createLoan(loan);

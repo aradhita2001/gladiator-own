@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Loan {
@@ -15,15 +16,17 @@ public class Loan {
     private double amount;
     private int tenure;
 
-    public Loan(Long id, String loanType, double amount, int tenure) {
-        this.id = id;
+    @ManyToOne
+    private User customer;
+
+    public Loan() {
+    }
+
+    public Loan(String loanType, double amount, int tenure, User customer) {
         this.loanType = loanType;
         this.amount = amount;
         this.tenure = tenure;
-
-    }
-
-    public Loan() {
+        this.customer = customer;
     }
 
     public Long getId() {
@@ -56,6 +59,14 @@ public class Loan {
 
     public void setTenure(int tenure) {
         this.tenure = tenure;
+    }
+
+    public User getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(User customer) {
+        this.customer = customer;
     }
 
 }

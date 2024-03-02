@@ -18,15 +18,19 @@ public class LoanServiceImpl implements LoanService {
         return loanRepository.findAll();
     }
  
-    public Loan getLoanById(Long id) {
+    public Loan getLoanById(long id) {
         return loanRepository.findById(id).get();
+    }
+
+    public List<Loan> getLoanByUserId(long userId) {
+        return loanRepository.findByCustomerUserId(userId);
     }
  
     public Loan createLoan(Loan loan) {
         return loanRepository.save(loan);
     }
  
-    public void deleteLoan(Long id) {
+    public void deleteLoan(long id) {
         loanRepository.deleteById(id);
     }
  

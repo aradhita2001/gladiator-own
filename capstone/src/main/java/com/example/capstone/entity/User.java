@@ -27,6 +27,10 @@ public class User {
     @JsonIgnore
     private Set<Account> accounts;
 
+    @OneToMany(mappedBy = "customer", cascade =  CascadeType.ALL)
+    @JsonIgnore
+    private Set<Loan> loans;
+
     public User() {
     }
 

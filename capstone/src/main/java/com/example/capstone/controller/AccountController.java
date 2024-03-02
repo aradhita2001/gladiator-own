@@ -19,10 +19,8 @@ import com.example.capstone.dto.AccountDetails;
 import com.example.capstone.dto.AccountRequestDto;
 import com.example.capstone.dto.NewAccountRequest;
 import com.example.capstone.entity.Account;
-import com.example.capstone.entity.AccountRequest;
 import com.example.capstone.service.AccountService;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
