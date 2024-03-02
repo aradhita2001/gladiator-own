@@ -9,6 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { TransactionTableComponent } from './components/transaction-table/transaction-table.component';
+import { UserTableComponent } from './components/user-table/user-table.component';
+import { AccountTableComponent } from './components/account-table/account-table.component';
+import { LoanTableComponent } from './components/loan-table/loan-table.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     NavbarComponent,
     AccountDetailsComponent,
     AddUserComponent,
+    TransactionTableComponent,
+    UserTableComponent,
+    AccountTableComponent,
+    LoanTableComponent,
   ],
   imports: [
     CommonModule,
