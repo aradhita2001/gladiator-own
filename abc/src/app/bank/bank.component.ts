@@ -15,15 +15,15 @@ export class BankComponent {
   accounts$: Observable<Account[]> = of();
   transactions$: Observable<Transaction[]> = of();
   users$: Observable<User[]> = of();
-  role: String | null = "";
+  role: String = "";
 
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+    if (!authService.validateLogin()) this.logout();
+  }
 
   ngOnInit(): void {
-    this.role = localStorage.getItem("role");
-    const strUserId = localStorage.getItem("user_id");
-    console.log(this.role);
+    this.role = this.authService.getRole();
   }
 
   viewDetails(id: number) {

@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { CustomValidators } from "src/app/validators/custom-validator";
 import { BankService } from "../../services/bank.service";
-import { TransactionService } from "../../services/transaction.service";
 import { Account } from "../../types/account";
 import { Loan } from "../../types/loan";
 
@@ -15,7 +13,7 @@ import { Loan } from "../../types/loan";
 })
 export class LoanComponent implements OnInit {
 
-  loanForm: FormGroup;
+  loanForm!: FormGroup;
   accounts$: Observable<Account[]> = of();
   loanError$: Observable<string> = of();
   loanSuccess$: Observable<string> = of();
@@ -23,41 +21,22 @@ export class LoanComponent implements OnInit {
   userId: any;
   intrest: number = 0;
 
-
-  
-
   constructor(
-    private transactionService: TransactionService,
     private bankService: BankService,
 
     private formBuilder: FormBuilder,
     private customValidators: CustomValidators,
-
-    private router: Router
   ) {
-    this.loanForm = this.formBuilder.group({
-      loanType: ["", [Validators.required]],
-      amount: ["", [Validators.required, customValidators.AmountValidator]],
-      tenure: ["", [Validators.required, Validators.min(3)]],  //add min
-    });
+    
   }
 
-
-
   ngOnInit(): void {
-    if (!!localStorage.getItem("user_id")) {
-      this.userId = Number(localStorage.getItem("user_id"));
-      console.log(this.userId);
-
-      this.accounts$ = this.transactionService.getAccountByUserId(this.userId);
-
-    } else {
-      console.log("userId not found");
-      console.log("Login required");
-      this.router.navigateByUrl("/auth");
-
-
-    }
+      this.accounts$ = this.bankService.getAccountByUserId(this.userId);
+      this.loanForm = this.formBuilder.group({
+        loanType: ["", [Validators.required]],
+        amount: ["", [Validators.required, this.customValidators.AmountValidator]],
+        tenure: ["", [Validators.required, Validators.min(3)]],  //add min
+      });
   }
   onSubmit(): void {
     this.isFormSubmitted = true;
@@ -67,7 +46,6 @@ export class LoanComponent implements OnInit {
     } else {
 
       const data = this.loanForm.value;
-
       console.log(data);
 
       const loan: Loan = new Loan(data);
@@ -100,6 +78,4 @@ export class LoanComponent implements OnInit {
       this.intrest = 6;
     }
   }
-
-
 }

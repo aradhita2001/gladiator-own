@@ -17,7 +17,7 @@ export class AccountTableComponent {
 
   ngOnInit(): void {
     this.role = localStorage.getItem("role");
-    const strUserId = localStorage.getItem("user_id");
+    const strUserId = localStorage.getItem("userId");
 
 
     console.log(this.role);

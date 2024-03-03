@@ -1,46 +1,53 @@
-
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="navbarSupportedContent" aria-labelledby="offcanvasNavbarLabel" data-bs-theme="dark">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-       <div class="offcanvas-body">
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="navbarSupportedContent"
+    aria-labelledby="offcanvasNavbarLabel" data-bs-theme="dark">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 bg-dark">
+
             <li *ngIf="role==='USER'" class="nav-item active">
                 <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/create-account']"
-                    routerLinkActive="router-link-active">Add Account</a>
+                    routerLinkActive="router-link-active">Request New Account</a>
             </li>
-            <li *ngIf="role==='ADMIN'" class="nav-item active">
-                <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/account-requests']"
-                    routerLinkActive="router-link-active">New Account Requests</a>
-            </li>
+
             <li *ngIf="role==='USER'" class="nav-item active">
                 <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/apply-loan']"
                     routerLinkActive="router-link-active">Apply Loan</a>
-            </li>
-            <li *ngIf="role==='ADMIN'" class="nav-item active">
-                <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/add-user']"
-                    routerLinkActive="router-link-active">Add User</a>
             </li>
 
             <li *ngIf="role==='USER'" class="nav-item active">
                 <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/transaction']"
                     routerLinkActive="router-link-active">Add Transaction</a>
             </li>
+
+            <li *ngIf="role==='ADMIN'" class="nav-item active">
+                <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/account-requests']"
+                    routerLinkActive="router-link-active">New Account Requests</a>
+            </li>
+
+            <li *ngIf="role==='ADMIN'" class="nav-item active">
+                <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/add-user']"
+                    routerLinkActive="router-link-active">Add User</a>
+            </li>
+
             <li class="nav-item active">
                 <button class="logout btn btn-danger nav-link text-white" (click)="logout()">Logout</button>
             </li>
         </ul>
-       </div>
-        
     </div>
+
+</div>
 
 
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" [routerLink]="['/bank/dashboard']" routerLinkActive="router-link-active" >Home</a>
-        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" [routerLink]="['/bank/dashboard']" routerLinkActive="router-link-active">Home</a>
+        <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>

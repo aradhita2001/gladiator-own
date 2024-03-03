@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { BankService } from '../../services/bank.service';
-import { TransactionService } from '../../services/transaction.service';
-import { Account } from '../../types/account';
 import { AccountDetails } from '../../types/AccountDetails';
-import { Transaction } from '../../types/transaction';
 import { TransactionForAccount } from '../../types/TransactionForAccount';
 
 @Component({
@@ -19,7 +16,7 @@ export class AccountDetailsComponent implements OnInit{
   account$: Observable<AccountDetails> = of();
   account!: AccountDetails;
 
-  constructor(private transactionService: TransactionService , private bankService: BankService , private route:ActivatedRoute){}
+  constructor(private bankService: BankService , private route:ActivatedRoute){}
  
   ngOnInit(): void {
     this.route.params.subscribe(params =>{
@@ -30,9 +27,8 @@ export class AccountDetailsComponent implements OnInit{
         this.account = data;
       })
 
-      this.transactions$ = this.transactionService.getTransactionsByAccount(this.accountId);
-      this.transactions$.subscribe(data => {console.log(data);
-      })
+      this.transactions$ = this.bankService.getTransactionsByAccount(this.accountId);
+      this.transactions$.subscribe(data => {console.log(data);});
     })
   }
 }

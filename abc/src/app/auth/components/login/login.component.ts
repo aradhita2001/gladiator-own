@@ -27,9 +27,7 @@ export class LoginComponent{
         (response)=>{
           // console.log(response);
           
-            localStorage.setItem("token", response.token);
-            localStorage.setItem("role",response.role);
-            localStorage.setItem("user_id",response.userId);
+            this.authService.saveUserInfo(response);
             // console.log(localStorage.getItem("role"));
             this.router.navigate(["bank/dashboard"]);
         },

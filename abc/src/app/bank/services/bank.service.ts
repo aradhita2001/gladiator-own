@@ -72,4 +72,35 @@ export class BankService {
   getEMI(loan: Loan) {
     return this.http.post<Loan>(`${this.baseUrl}/loans/openemi`, loan);
   }
+
+  addAccount(account: AccountCreationRequest) {
+    return this.http.post<Account>(`${this.baseUrl}/accounts`,account);
+  }
+  addTransaction(transaction:Transaction)
+  {
+    return this.http.post<Transaction>(`${this.baseUrl}/transactions`,transaction)
+  }
+ 
+  performTransaction(transaction: Transaction): Observable<Transaction> {
+    return this.http.post<Transaction>(`${this.baseUrl}/transactions`,transaction);
+  }
+ 
+ 
+  getOutstandingBalance(userId: string): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/out-standing?userId=${userId}`);
+ 
+  }
+ 
+  getTranactionsByUser(userId: string): Observable<Transaction[]> {
+   return this.http.get<Transaction[]>(`${this.baseUrl}/transactions/${userId}`);
+  }
+
+  getAccountByUserId(userId:number):Observable<Account[]>
+  {    
+    return this.http.get<Account[]>(`${this.baseUrl}/accounts/user/${userId}`);
+  }
+
+  getTransactionsByAccount(accountId: number): Observable<TransactionForAccount[]> {
+    return this.http.get<TransactionForAccount[]>(`${this.baseUrl}/transactions/account/${accountId}`);
+  }
 }

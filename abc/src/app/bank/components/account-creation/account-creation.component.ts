@@ -3,9 +3,6 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { TransactionService } from '../../services/transaction.service';
-import { Account } from '../../types/account';
-import { AccountCreationRequest } from '../../types/AccountCreationRequest';
 import { CustomValidators } from 'src/app/validators/custom-validator';
 import { BankService } from '../../services/bank.service';
 import { AccountRequest } from '../../types/Account-request';
@@ -31,7 +28,6 @@ export class AccountCreationComponent implements OnInit {
     private customValidators: CustomValidators,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private transactionService: TransactionService,
     private bankService: BankService,
     private router: Router
   ) { }
