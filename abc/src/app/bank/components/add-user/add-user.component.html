@@ -66,22 +66,34 @@
                                     <div *ngIf="userForm.get('password')?.hasError('required') && (userForm.get('password')?.touched || userForm.get('password')?.dirty)"
                                         class="error" class="text-danger">Password is Required</div>
                                     <div *ngIf="!userForm.get('password')?.hasError('required') && userForm.get('password')?.hasError('PasswordValidator') && (userForm.get('password')?.touched || userForm.get('password')?.dirty)"
-                                        class="error" class="text-danger">Password must be strong and contain number and special characters
+                                        class="error" class="text-danger">Password must be strong and contain number and
+                                        special characters
                                     </div>
                                 </div>
 
-                                <!-- <div class="form-outline">
+                                <div class="form-outline">
                                     <label class="form-label" for="retypePassword">Confirm Password</label>
                                     <input type="password" id="retypePassword" class="form-control"
                                         formControlName="retypePassword" />
 
-                                    <div class="error-message" *ngIf="userForm.errors?.['PasswordNoMatch']">
+                                    <div class="error-message" *ngIf="userForm.errors?.['notMatch']"
+                                        class="text-danger">
                                         Password does'nt match.
                                     </div>
-                                </div> -->
+                                </div>
+
+
                             </div>
                             <div class="mt-4">
                                 <button class="btn btn-warning btn-lg" type="submit" value="Submit">Submit</button>
+                                <ng-container>
+                                    <div *ngIf="userError$ | async as error" class="error text-danger">
+                                        {{ error }}
+                                    </div>
+                                    <div *ngIf="userSuccess$ | async as msg" class="success text-success">
+                                        {{ msg }}
+                                    </div>
+                                </ng-container>
                             </div>
                         </form>
                     </div>

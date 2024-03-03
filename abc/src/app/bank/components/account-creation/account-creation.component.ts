@@ -48,7 +48,7 @@ export class AccountCreationComponent implements OnInit {
     this.accountForm = this.formBuilder.group({
       accountType: ['', [Validators.required]],
       userId: [this.userId, Validators.required],
-      balance: ['', [Validators.required]]
+      balance: ['', [Validators.required, this.customValidators.AmountValidator]]
     });
     console.log(this.accountForm.value);
 

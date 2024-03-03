@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FormBuilder, AbstractControl, ValidationErrors } from "@angular/forms";
+import { FormBuilder, AbstractControl, ValidationErrors, FormGroup } from "@angular/forms";
 
 @Injectable({
   providedIn: "root",
@@ -7,6 +7,11 @@ import { FormBuilder, AbstractControl, ValidationErrors } from "@angular/forms";
 
 export class CustomValidators {
     // constructor(private formBuilder: FormBuilder) {}
+
+    matchPassword(f : FormGroup) : ValidationErrors | null {    
+      return f.get('password')?.value == f.get('retypePassword')?.value ? null : {notMatch : true};
+    }
+    
    EmailValidator(control: AbstractControl):  ValidationErrors | null{
     const emailRegex: RegExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     let emailValue=control.value as string;
@@ -18,8 +23,8 @@ export class CustomValidators {
   }
    
   MobileValidator(control: AbstractControl):  ValidationErrors | null{
-    const mobileRegrex : RegExp= /^[0-9]{10,12}/;
-    const mobileValue=control.value.toString();
+    const mobileRegrex : RegExp = /^[6789][0-9]{9}$/;
+    const mobileValue=control.value as string;
     if(mobileRegrex.test(mobileValue)){
        return null;
       }
@@ -27,7 +32,7 @@ export class CustomValidators {
   }
   
   AmountValidator(control:AbstractControl): ValidationErrors | null {
-    const regrex:RegExp=/^(?!0*(\.0+)?$)(\d*(?:\.[0-9]{0,4})?)$/;
+    const regrex:RegExp=/^(?!0*(\.0+)?$)(\d*(?:\.[0-9]{0,2})?)$/;
     const AmountValue=control.value.toString();
     if(regrex.test(AmountValue))
     {
@@ -39,7 +44,7 @@ export class CustomValidators {
   }
   
   UseridValidator(control:AbstractControl): ValidationErrors | null {
-    const regrex:RegExp=/^[0-9]{1,2}/;
+    const regrex:RegExp=/^[0-9]{1,5}$/;
     const userValue=control.value.toString();
     if(regrex.test(userValue))
     {
@@ -49,7 +54,7 @@ export class CustomValidators {
   }
 
   AccountNumberValidator(control:AbstractControl): ValidationErrors | null {
-    const regrex:RegExp=/^[0-9]{1,2}/;
+    const regrex:RegExp=/^[0-9]{1,5}$/;
     const AccountValue=control.value.toString();
     if(regrex.test(AccountValue))
     {

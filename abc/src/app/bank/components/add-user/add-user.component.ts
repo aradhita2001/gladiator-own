@@ -25,11 +25,15 @@ export class AddUserComponent implements OnInit{
     this.userForm = this.formBuilder.group({
       name: ["", [Validators.required]],
       email: ["", [Validators.required,this.customValidator.EmailValidator]],
-      phone:["",Validators.required,this.customValidator.MobileValidator],
+      phone:["",[Validators.required,this.customValidator.MobileValidator]],
       password: ["", [Validators.required,this.customValidator.PasswordValidator]],
-      // retypePassword:["",Validators.required,this.matchingPasswords],
+      retypePassword:["",Validators.required],
       role: ["", Validators.required]
+    },
+    {
+      validator: this.customValidator.matchPassword
     });
+
     this.errorMsg="";
   }
    
@@ -50,7 +54,7 @@ export class AddUserComponent implements OnInit{
     if (this.userForm.invalid) {
       return;
     } else {
-      const { username, password,email } = this.userForm.value;
+      const { username, password,email, retypePassword } = this.userForm.value;
       if(password.length < 8)
       {
         this.userError$ = of("Password must be of 8 characters");

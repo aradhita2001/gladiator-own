@@ -6,49 +6,68 @@
     <h5 class="card-title">Please fill in the form</h5>
     <form (ngSubmit)="onSubmit()" [formGroup]="transactionForm" class="transaction-Form ">
       <div class="form-group mb-4">
-          <label for="accounts" class="me-2">Account: </label>
-          <select formControlName="sourceAccountId">
-              <option value="">Select</option>
-              <option *ngFor="let account of accounts$ | async" [value]="account.accountId" >{{account.accountId + " " + account.accountType}}</option>
-            </select>
-              <div *ngIf="transactionForm.get('sourceAccountId')?.hasError('required') && (transactionForm.get('sourceAccountId')?.touched || transactionForm.get('sourceAccountId')?.dirty)" class="error">
-                  <span class="text-danger">Account number is required</span>
-              </div>
-            
-      </div>
-   
-      <div class="form-group mb-4" >
-          <label for="destAccountNo" class="me-2">Destination Account No: </label>
-          <input formControlName="destinationAccountId">
-            <div *ngIf="transactionForm.get('destinationAccountId')?.hasError('required') && (transactionForm.get('destinationAccountId')?.touched || transactionForm.get('destinationAccountId')?.dirty)" class="error">
-                <span class="text-danger">Account number is required</span>
-            </div>
+        <label for="accounts" class="me-2">Account: </label>
+        <select formControlName="sourceAccountId">
+          <option value="">Select</option>
+          <option *ngFor="let account of accounts$ | async" [value]="account.accountId">{{account.accountId + " " +
+            account.accountType}}</option>
+        </select>
+        <div
+          *ngIf="transactionForm.get('sourceAccountId')?.hasError('required') && (transactionForm.get('sourceAccountId')?.touched || transactionForm.get('sourceAccountId')?.dirty)"
+          class="error">
+          <span class="text-danger">Account number is required</span>
         </div>
-     
-   
-      <div class="form-group mb-4">
-          <label for="amount" class="me-2">Amount: </label>
-          <input type="text" id="amount" formControlName="amount" />
-          <div *ngIf="transactionForm.get('amount')?.hasError('required') && (transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty)" class="error">
-              <span class="text-danger">Amount  is required</span>
-          </div>
-   
+
       </div>
-     
-   
-        <div>
-          <button type="submit" class="btn btn-success ">Submit</button>
-          <ng-container>
-            <div *ngIf="transactionError$ | async as error" class="error">
-              {{ error }}
-            </div>
-            <div *ngIf="transactionSuccess$ | async as msg" class="success">
-              {{ msg }}
-            </div>
-          </ng-container>
-          <a routerLink="/bank"class="task-list ms-3">Dashboard</a>
-    </div>
-   
-  </form>
+
+      <div class="form-group mb-4">
+        <label for="destAccountNo" class="me-2">Destination Account No: </label>
+        <input formControlName="destinationAccountId">
+        <div
+          *ngIf="transactionForm.get('destinationAccountId')?.hasError('required') && (transactionForm.get('destinationAccountId')?.touched || transactionForm.get('destinationAccountId')?.dirty)"
+          class="error">
+          <span class="text-danger">Account number is required</span>
+        </div>
+        <div
+          *ngIf="!transactionForm.get('destinationAccountId')?.hasError('required') && transactionForm.get('destinationAccountId')?.hasError('AccountNumberValidator') && (transactionForm.get('destinationAccountId')?.touched || transactionForm.get('destinationAccountId')?.dirty)"
+          class="error">
+          <span class="text-danger">Account number is Invalid</span>
+        </div>
+      </div>
+
+
+      <div class="form-group mb-4">
+        <label for="amount" class="me-2">Amount: </label>
+        <input type="text" id="amount" formControlName="amount" />
+        <div
+          *ngIf="transactionForm.get('amount')?.hasError('required') && (transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty)"
+          class="error">
+          <span class="text-danger">Amount is required</span>
+        </div>
+        <div
+          *ngIf="!transactionForm.get('amount')?.hasError('required') && transactionForm.get('amount')?.hasError('AmountValidator') && (transactionForm.get('amount')?.touched || transactionForm.get('amount')?.dirty)"
+          class="error">
+          <span class="text-danger">Amount is Invalid</span>
+        </div>
+      </div>
+
+
+      <div>
+        <button type="submit" class="btn btn-success ">Submit</button>
+      </div>
+      
+      <div>
+        <ng-container>
+          <div *ngIf="transactionError$ | async as error" class="error text-danger">
+            {{ error }}
+          </div>
+          <div *ngIf="transactionSuccess$ | async as msg" class="success text-success">
+            {{ msg }}
+          </div>
+        </ng-container>
+        <a routerLink="/bank" class="task-list ms-3">Dashboard</a>
+      </div>
+
+    </form>
   </div>
 </div>

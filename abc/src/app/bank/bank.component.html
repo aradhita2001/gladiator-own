@@ -12,18 +12,18 @@
             </li>
             <li *ngIf="role==='ADMIN'" class="nav-item active">
                 <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/account-requests']"
-                    routerLinkActive="router-link-active">Handle Account Requests(change router link later)</a>
+                    routerLinkActive="router-link-active">New Account Requests</a>
             </li>
             <li *ngIf="role==='USER'" class="nav-item active">
                 <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/apply-loan']"
                     routerLinkActive="router-link-active">Apply Loan</a>
             </li>
-            <li class="nav-item active">
+            <li *ngIf="role==='ADMIN'" class="nav-item active">
                 <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/add-user']"
                     routerLinkActive="router-link-active">Add User</a>
             </li>
 
-            <li class="nav-item active">
+            <li *ngIf="role==='USER'" class="nav-item active">
                 <a class="nav-link mb-0 h1 text-white" [routerLink]="['/bank/transaction']"
                     routerLinkActive="router-link-active">Add Transaction</a>
             </li>

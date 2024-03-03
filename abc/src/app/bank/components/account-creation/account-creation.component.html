@@ -12,11 +12,11 @@
 
         <select name="accountType" formControlName="accountType" class="form-control" id="accountType">
 
-          <option value="null">Select</option>
+          <!-- <option value="null">Select</option> -->
 
-          <option value="savings">Savings</option>
+          <option value="SAVINGS">Savings</option>
 
-          <option value="current">Current</option>
+          <option value="CURRENT">Current</option>
 
         </select>
 
@@ -41,26 +41,31 @@
         <input type="text" formControlName="balance">
         <div
           *ngIf="accountForm.get('balance')?.hasError('required') && (accountForm.get('balance')?.touched || accountForm.get('balance')?.dirty)"
-          class="error" class="text-danger">Balance is Required</div>
+          class="error" class="text-danger">Balance is Required
+        </div>
+        <div
+          *ngIf="!accountForm.get('balance')?.hasError('required') && accountForm.get('balance')?.hasError('AmountValidator') && (accountForm.get('balance')?.touched || accountForm.get('balance')?.dirty)"
+          class="error" class="text-danger">Balance is Invalid
+        </div>
       </div>
 
-      <div>
-        <button type="submit" class=" btn btn-success mt-3">Create Account</button>
+  <div>
+    <button type="submit" class=" btn btn-success mt-3">Create Account</button>
 
-        <ng-container>
-          <div *ngIf="accountError$ | async as error" class="error">
-            {{ error }}
-          </div>
-          <div *ngIf="accountSuccess$ | async as msg" class="success">
-            {{ msg }}
-          </div>
-        </ng-container>
+    <ng-container>
+      <div *ngIf="accountError$ | async as error" class="error">
+        {{ error }}
       </div>
-
-
-
-      <button [routerLink]="['/bank/dashboard']" class=" btn btn-success task-list mt-3">Dashboard</button>
-
-    </form>
+      <div *ngIf="accountSuccess$ | async as msg" class="success">
+        {{ msg }}
+      </div>
+    </ng-container>
   </div>
+
+
+
+  <button [routerLink]="['/bank/dashboard']" class=" btn btn-success task-list mt-3">Dashboard</button>
+
+  </form>
+</div>
 </div>

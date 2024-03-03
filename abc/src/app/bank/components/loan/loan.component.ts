@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Observable, of } from "rxjs";
+import { CustomValidators } from "src/app/validators/custom-validator";
 import { BankService } from "../../services/bank.service";
 import { TransactionService } from "../../services/transaction.service";
 import { Account } from "../../types/account";
@@ -30,13 +31,14 @@ export class LoanComponent implements OnInit {
     private bankService: BankService,
 
     private formBuilder: FormBuilder,
+    private customValidators: CustomValidators,
 
     private router: Router
   ) {
     this.loanForm = this.formBuilder.group({
       loanType: ["", [Validators.required]],
-      amount: ["", [Validators.required]],
-      tenure: ["", [Validators.required]],  //add min
+      amount: ["", [Validators.required, customValidators.AmountValidator]],
+      tenure: ["", [Validators.required, Validators.min(3)]],  //add min
     });
   }
 

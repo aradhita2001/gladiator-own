@@ -18,14 +18,9 @@
 
                 <div *ngIf="loanForm.get('loanType')?.hasError('required') && (loanForm.get('loanType')?.touched || loanForm.get('loanType')?.dirty)"
                     class="error">
-                    <span>Loan Type is required</span>
+                    <span class="text-danger">Loan Type is required</span>
                 </div>
                 <span>Rate of Intrest : {{intrest}}% p.a.</span>
-
-
-
-
-
             </div>
 
             <div class="form-group mb-4">
@@ -33,7 +28,11 @@
                 <input formControlName="amount">
                 <div *ngIf="loanForm.get('amount')?.hasError('required') && (loanForm.get('amount')?.touched || loanForm.get('amount')?.dirty)"
                     class="error">
-                    <span>Loan Amount is required</span>
+                    <span class="text-danger">Loan Amount is required</span>
+                </div>
+                <div *ngIf="!loanForm.get('amount')?.hasError('required') && loanForm.get('amount')?.hasError('AmountValidator') && (loanForm.get('amount')?.touched || loanForm.get('amount')?.dirty)"
+                    class="error">
+                    <span class="text-danger">Amount is Invalid</span>
                 </div>
             </div>
 
@@ -43,14 +42,9 @@
                 <input type="text" id="tenure" formControlName="tenure" />
                 <div *ngIf="loanForm.get('tenure')?.hasError('required') && (loanForm.get('tenure')?.touched || loanForm.get('tenure')?.dirty)"
                     class="error">
-                    <span>Tenure is required</span>
+                    <span class="text-danger">Tenure is required</span>
                 </div>
-
-
             </div>
-
-
-
             <div>
                 <button type="submit" class="btn btn-success ">Submit</button>
                 <ng-container>

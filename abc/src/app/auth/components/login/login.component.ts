@@ -34,7 +34,7 @@ export class LoginComponent{
             this.router.navigate(["bank/dashboard"]);
         },
         (error) => {
-          this.errorMessage = "wrong credentials";
+          this.errorMessage = "Wrong credentials";
           
         });
         
