@@ -28,8 +28,7 @@
                     routerLinkActive="router-link-active">Add Transaction</a>
             </li>
             <li class="nav-item active">
-                <button class="logout btn btn-danger nav-link text-white" [routerLink]="['/']"
-                    routerLinkActive="router-link-active">Logout</button>
+                <button class="logout btn btn-danger nav-link text-white" (click)="logout()">Logout</button>
             </li>
         </ul>
        </div>

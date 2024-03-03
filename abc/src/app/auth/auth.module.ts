@@ -4,14 +4,13 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { LoginComponent } from "./components/login/login.component";
-import { LogoutComponent } from "./components/logout/logout.component";
 import { UserComponent } from "./components/user/user.component";
 import { HomeComponent } from './components/home/home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { EmiCalculatorComponent } from './components/emi-calculator/emi-calculator.component';
 
 @NgModule({
-  declarations: [LoginComponent, UserComponent, LogoutComponent, HomeComponent, AboutUsComponent, EmiCalculatorComponent],
+  declarations: [LoginComponent, UserComponent, HomeComponent, AboutUsComponent, EmiCalculatorComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -19,7 +18,6 @@ import { EmiCalculatorComponent } from './components/emi-calculator/emi-calculat
     HttpClientModule,
   ],
   exports: [
-    LogoutComponent
   ]
 })
 export class AuthModule {}
