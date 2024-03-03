@@ -8,9 +8,10 @@ import { LogoutComponent } from "./components/logout/logout.component";
 import { UserComponent } from "./components/user/user.component";
 import { HomeComponent } from './components/home/home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { EmiCalculatorComponent } from './components/emi-calculator/emi-calculator.component';
 
 @NgModule({
-  declarations: [LoginComponent, UserComponent, LogoutComponent, HomeComponent, AboutUsComponent],
+  declarations: [LoginComponent, UserComponent, LogoutComponent, HomeComponent, AboutUsComponent, EmiCalculatorComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

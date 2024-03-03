@@ -1,0 +1,39 @@
+<div class="outer">
+    <form (ngSubmit)="onSubmit()" [formGroup]="emiCalculatorForm" class="emiCalculator-Form ">
+        <div class="container bg-info-subtle">
+            <h1 class="card-header">EMI Calculator</h1>
+
+            <div class="input-container">
+                <label for="loanType" class="me-2">Select Loan Type: </label>
+                <select formControlName="loanType">
+                    <option value="Home Loan">Home Loan</option>
+                    <option value="Education Loan">Education Loan</option>
+                    <option value="Personal Loan">Personal Loan</option>
+                    <option value="Car Loan">Car Loan</option>
+                </select>
+
+
+                <label for="amount">Principal Loan Amount ₹
+                    <input formControlName="amount" id="amount" type="number" />
+                </label>
+
+                <label for="amount">No. of Years to Pay
+                    <input formControlName="tenure" id="tenure" type="number" />
+                </label>
+
+                <div>
+                    <button type="submit" class="btn btn-success ">Submit</button>
+                    <ng-container>
+                        <div *ngIf="emiCalculatorError$ | async as error" class="error">
+                            {{ error }}
+                        </div>
+                        <div *ngIf="emiCalculatorSuccess$ | async as msg" class="success">
+                            {{ msg }}
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <p>Monthly EMI Payment = <span id="emi">INR {{emi}}</span></p>
+        </div>
+    </form>
+</div>

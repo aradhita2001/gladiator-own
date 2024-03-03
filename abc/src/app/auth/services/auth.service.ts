@@ -8,6 +8,7 @@ import { User } from "../types/user";
   providedIn: "root",
 })
 export class AuthService {
+  
   getUserId(): any {
     return localStorage.getItem('user_id');
   }
@@ -15,7 +16,6 @@ export class AuthService {
     return localStorage.getItem('role');
   }
    private loginUrl = `${environment.apiUrl}`;
-  //private loginUrl = `https://ec2-3-110-62-23_5000.projects.wecreateproblems.com`;
 
   httpOptions = {
     headers: new HttpHeaders({

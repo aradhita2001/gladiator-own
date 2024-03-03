@@ -62,4 +62,11 @@ public class LoanController {
         return emi;
     }
 
+    @PostMapping("/openemi")
+    public double calculateOpenEMI(@RequestBody Loan loan) {
+        // ResponseEntity<Loan> loan = getLoanById(id);
+        double emi = loanService.calculateEMI(loan);
+        return emi;
+    }
+
 }

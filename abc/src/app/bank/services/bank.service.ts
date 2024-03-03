@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Transaction } from '../types/transaction';
 import { Account } from "../types/account";
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { User } from '../../auth/types/user';
 import { AccountDetails } from '../types/AccountDetails';
@@ -15,23 +15,23 @@ import { AccountRequestDetails } from '../types/Account-request-details';
   providedIn: 'root'
 })
 export class BankService {
-  approveAccountRequest(accountRequestId: number) :Observable<any> {
-    return this.http.put(`${this.baseUrl}/accounts/account-request/approve/${accountRequestId}`,null)
+  approveAccountRequest(accountRequestId: number): Observable<any> {
+    return this.http.put(`${this.baseUrl}/accounts/account-request/approve/${accountRequestId}`, null)
   }
   declineAccountRequest(accountRequestId: number) {
-    return this.http.put(`${this.baseUrl}/accounts/account-request/decline/${accountRequestId}`,null)
+    return this.http.put(`${this.baseUrl}/accounts/account-request/decline/${accountRequestId}`, null)
   }
   getAccountRequests(): Observable<AccountRequestDetails[]> {
     return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request`);
-    
+
   }
   getAccountRequestsByUser(strUserId: string | null): Observable<AccountRequestDetails[]> {
     return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/user/${strUserId}`);
   }
 
-  private baseUrl=`${environment.apiUrl}`
+  private baseUrl = `${environment.apiUrl}`
 
-  constructor(private http : HttpClient){}
+  constructor(private http: HttpClient) { }
   getAllTranactions(): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(`${this.baseUrl}/transactions`)
   }
@@ -44,14 +44,14 @@ export class BankService {
   }
 
   getTransactionsByUser(userId: string | null): Observable<Transaction[]> {
-  return this.http.get<Transaction[]>(`${this.baseUrl}/transactions/user/${userId}`)
+    return this.http.get<Transaction[]>(`${this.baseUrl}/transactions/user/${userId}`)
   }
- 
+
 
   getAccountsByUser(strUserId: string | null): Observable<Account[]> {
     return this.http.get<Account[]>(`${this.baseUrl}/accounts/user/${strUserId}`);
   }
-  
+
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}/users`);
   }
@@ -59,13 +59,17 @@ export class BankService {
     return this.http.get<Loan[]>(`${this.baseUrl}/loans`);
   }
   getAllLoansByUserId(userId: string | null): Observable<Loan[]> {
-   return this.http.get<Loan[]>(`${this.baseUrl}/loans/user/${userId}`);
+    return this.http.get<Loan[]>(`${this.baseUrl}/loans/user/${userId}`);
   }
 
-  saveLoan(loan : Loan): Observable<any>{
+  saveLoan(loan: Loan): Observable<any> {
     return this.http.post(`${this.baseUrl}/loans`, loan);
   }
   addAccountRequest(account: AccountRequest) {
-    return this.http.post<Account>(`${this.baseUrl}/accounts/account-request`,account);
+    return this.http.post<Account>(`${this.baseUrl}/accounts/account-request`, account);
+  }
+
+  getEMI(loan: Loan) {
+    return this.http.post<Loan>(`${this.baseUrl}/loans/openemi`, loan);
   }
 }
