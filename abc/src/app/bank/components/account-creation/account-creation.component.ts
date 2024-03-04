@@ -14,7 +14,7 @@ import { AccountRequest } from '../../types/Account-request';
 })
 export class AccountCreationComponent implements OnInit {
 
-  role!: String | null;
+  role: String ="";
   userId!: Number;
   accountType!: String;
   accountForm: any = { AccountType: null }

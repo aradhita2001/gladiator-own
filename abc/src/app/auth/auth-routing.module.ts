@@ -17,7 +17,7 @@ const routes: Routes = [
         {path: "About-us", component: AboutUsComponent},
         {path: "login", component: LoginComponent},
         {path: "sign-up", component: UserComponent},
-        {path: "loan", component: EmiCalculatorComponent}
+        {path: "emi-calculator", component: EmiCalculatorComponent}
       ]
     },
   ];

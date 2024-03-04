@@ -21,6 +21,10 @@ export class LoanComponent implements OnInit {
   isFormSubmitted: boolean = false;
   userId: number = 0;
   intrest: number = 0;
+  emi : number =0;
+  emi$: Observable<any> = of();
+  emiCalculatorError$: Observable<string> = of();
+  emiCalculatorSuccess$: Observable<string> = of();
 
   constructor(
     private authService: AuthService,
@@ -66,11 +70,14 @@ export class LoanComponent implements OnInit {
         }
       );
 
+      
+
     }
 
   }
   callChange()
   {
+
     if(this.loanForm.value.loanType == "Home Loan"){
       this.intrest = 9;
     }
@@ -83,5 +90,47 @@ export class LoanComponent implements OnInit {
     else{
       this.intrest = 6;
     }
+
+    const data = this.loanForm.value;
+      console.log(data);
+      console.log(data);
+
+      const loan: Loan = new Loan(data);
+
+    this.emi$ = this.bankService.getEMI(loan)
+        this.emi$.subscribe(
+          (res: any) => {
+            this.emi = res;//of("Success");
+            console.log(this.emi);
+
+          },
+          () => {
+            this.emiCalculatorError$ = of("fail");
+          }
+        );
+    
   }
+
+  // callChange11(){
+
+  //   if(this.loanForm.valid){
+
+      
+
+  //     this.emi$ = this.bankService.getEMI(loan)
+  //       this.emi$.subscribe(
+  //         (res: any) => {
+  //           this.emi = res;//of("Success");
+  //           console.log(this.emi);
+
+  //         },
+  //         () => {
+  //           this.emiCalculatorError$ = of("fail");
+  //         }
+  //       );
+
+  //   }
+
+  // }
+  
 }
