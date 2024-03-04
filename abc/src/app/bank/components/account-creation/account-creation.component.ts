@@ -57,7 +57,7 @@ export class AccountCreationComponent implements OnInit {
     this.accountError$ = of('');
 
     if (this.accountForm.invalid) {
-      return;
+      this.accountForm.markAllAsTouched();
     }
     else {
       const data = this.accountForm.value;

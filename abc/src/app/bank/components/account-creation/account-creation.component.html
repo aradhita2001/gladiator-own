@@ -10,9 +10,9 @@
 
         <label for="accountType" class="form-label ">Select Account Type</label>
 
-        <select name="accountType" formControlName="accountType" class="form-control" id="accountType">
+        <select name="accountType" formControlName="accountType" class="form-control" id="accountType" >
 
-          <!-- <option value="null">Select</option> -->
+          <option value="" selected>Select</option>
 
           <option value="SAVINGS">Savings</option>
 
@@ -26,7 +26,7 @@
 
           <span *ngIf="accountForm.controls['accountType'].errors">
 
-            <span class="text-danger">
+            <span *ngIf="accountForm.get('accountType')?.hasError('required')" class="text-danger">
               Please Select the Type of Account.
             </span>
 
