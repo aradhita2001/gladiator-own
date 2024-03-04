@@ -86,6 +86,42 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    public List<TransactionForAccount> getDebitTransactionsByAccountId(long accountId) {
+        List<Transaction> transactions = transactionRepository.findBySourceAccountId(accountId);
+
+        List<TransactionForAccount> transactionForAccounts = new ArrayList<TransactionForAccount>();
+        for(Transaction t : transactions){
+            TransactionForAccount transactionForAccount = new TransactionForAccount(accountId, t);
+            
+            //get name of the another customer
+            transactionForAccount.setAnotherUserName(
+                accountRepository.findByAccountId(
+                    transactionForAccount.getAnotherAccountNumber())
+                    .getCustomer().getName());
+            transactionForAccounts.add(transactionForAccount);
+        }
+        return transactionForAccounts;
+    }
+
+    @Override
+    public List<TransactionForAccount> getCreditTransactionsByAccountId(long accountId) {
+        List<Transaction> transactions = transactionRepository.findByDestinationAccountId(accountId);
+
+        List<TransactionForAccount> transactionForAccounts = new ArrayList<TransactionForAccount>();
+        for(Transaction t : transactions){
+            TransactionForAccount transactionForAccount = new TransactionForAccount(accountId, t);
+            
+            //get name of the another customer
+            transactionForAccount.setAnotherUserName(
+                accountRepository.findByAccountId(
+                    transactionForAccount.getAnotherAccountNumber())
+                    .getCustomer().getName());
+            transactionForAccounts.add(transactionForAccount);
+        }
+        return transactionForAccounts;
+    }
+
+    @Override
     public List<TransactionForUser> getAllTransactionsByUserId(long userId) {
         List<Account> accounts = accountRepository.getAccountsByCustomerUserId(userId);
         User user = userRepository.findByUserId(userId);

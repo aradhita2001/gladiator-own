@@ -13,6 +13,8 @@ public interface TransactionService {
     // List<Transaction> getTransactionsByCustomerId(int customerId) throws SQLException;
     List<Transaction> getAllCreditTransactionsByAccountId(long accountId);
     List<Transaction> getAllDebitTransactionsByAccountId(long accountId);
+    List<TransactionForAccount> getDebitTransactionsByAccountId(long accountId);
+    List<TransactionForAccount> getCreditTransactionsByAccountId(long accountId);
     List<TransactionForAccount> getAllTransactionsByAccountId(long accountId);
     List<TransactionForUser> getAllTransactionsByUserId(long userId);
 }

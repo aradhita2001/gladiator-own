@@ -15,19 +15,7 @@ import { AccountRequestDetails } from '../types/Account-request-details';
   providedIn: 'root'
 })
 export class BankService {
-  approveAccountRequest(accountRequestId: number): Observable<any> {
-    return this.http.put(`${this.baseUrl}/accounts/account-request/approve/${accountRequestId}`, null)
-  }
-  declineAccountRequest(accountRequestId: number) {
-    return this.http.put(`${this.baseUrl}/accounts/account-request/decline/${accountRequestId}`, null)
-  }
-  getAccountRequests(): Observable<AccountRequestDetails[]> {
-    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request`);
-
-  }
-  getAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
-    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/user/${userId}`);
-  }
+ 
 
   private baseUrl = `${environment.apiUrl}`
 
@@ -73,6 +61,20 @@ export class BankService {
     return this.http.post<Loan>(`${this.baseUrl}/loans/openemi`, loan);
   }
 
+  approveAccountRequest(accountRequestId: number): Observable<any> {
+    return this.http.put(`${this.baseUrl}/accounts/account-request/approve/${accountRequestId}`, null)
+  }
+  declineAccountRequest(accountRequestId: number) {
+    return this.http.put(`${this.baseUrl}/accounts/account-request/decline/${accountRequestId}`, null)
+  }
+  getAccountRequests(): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request`);
+
+  }
+  getAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/user/${userId}`);
+  }
+
   addAccount(account: AccountCreationRequest) {
     return this.http.post<Account>(`${this.baseUrl}/accounts`,account);
   }
@@ -98,6 +100,14 @@ export class BankService {
   getAccountByUserId(userId:number):Observable<Account[]>
   {    
     return this.http.get<Account[]>(`${this.baseUrl}/accounts/user/${userId}`);
+  }
+
+  getDebitTransactionsByAccount(accountId: number): Observable<TransactionForAccount[]> {
+    return this.http.get<TransactionForAccount[]>(`${this.baseUrl}/transactions/account/debit/${accountId}`);
+  }
+
+  getCreditTransactionsByAccount(accountId: number): Observable<TransactionForAccount[]> {
+    return this.http.get<TransactionForAccount[]>(`${this.baseUrl}/transactions/account/credit/${accountId}`);
   }
 
   getTransactionsByAccount(accountId: number): Observable<TransactionForAccount[]> {

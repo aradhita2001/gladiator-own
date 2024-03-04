@@ -60,23 +60,36 @@ public class TransactionController {
     //     return new ResponseEntity<>(transactions, HttpStatus.OK);
     // }
 
+    // @GetMapping("/account/debit/{accountId}")
+    // @PreAuthorize("hasAuthority('USER')")
+    // public ResponseEntity<List<Transaction>> getAllDebitTransactionsByAccountId(@PathVariable long accountId) {
+    //     List<Transaction> transactions = transactionService.getAllDebitTransactionsByAccountId(accountId);
+    //     return new ResponseEntity<>(transactions, HttpStatus.OK);
+    // }
+
+    // @GetMapping("/account/credit/{accountId}")
+    // @PreAuthorize("hasAuthority('USER')")
+    // public ResponseEntity<List<Transaction>> getAllCreditTransactionsByAccountId(@PathVariable long accountId) {
+    //     List<Transaction> transactions = transactionService.getAllCreditTransactionsByAccountId(accountId);
+    //     return new ResponseEntity<>(transactions, HttpStatus.OK);
+    // }
+
+    @GetMapping("/account/{accountId}")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    public ResponseEntity<List<TransactionForAccount>> getAllTransactionByAccountId(@PathVariable long accountId){
+        return new ResponseEntity<List<TransactionForAccount>>(transactionService.getAllTransactionsByAccountId(accountId) ,HttpStatus.OK);
+    }
+
     @GetMapping("/account/debit/{accountId}")
-    @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<List<Transaction>> getAllDebitTransactionsByAccountId(@PathVariable long accountId) {
-        List<Transaction> transactions = transactionService.getAllDebitTransactionsByAccountId(accountId);
-        return new ResponseEntity<>(transactions, HttpStatus.OK);
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    public ResponseEntity<List<TransactionForAccount>> getDebitTransactionByAccountId(@PathVariable long accountId){
+        return new ResponseEntity<List<TransactionForAccount>>(transactionService.getDebitTransactionsByAccountId(accountId) ,HttpStatus.OK);
     }
 
     @GetMapping("/account/credit/{accountId}")
-    @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<List<Transaction>> getAllCreditTransactionsByAccountId(@PathVariable long accountId) {
-        List<Transaction> transactions = transactionService.getAllCreditTransactionsByAccountId(accountId);
-        return new ResponseEntity<>(transactions, HttpStatus.OK);
-    }
-
-    @GetMapping("/account/{accountId}")
-    public ResponseEntity<List<TransactionForAccount>> getAllTransactionByAccountId(@PathVariable long accountId){
-        return new ResponseEntity<List<TransactionForAccount>>(transactionService.getAllTransactionsByAccountId(accountId) ,HttpStatus.OK);
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    public ResponseEntity<List<TransactionForAccount>> getCreditTransactionByAccountId(@PathVariable long accountId){
+        return new ResponseEntity<List<TransactionForAccount>>(transactionService.getCreditTransactionsByAccountId(accountId) ,HttpStatus.OK);
     }
 
     @GetMapping("/user/{userId}")

@@ -21,7 +21,6 @@ export class AccountDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params =>{
       this.accountId=params['id'];
-      // this.transactions$ = this.transactionService.getTransactionByAccount(this.accountId);
       this.account$ = this.bankService.getAccountById(this.accountId);
       this.account$.subscribe(data => {
         this.account = data;
@@ -30,5 +29,17 @@ export class AccountDetailsComponent implements OnInit{
       this.transactions$ = this.bankService.getTransactionsByAccount(this.accountId);
       this.transactions$.subscribe(data => {console.log(data);});
     })
+  }
+
+  viewAll(){
+    this.transactions$ = this.bankService.getTransactionsByAccount(this.accountId);
+  }
+
+  viewDebit(){
+    this.transactions$ = this.bankService.getDebitTransactionsByAccount(this.accountId);
+  }
+
+  viewCredit(){
+    this.transactions$ = this.bankService.getCreditTransactionsByAccount(this.accountId);
   }
 }
