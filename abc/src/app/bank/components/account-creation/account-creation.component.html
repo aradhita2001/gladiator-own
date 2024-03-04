@@ -26,7 +26,7 @@
 
           <span *ngIf="accountForm.controls['accountType'].errors">
 
-            <span *ngIf="accountForm.get('accountType')?.hasError('required')" class="text-danger">
+            <span *ngIf="accountForm.get('accountType')?.hasError('required')" class="text-danger mt-1 mb-1">
               Please Select the Type of Account.
             </span>
 
@@ -36,9 +36,9 @@
 
 
       </div>
-      <div>
+      <div class="mt-3">
         <label>Balance</label>
-        <input type="text" formControlName="balance">
+        <input type="text" class="w-100" formControlName="balance">
         <div
           *ngIf="accountForm.get('balance')?.hasError('required') && (accountForm.get('balance')?.touched || accountForm.get('balance')?.dirty)"
           class="error" class="text-danger">Balance is Required
