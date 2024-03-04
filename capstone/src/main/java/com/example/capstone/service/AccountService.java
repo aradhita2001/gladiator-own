@@ -13,6 +13,12 @@ public interface AccountService {
     long addAccountRequest(NewAccountRequest newAccountRequest);
     List<AccountRequestDto> getAllAccountRequests();
     List<AccountRequestDto> getAccountRequestsByUser(long userId);
+    List<AccountRequestDto> getAllApprovedAccountRequests();
+    List<AccountRequestDto> getApprovedAccountRequestsByUser(long userId);
+    List<AccountRequestDto> getAllRequestedAccountRequests();
+    List<AccountRequestDto> getRequestedAccountRequestsByUser(long userId);
+    List<AccountRequestDto> getAllDeclinedAccountRequests();
+    List<AccountRequestDto> getDeclinedAccountRequestsByUser(long userId);
     void approveAccountRequest(long accountRequestId);
     void declineAccountRequest(long accountRequestId);
     void updateAccount(Account accounts);

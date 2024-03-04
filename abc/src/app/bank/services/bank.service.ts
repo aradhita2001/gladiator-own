@@ -15,6 +15,27 @@ import { AccountRequestDetails } from '../types/Account-request-details';
   providedIn: 'root'
 })
 export class BankService {
+  getActiveAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/requested/user/${userId}`);
+  }
+  
+  getActiveAccountRequests(): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/requested`);
+  }
+  getApprovedAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/approved/user/${userId}`);
+  }
+  getApprovedAccountRequests(): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/approved`);
+    
+  }
+  getDeclinedAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/declined/user/${userId}`);
+
+  }
+  getDeclinedAccountRequests(): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/declined`);
+  }
  
 
   private baseUrl = `${environment.apiUrl}`

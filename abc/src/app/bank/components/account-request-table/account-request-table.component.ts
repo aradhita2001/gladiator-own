@@ -20,21 +20,52 @@ export class AccountRequestTableComponent {
   ngOnInit(): void {
     this.role = this.authService.getRole();
     this.userId = this.authService.getUserId();
- 
- 
+
+
     console.log(this.role);
 
+    this.allRequests();
+
+    this.accountsRequest$.subscribe((data) => {
+      console.log(data);
+
+    })
+  }
+
+  allRequests(){
     if (this.role === 'USER') {
       this.accountsRequest$ = this.bankService.getAccountRequestsByUser(this.userId);
     }
     if (this.role === 'ADMIN') {
       this.accountsRequest$ = this.bankService.getAccountRequests();
     }
- 
-    this.accountsRequest$.subscribe((data) => {
-      console.log(data);
-      
-    })
-}
+  }
+
+  onlyRequested(){
+    if (this.role === 'USER') {
+      this.accountsRequest$ = this.bankService.getActiveAccountRequestsByUser(this.userId);
+    }
+    if (this.role === 'ADMIN') {
+      this.accountsRequest$ = this.bankService.getActiveAccountRequests();
+    }
+  }
+
+  onlyApproved(){
+    if (this.role === 'USER') {
+      this.accountsRequest$ = this.bankService.getApprovedAccountRequestsByUser(this.userId);
+    }
+    if (this.role === 'ADMIN') {
+      this.accountsRequest$ = this.bankService.getApprovedAccountRequests();
+    }
+  }
+
+  onlyDeclined(){
+    if (this.role === 'USER') {
+      this.accountsRequest$ = this.bankService.getDeclinedAccountRequestsByUser(this.userId);
+    }
+    if (this.role === 'ADMIN') {
+      this.accountsRequest$ = this.bankService.getDeclinedAccountRequests();
+    }
+  }
 
 }

@@ -80,6 +80,36 @@ public class AccountController {
     public ResponseEntity<List<AccountRequestDto>> getAccountRequestsByUser(@PathVariable Long userId) {
         return new ResponseEntity<List<AccountRequestDto>>(accountService.getAccountRequestsByUser(userId), HttpStatus.OK);
     }
+
+    @GetMapping("/account-request/requested")
+    public ResponseEntity<List<AccountRequestDto>> getAllRequestedAccountRequest(){
+        return new ResponseEntity<List<AccountRequestDto>>(accountService.getAllRequestedAccountRequests(), HttpStatus.OK);
+    }
+
+    @GetMapping("/account-request/requested/user/{userId}")
+    public ResponseEntity<List<AccountRequestDto>> getRequestedAccountRequestsByUser(@PathVariable Long userId) {
+        return new ResponseEntity<List<AccountRequestDto>>(accountService.getRequestedAccountRequestsByUser(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/account-request/approved")
+    public ResponseEntity<List<AccountRequestDto>> getAllApprovedAccountRequest(){
+        return new ResponseEntity<List<AccountRequestDto>>(accountService.getAllApprovedAccountRequests(), HttpStatus.OK);
+    }
+
+    @GetMapping("/account-request/approved/user/{userId}")
+    public ResponseEntity<List<AccountRequestDto>> getApprovedAccountRequestsByUser(@PathVariable Long userId) {
+        return new ResponseEntity<List<AccountRequestDto>>(accountService.getApprovedAccountRequestsByUser(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/account-request/declined")
+    public ResponseEntity<List<AccountRequestDto>> getAllDeclinedAccountRequest(){
+        return new ResponseEntity<List<AccountRequestDto>>(accountService.getAllDeclinedAccountRequests(), HttpStatus.OK);
+    }
+
+    @GetMapping("/account-request/declined/user/{userId}")
+    public ResponseEntity<List<AccountRequestDto>> getDeclinedAccountRequestsByUser(@PathVariable Long userId) {
+        return new ResponseEntity<List<AccountRequestDto>>(accountService.getDeclinedAccountRequestsByUser(userId), HttpStatus.OK);
+    }
     
 
     @PutMapping("/account-request/approve/{id}")

@@ -127,4 +127,34 @@ public class AccountServiceImpl implements AccountService {
         accountRequest.decline();
         accountRequestRepository.save(accountRequest);
     }
+
+    @Override
+    public List<AccountRequestDto> getAllApprovedAccountRequests() {
+        return accountRequestRepository.getApprovedAccountRequests().stream().map(AccountRequestDto::new).toList();
+    }
+
+    @Override
+    public List<AccountRequestDto> getApprovedAccountRequestsByUser(long userId) {
+        return accountRequestRepository.getApprovedAccountRequestsByCustomerUserId(userId).stream().map(AccountRequestDto::new).toList();
+    }
+
+    @Override
+    public List<AccountRequestDto> getAllRequestedAccountRequests() {
+        return accountRequestRepository.getRequestedAccountRequests().stream().map(AccountRequestDto::new).toList();
+    }
+
+    @Override
+    public List<AccountRequestDto> getRequestedAccountRequestsByUser(long userId) {
+        return accountRequestRepository.getRequestedAccountRequestsByCustomerUserId(userId).stream().map(AccountRequestDto::new).toList();
+    }
+
+    @Override
+    public List<AccountRequestDto> getAllDeclinedAccountRequests() {
+        return accountRequestRepository.getDeclinedAccountRequests().stream().map(AccountRequestDto::new).toList();
+    }
+
+    @Override
+    public List<AccountRequestDto> getDeclinedAccountRequestsByUser(long userId) {
+        return accountRequestRepository.getDeclinedAccountRequestsByCustomerUserId(userId).stream().map(AccountRequestDto::new).toList();
+    }
 }
