@@ -75,7 +75,7 @@ export class AuthService {
     return Number(!!userId ? userId : "");
   }
 
-  getRole(): String {
+  getRole(): string {
     let role: string | null = localStorage.getItem('role');
     return !!role ? role : "";
   }

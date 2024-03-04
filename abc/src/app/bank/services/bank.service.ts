@@ -15,6 +15,9 @@ import { AccountRequestDetails } from '../types/Account-request-details';
   providedIn: 'root'
 })
 export class BankService {
+  // getName(userId: number): Observable<string> {
+  //   return this.http.get<string>(`${this.baseUrl}/users/name/${userId}`);
+  // }
   getActiveAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
     return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/requested/user/${userId}`);
   }
