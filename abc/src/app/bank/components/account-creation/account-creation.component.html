@@ -37,7 +37,7 @@
 
       </div>
       <div class="mt-3">
-        <label>Balance</label>
+        <label class="mb-1">Balance</label>
         <input type="text" class="w-100" formControlName="balance">
         <div
           *ngIf="accountForm.get('balance')?.hasError('required') && (accountForm.get('balance')?.touched || accountForm.get('balance')?.dirty)"

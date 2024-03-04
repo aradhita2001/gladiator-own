@@ -9,20 +9,22 @@
         <div class="bg-white text-center justify-items-center ">
             <ul class="nav nav-tabs " id="myTabs" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link  bg-info me-1 text-dark" id="transaction-tab" data-bs-toggle="tab" data-bs-target="#Transactions" type="button" role="tab" aria-controls="Transactions"aria-selected="true">Transactions</button>
-              </li>
-              <li class="nav-item" role="presentation">
                 <button class="nav-link bg-info me-1 text-dark" id="accounts-tab" data-bs-toggle="tab" data-bs-target="#Accounts" type="button" role="tab" aria-controls="Accounts"aria-selected="true">Accounts</button>
               </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link  bg-info me-1 text-dark" id="account-request-tab" data-bs-toggle="tab" data-bs-target="#AccountRequest" type="button" role="tab" aria-controls="AccountRequest"aria-selected="true">Account Requests</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link  bg-info me-1 text-dark" id="transaction-tab" data-bs-toggle="tab" data-bs-target="#Transactions" type="button" role="tab" aria-controls="Transactions"aria-selected="true">Transactions</button>
+              </li>
+             
               <li class="nav-item" role="presentation" *ngIf="this.role==='ADMIN'">
                 <button class="nav-link bg-info me-1 text-dark" id="users-tab" data-bs-toggle="tab" data-bs-target="#Users" type="button" role="tab" aria-controls="Users"aria-selected="true">Users</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link  bg-info me-1 text-dark" id="loans-tab" data-bs-toggle="tab" data-bs-target="#Loans" type="button" role="tab" aria-controls="Loans"aria-selected="true">Loans</button>
               </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link  bg-info text-dark" id="account-request-tab" data-bs-toggle="tab" data-bs-target="#AccountRequest" type="button" role="tab" aria-controls="AccountRequest"aria-selected="true">Account Request</button>
-              </li>
+             
             </ul>
           </div>
         

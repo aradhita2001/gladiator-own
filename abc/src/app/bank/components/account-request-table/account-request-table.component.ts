@@ -23,7 +23,7 @@ export class AccountRequestTableComponent {
  
  
     console.log(this.role);
- 
+
     if (this.role === 'USER') {
       this.accountsRequest$ = this.bankService.getAccountRequestsByUser(this.userId);
     }
@@ -36,4 +36,5 @@ export class AccountRequestTableComponent {
       
     })
 }
+
 }
