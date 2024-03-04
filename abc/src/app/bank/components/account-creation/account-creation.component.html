@@ -53,10 +53,10 @@
     <button type="submit" class=" btn btn-success mt-3">Create Account</button>
 
     <ng-container>
-      <div *ngIf="accountError$ | async as error" class="error">
+      <div *ngIf="accountError$ | async as error" class="error text-danger">
         {{ error }}
       </div>
-      <div *ngIf="accountSuccess$ | async as msg" class="success">
+      <div *ngIf="accountSuccess$ | async as msg" class="success text-success">
         {{ msg }}
       </div>
     </ng-container>

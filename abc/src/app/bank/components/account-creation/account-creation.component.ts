@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -66,11 +66,11 @@ export class AccountCreationComponent implements OnInit {
       const account: AccountRequest = new AccountRequest(data);
       console.log(account);
       this.bankService.addAccountRequest(account).subscribe(
-        (res: any) => {
-          this.accountSuccess$ = of("Account created successfully");
+        () => {
+          this.accountSuccess$ = of("Account creation request raised successfully");
         },
         () => {
-          this.accountError$ = of("Unable to create account");
+          this.accountError$ = of("Unable to create new account request");
         }
 
       );
