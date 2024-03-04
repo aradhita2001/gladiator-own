@@ -14,9 +14,11 @@ export class HandleAccountRequestComponent {
   accountsRequest$: Observable<AccountRequestDetails[]> = of();
   accountRequests: AccountRequestDetails[] = [];
   role: String = "";
+  approvalMessage:String="";
 
   constructor(private authService: AuthService, private bankService: BankService, private router: Router) { }
   ngOnInit(): void {
+    this.approvalMessage = "";
     this.role = this.authService.getRole();
     // const serId = localStorage.getItem("user_id");
 
@@ -38,9 +40,17 @@ export class HandleAccountRequestComponent {
     console.log(this.accountRequests[index].accountRequestId);
     
     this.bankService.approveAccountRequest(this.accountRequests[index].accountRequestId).subscribe(() => console.log("approved"));
+    this.approvalMessage='Approved!';
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 1000);
     
   }
   decline(index: number) {
     this.bankService.declineAccountRequest(this.accountRequests[index].accountRequestId).subscribe(() => console.log("declined"));
+    this.approvalMessage='Declined!';
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 1000);
   }
 }
