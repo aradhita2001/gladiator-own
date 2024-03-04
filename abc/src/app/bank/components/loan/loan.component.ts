@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Observable, of } from "rxjs";
+import { AuthService } from "src/app/auth/services/auth.service";
 import { CustomValidators } from "src/app/validators/custom-validator";
 import { BankService } from "../../services/bank.service";
 import { Account } from "../../types/account";
@@ -18,12 +19,12 @@ export class LoanComponent implements OnInit {
   loanError$: Observable<string> = of();
   loanSuccess$: Observable<string> = of();
   isFormSubmitted: boolean = false;
-  userId: any;
+  userId: number = 0;
   intrest: number = 0;
 
   constructor(
+    private authService: AuthService,
     private bankService: BankService,
-
     private formBuilder: FormBuilder,
     private customValidators: CustomValidators,
   ) {
@@ -39,6 +40,10 @@ export class LoanComponent implements OnInit {
       });
   }
   onSubmit(): void {
+    console.log(this.loanForm.value);
+    console.log(this.loanForm.valid);
+
+    
     this.isFormSubmitted = true;
     if (this.loanForm.invalid) {
       return;
@@ -49,6 +54,7 @@ export class LoanComponent implements OnInit {
       console.log(data);
 
       const loan: Loan = new Loan(data);
+      loan.customer.userId = this.authService.getUserId();
       console.log(loan);
 
       this.bankService.saveLoan(loan).subscribe(

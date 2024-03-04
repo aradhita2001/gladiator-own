@@ -25,8 +25,8 @@ export class BankService {
     return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request`);
 
   }
-  getAccountRequestsByUser(strUserId: string | null): Observable<AccountRequestDetails[]> {
-    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/user/${strUserId}`);
+  getAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/user/${userId}`);
   }
 
   private baseUrl = `${environment.apiUrl}`
@@ -43,13 +43,13 @@ export class BankService {
     return this.http.get<AccountDetails>(`${this.baseUrl}/accounts/${accountId}`);
   }
 
-  getTransactionsByUser(userId: string | null): Observable<Transaction[]> {
+  getTransactionsByUser(userId: number): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(`${this.baseUrl}/transactions/user/${userId}`)
   }
 
 
-  getAccountsByUser(strUserId: string | null): Observable<Account[]> {
-    return this.http.get<Account[]>(`${this.baseUrl}/accounts/user/${strUserId}`);
+  getAccountsByUser(userId: number): Observable<Account[]> {
+    return this.http.get<Account[]>(`${this.baseUrl}/accounts/user/${userId}`);
   }
 
   getAllUsers(): Observable<User[]> {
@@ -58,7 +58,7 @@ export class BankService {
   getAllLoans(): Observable<Loan[]> {
     return this.http.get<Loan[]>(`${this.baseUrl}/loans`);
   }
-  getAllLoansByUserId(userId: string | null): Observable<Loan[]> {
+  getAllLoansByUserId(userId: number): Observable<Loan[]> {
     return this.http.get<Loan[]>(`${this.baseUrl}/loans/user/${userId}`);
   }
 

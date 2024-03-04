@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { BankService } from '../../services/bank.service';
 import { Transaction } from '../../types/transaction';
 
@@ -11,17 +12,18 @@ import { Transaction } from '../../types/transaction';
 })
 export class TransactionTableComponent implements OnInit {
   transactions$: Observable<Transaction[]> = of();
-  role: String | null = "";
+  role: String= "";
+  userId: number = 0;
 
-  constructor(private bankService: BankService, private router: Router) { }
+  constructor(private authService : AuthService, private bankService: BankService, private router: Router) { }
 
   
   ngOnInit(): void {
-    this.role = localStorage.getItem("role");
-    const strUserId = localStorage.getItem("user_id");
+    this.role = this.authService.getRole();
 
     if (this.role === 'USER') {
-      this.transactions$ = this.bankService.getTransactionsByUser(strUserId);
+      this.userId = this.authService.getUserId();
+      this.transactions$ = this.bankService.getTransactionsByUser(this.userId);
     }
     if (this.role === 'ADMIN') {
       this.transactions$ = this.bankService.getAllTranactions();

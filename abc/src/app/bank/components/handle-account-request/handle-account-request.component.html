@@ -10,20 +10,21 @@
                         <th scope="col">Balance</th>
                         <th scope="col">Type</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
+
                     </tr>
                 </thead>
                 <tbody>
 
                     <tr *ngFor="let accountRequest of accountRequests; index as i">
-                        <!-- <tr *ngFor="let account of accountRequests;index as i"> -->
-                        <td>{{accountRequest.username}}</td>
-                        <td>{{accountRequest.email}}</td>
-                        <td>{{accountRequest.balance}}</td>
-                        <td>{{accountRequest.accountType}}</td>
-                        <td>
+                        <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.username}}</td>
+                        <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.email}}</td>
+                        <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.balance}}</td>
+                        <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.accountType}}</td>
+                        <td *ngIf="accountRequest.status==='REQUESTED'">
                             <button (click)="approve(i)">Approve</button>
                         </td>
-                        <td>
+                        <td *ngIf="accountRequest.status==='REQUESTED'">
                             <button (click)="decline(i)">Decline</button>
                         </td>
                     </tr>

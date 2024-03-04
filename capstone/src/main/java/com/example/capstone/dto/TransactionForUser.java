@@ -2,6 +2,7 @@ package com.example.capstone.dto;
 
 import java.time.LocalDateTime;
 
+
 import com.example.capstone.entity.Transaction;
 
 public class TransactionForUser {
@@ -10,7 +11,7 @@ public class TransactionForUser {
     private long destinationAccountId;
     private String destinationAccountHolderName;
     private double amount;
-    private LocalDateTime timeStamp;
+    private LocalDateTime transactionDate;
 
     public TransactionForUser(Transaction transaction, String destinationAccountHolderName){
         sourceAccountId = transaction.getSourceAccountId();
@@ -18,7 +19,7 @@ public class TransactionForUser {
         this.destinationAccountHolderName = destinationAccountHolderName;
         amount = transaction.getAmount();
         
-        timeStamp = transaction.getTransactionDate();
+        transactionDate = transaction.getTransactionDate();
     }
 
     public long getSourceAccountId() {
@@ -53,12 +54,12 @@ public class TransactionForUser {
         this.amount = amount;
     }
 
-    public LocalDateTime getTimeStamp() {
-        return timeStamp;
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
     }
 
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTransactionDate(LocalDateTime timeStamp) {
+        this.transactionDate = timeStamp;
     }
 
     

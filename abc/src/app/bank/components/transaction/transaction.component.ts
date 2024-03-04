@@ -5,6 +5,7 @@ import { Account } from "../../types/account";
 import { Transaction } from "../../types/transaction";
 import { CustomValidators } from "src/app/validators/custom-validator";
 import { BankService } from "../../services/bank.service";
+import { AuthService } from "src/app/auth/services/auth.service";
 
 @Component({
   selector: "app-transaction",
@@ -18,19 +19,21 @@ export class TransactionComponent implements OnInit {
   transactionError$: Observable<string> = of();
   transactionSuccess$: Observable<string> = of();
   isFormSubmitted: boolean = false;
-  userId: any;
+  userId: number = 0;
 
   errorMessages: { [key: string]: string } = {
     NOT_ENOUGH_BALANCE: "Not enough balance to complete transaction",
   };
 
   constructor(
+    private authServuce: AuthService,
     private bankService: BankService,
     private customValidator: CustomValidators,
     private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
+    this.userId = this.authServuce.getUserId();
     this.accounts$ = this.bankService.getAccountByUserId(this.userId);
 
     this.transactionForm = this.formBuilder.group({

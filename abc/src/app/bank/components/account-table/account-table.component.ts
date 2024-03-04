@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { BankService } from '../../services/bank.service';
 import { Account } from '../../types/account';
 
@@ -11,19 +12,20 @@ import { Account } from '../../types/account';
 })
 export class AccountTableComponent {
   accounts$: Observable<Account[]> = of();
-  role: String | null = "";
+  role: String = "";
+  userId: number = 0;
 
-  constructor(private bankService: BankService, private router: Router) { }
+  constructor(private authSercive: AuthService, private bankService: BankService, private router: Router) { }
 
   ngOnInit(): void {
-    this.role = localStorage.getItem("role");
-    const strUserId = localStorage.getItem("userId");
+    this.role = this.authSercive.getRole();;
+    this.userId = this.authSercive.getUserId();
 
 
     console.log(this.role);
 
     if (this.role === 'USER') {
-      this.accounts$ = this.bankService.getAccountsByUser(strUserId);
+      this.accounts$ = this.bankService.getAccountsByUser(this.userId);
     }
     if (this.role === 'ADMIN') {
       this.accounts$ = this.bankService.getAccounts();

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { BankService } from '../../services/bank.service';
 import { AccountRequestDetails } from '../../types/Account-request-details';
 
@@ -12,17 +13,18 @@ import { AccountRequestDetails } from '../../types/Account-request-details';
 export class HandleAccountRequestComponent {
   accountsRequest$: Observable<AccountRequestDetails[]> = of();
   accountRequests: AccountRequestDetails[] = [];
-  role: String | null = "";
-  constructor(private bankService: BankService, private router: Router) { }
+  role: String = "";
+
+  constructor(private authService: AuthService, private bankService: BankService, private router: Router) { }
   ngOnInit(): void {
-    this.role = localStorage.getItem("role");
-    const strUserId = localStorage.getItem("user_id");
+    this.role = this.authService.getRole();
+    // const serId = localStorage.getItem("user_id");
 
     console.log(this.role);
 
-    if (this.role === 'USER') {
-      this.accountsRequest$ = this.bankService.getAccountRequestsByUser(strUserId);
-    }
+    // if (this.role === 'USER') {
+    //   this.accountsRequest$ = this.bankService.getAccountRequestsByUser(strUserId);
+    // }
     if (this.role === 'ADMIN') {
       this.accountsRequest$ = this.bankService.getAccountRequests();
     }

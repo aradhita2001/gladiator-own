@@ -12,7 +12,7 @@
 
                         <th scope="col">Destination Account</th>
 
-                        <th scope="col">Balance</th>
+                        <th scope="col">Amount</th>
 
                         <th scope="col">Time</th>
 
@@ -28,6 +28,7 @@
                         <td>{{ transaction.destinationAccountId }}</td>
                         <td>{{transaction.amount | currency:'INR'}}</td>
                         <td>{{transaction.transactionDate | date:'longDate'}}</td>
+                        <!-- <td *ngIf="role==='USER'">{{transaction.transactionDate | date:'longDate'}}</td> -->
 
                     </tr>
 
