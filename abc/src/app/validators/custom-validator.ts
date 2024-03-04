@@ -78,4 +78,14 @@ export class CustomValidators {
       // Test if the inputString contains any special characters
       return specialCharactersRegex.test(inputString);
     }
+
+    TenureValidator(control:AbstractControl): ValidationErrors | null {
+      const regrex:RegExp=/^[0-9]{1,2}$/;
+      const TenureValue=control.value.toString();
+      if(regrex.test(TenureValue))
+      {
+        return null;
+      }
+      return{TenureValidator:true};
+    }
    }

@@ -44,6 +44,11 @@
                     class="error">
                     <span class="text-danger">Tenure is required</span>
                 </div>
+                <div *ngIf="!loanForm.get('tenure')?.hasError('required') && loanForm.get('tenure')?.hasError('TenureValidator') && (loanForm.get('tenure')?.touched || loanForm.get('tenure')?.dirty)"
+ 
+                    class="error">
+                    <span class="text-danger">Tenure is Invalid</span>
+                </div>
                 <p *ngIf="emi$ | async">Monthly EMI Payment = <span id="emi">INR {{emi | number:'1.0-2'}}</span></p>
             </div>
             <div>

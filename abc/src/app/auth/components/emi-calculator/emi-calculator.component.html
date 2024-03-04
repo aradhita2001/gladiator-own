@@ -4,8 +4,8 @@
             <h1 class="card-header">EMI Calculator</h1>
 
             <div class="input-container">
-                <label for="loanType" class="me-2">Select Loan Type: </label>
-                <select formControlName="loanType">
+                <label for="loanType">Select Loan Type: </label>
+                <select formControlName="loanType" class="w-25 mx-auto">
                     <option value="Home Loan">Home Loan</option>
                     <option value="Education Loan">Education Loan</option>
                     <option value="Personal Loan">Personal Loan</option>
@@ -13,8 +13,8 @@
                 </select>
 
 
-                <label for="amount">Principal Loan Amount ₹
-                    <input formControlName="amount" id="amount" type="number" />
+                <label class="text-center" for="amount">Principal Loan Amount ₹
+                    <input  class="w-25 mx-auto p-2" formControlName="amount" id="amount" type="number" />
                 </label>
 
                 <label for="amount">No. of Years to Pay

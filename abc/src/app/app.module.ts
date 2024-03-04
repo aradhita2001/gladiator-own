@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
 import { BankComponent } from './bank/bank.component';
 import { AuthInterceptor } from './auth.interceptors';

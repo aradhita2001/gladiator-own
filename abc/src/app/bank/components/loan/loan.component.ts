@@ -40,7 +40,7 @@ export class LoanComponent implements OnInit {
       this.loanForm = this.formBuilder.group({
         loanType: ["", [Validators.required]],
         amount: ["", [Validators.required, this.customValidators.AmountValidator]],
-        tenure: ["", [Validators.required, Validators.min(3)]],  //add min
+        tenure: ["", [Validators.required, Validators.min(1),this.customValidators.TenureValidator]],  //add min
       });
   }
   onSubmit(): void {
