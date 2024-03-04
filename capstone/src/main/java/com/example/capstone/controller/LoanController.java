@@ -3,6 +3,7 @@ package com.example.capstone.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.capstone.entity.Loan;
@@ -17,12 +18,14 @@ public class LoanController {
     private LoanService loanService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<Loan>> getAllLoans() {
         List<Loan> loans = loanService.getAllLoans();
         return new ResponseEntity<>(loans, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Loan> getLoanById(@PathVariable Long id) {
         Loan loan = loanService.getLoanById(id);
         if (loan != null) {
@@ -31,14 +34,16 @@ public class LoanController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    
     @GetMapping("/user/{id}")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<Loan>> getLoanByUserId(@PathVariable Long id) {
         List<Loan> loans = loanService.getLoanByUserId(id);
         return new ResponseEntity<>(loans, HttpStatus.OK);
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<Loan> createLoan(@RequestBody Loan loan) {
         Loan createdLoan = loanService.createLoan(loan);
         return new ResponseEntity<>(createdLoan, HttpStatus.CREATED);
@@ -68,5 +73,4 @@ public class LoanController {
         double emi = loanService.calculateEMI(loan);
         return emi;
     }
-
 }
