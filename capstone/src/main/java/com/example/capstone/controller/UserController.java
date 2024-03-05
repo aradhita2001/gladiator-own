@@ -53,42 +53,10 @@ public class UserController {
         }
     }
 
-    // @GetMapping("/name/{userId}")
-    // public ResponseEntity<String> getName(@PathVariable Long userId) {
-    // return new ResponseEntity<String>(userService.getNameById(userId),
-    // HttpStatus.OK);
-    // }
-
-    // @GetMapping("/{customerEmail}")
-    // public ResponseEntity<Customer> getByCustomerEmail(@PathVariable String
-    // customerEmail) {
-
-    // Customer customers =
-    // customerService.getCustomerByCustomerEmail(customerEmail);
-    // if (customers != null) {
-    // return new ResponseEntity<>(customers, HttpStatus.OK);
-    // } else {
-    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    // }
-    // }
-
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<User> addUser(@RequestBody User users) {
         User user = userService.addUser(users);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
-
-    // @PutMapping("/{userId}")
-    // public ResponseEntity<Void> updateUser(@PathVariable long userId,
-    // @RequestBody User user) {
-    // userService.updateUser(userId, user);
-    // return new ResponseEntity<>(HttpStatus.OK);
-    // }
-
-    // @DeleteMapping("/{userId}")
-    // public ResponseEntity<Void> deleteUser(@PathVariable long userId) {
-    // userService.deleteUser(userId);
-    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    // }
 }

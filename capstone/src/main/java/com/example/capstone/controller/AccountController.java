@@ -18,7 +18,7 @@ import com.example.capstone.dto.AccountDetails;
 import com.example.capstone.dto.AccountRequestDto;
 import com.example.capstone.dto.NewAccountRequest;
 import com.example.capstone.entity.Account;
-import com.example.capstone.exception.SecurityException;
+import com.example.capstone.exception.AuthenticationFailureException;
 import com.example.capstone.jwt.JwtUtil;
 import com.example.capstone.service.AccountService;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/accounts") //default routing path for accounts
+@RequestMapping("/accounts") //default path for accounts
 public class AccountController {
  
     private final AccountService accountService;
@@ -50,7 +50,7 @@ public class AccountController {
     public ResponseEntity<AccountDetails> getAccountById(@PathVariable long accountId, 
                             @RequestHeader (name="Authorization") String token) {
         
-        if(!(jwtUtil.validateAdmin(token) || jwtUtil.validateUserByAccountId(token, accountId))) throw new SecurityException();
+        if(!(jwtUtil.validateAdmin(token) || jwtUtil.validateUserByAccountId(token, accountId))) throw new AuthenticationFailureException();
 
         AccountDetails accountDetails = accountService.getAccountById(accountId);
         if (accountDetails != null) {
@@ -64,19 +64,12 @@ public class AccountController {
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<List<Account>> getAccountsByUser(@PathVariable long userId,
                     @RequestHeader (name="Authorization") String token) {
-        if(!(jwtUtil.validateAdmin(token) || jwtUtil.validateUser(token, userId))) throw new SecurityException();
+        if(!(jwtUtil.validateAdmin(token) || jwtUtil.validateUser(token, userId))) throw new AuthenticationFailureException();
 
         List<Account> accounts = accountService.getAccountsByUser(userId);
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
  
-    // @PostMapping
-    // @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    // public ResponseEntity<Long> addAccount(@RequestBody Account accounts) {
-    //     long accountId = accountService.addAccount(accounts);
-    //     return new ResponseEntity<>(accountId, HttpStatus.CREATED);
-    // }
-
     @PostMapping("/account-request")
     public ResponseEntity<Long> addAccountRequest(@RequestBody NewAccountRequest newAccountRequest){
         System.out.println(newAccountRequest.getUserId());
@@ -93,7 +86,7 @@ public class AccountController {
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<AccountRequestDto>> getAccountRequestsByUser(@PathVariable Long userId, 
                         @RequestHeader (name="Authorization") String token) {
-        jwtUtil.validateUser(token, userId);
+        if(!jwtUtil.validateUser(token, userId)) throw new AuthenticationFailureException();
         return new ResponseEntity<List<AccountRequestDto>>(accountService.getAccountRequestsByUser(userId), HttpStatus.OK);
     }
 
@@ -107,7 +100,7 @@ public class AccountController {
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<AccountRequestDto>> getRequestedAccountRequestsByUser(@PathVariable Long userId, 
                     @RequestHeader (name="Authorization") String token) {
-        jwtUtil.validateUser(token, userId);
+        if (!jwtUtil.validateUser(token, userId)) throw new AuthenticationFailureException();
         return new ResponseEntity<List<AccountRequestDto>>(accountService.getRequestedAccountRequestsByUser(userId), HttpStatus.OK);
     }
 
@@ -121,7 +114,7 @@ public class AccountController {
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<AccountRequestDto>> getApprovedAccountRequestsByUser(@PathVariable Long userId, 
                             @RequestHeader (name="Authorization") String token) {
-        jwtUtil.validateUser(token, userId);
+        if(!jwtUtil.validateUser(token, userId)) throw new AuthenticationFailureException();
         return new ResponseEntity<List<AccountRequestDto>>(accountService.getApprovedAccountRequestsByUser(userId), HttpStatus.OK);
     }
 
@@ -135,10 +128,9 @@ public class AccountController {
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<AccountRequestDto>> getDeclinedAccountRequestsByUser(@PathVariable Long userId, 
                          @RequestHeader (name="Authorization") String token) {
-        jwtUtil.validateUser(token, userId);
+        if(!jwtUtil.validateUser(token, userId)) throw new AuthenticationFailureException();
         return new ResponseEntity<List<AccountRequestDto>>(accountService.getDeclinedAccountRequestsByUser(userId), HttpStatus.OK);
     }
-    
 
     @PutMapping("/account-request/approve/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -153,22 +145,4 @@ public class AccountController {
         accountService.declineAccountRequest(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    
-
- 
-    // @PutMapping("/{accountId}")
-    // @PreAuthorize("hasAuthority('USER')")
-    // public ResponseEntity<Void> updateAccount(@PathVariable long accountId, @RequestBody Account accounts) {
-    //     accounts.setAccountId(accountId);
-    //     accountService.updateAccount(accounts);
-    //     return new ResponseEntity<>(HttpStatus.OK);
-    // }
- 
-    // @DeleteMapping("/{accountId}")
-    // @PreAuthorize("hasAuthority('ADMIN')")
-    // public ResponseEntity<Void> deleteAccount(@PathVariable long accountId) {
-    //     accountService.deleteAccount(accountId);
-    //     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    // }
 }

@@ -2,7 +2,6 @@ package com.example.capstone.dto;
 
 import java.time.LocalDateTime;
 
-
 import com.example.capstone.entity.Transaction;
 
 public class TransactionForUser {
@@ -18,7 +17,6 @@ public class TransactionForUser {
         destinationAccountId = transaction.getDestinationAccountId();
         this.destinationAccountHolderName = destinationAccountHolderName;
         amount = transaction.getAmount();
-        
         transactionDate = transaction.getTransactionDate();
     }
 
@@ -61,7 +59,4 @@ public class TransactionForUser {
     public void setTransactionDate(LocalDateTime timeStamp) {
         this.transactionDate = timeStamp;
     }
-
-    
-
 }

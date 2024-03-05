@@ -38,5 +38,4 @@ public class NewAccountRequest {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-
 }

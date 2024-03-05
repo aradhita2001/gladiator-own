@@ -35,11 +35,6 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionRepository.findAll();
     }
  
-    // @Override
-    // public Transaction getTransactionById(long transactionId) {
-    //     return transactionRepository.findById(transactionId).orElse(null);
-    // }
- 
     @Override
     public long addTransaction(Transaction transaction) {
         Account srcAccount = accountRepository.findByAccountId(transaction.getSourceAccountId());
@@ -55,17 +50,6 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionRepository.save(transaction).getTransactionId();
     }
  
-    // @Override
-    // public List<Transaction> getAllDebitTransactionsByAccountId(long accountId) {
- 
-    //     return transactionRepository.findBySourceAccountId(accountId);
-    // }
- 
-    // @Override
-    // public List<Transaction> getAllCreditTransactionsByAccountId(long accountId) {
-    //     return transactionRepository.findByDestinationAccountId(accountId);
-    // }
-
     @Override
     public List<TransactionForAccount> getAllTransactionsByAccountId(long accountId) {
         List<Transaction> transactions = transactionRepository.findByAccountId(accountId);
@@ -81,7 +65,6 @@ public class TransactionServiceImpl implements TransactionService {
                     .getCustomer().getName());
             transactionForAccounts.add(transactionForAccount);
         }
-
         return transactionForAccounts;
     }
 
@@ -136,6 +119,5 @@ public class TransactionServiceImpl implements TransactionService {
         }
         return transactionForUsers;
     }
- 
 }
  

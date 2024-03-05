@@ -29,6 +29,5 @@ public class CapstoneApplication implements CommandLineRunner{
             System.out.println("Master Admin already exists");
         }
     }
- 
 }
  

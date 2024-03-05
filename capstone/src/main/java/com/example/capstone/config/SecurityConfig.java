@@ -41,12 +41,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests()
-                    //requests -> requests
                         .requestMatchers("/**").permitAll().and()
-                        .authorizeHttpRequests().requestMatchers("/accounts/**")
-                        .authenticated().and().authenticationProvider(authenticationProvider())
+                        .authenticationProvider(authenticationProvider())
                         .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-                        //.authenticated().and().formLogin().and()
                         .build();
     }
 

@@ -6,11 +6,11 @@ public class AccountRequestDto {
     private long accountRequestId;
     private String username;
     private String email;
-    private double  balance;
+    private double balance;
     private String accountType;
     private String status;
 
-    public AccountRequestDto(AccountRequest accountRequest){
+    public AccountRequestDto(AccountRequest accountRequest) {
         accountRequestId = accountRequest.getAccountRequestId();
         username = accountRequest.getCustomer().getName();
         email = accountRequest.getCustomer().getEmail();
@@ -66,6 +66,4 @@ public class AccountRequestDto {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    
 }

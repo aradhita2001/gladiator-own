@@ -34,7 +34,7 @@ public class LoanServiceImpl implements LoanService {
         loanRepository.deleteById(id);
     }
  
-    public double calculateEMI(Loan loan){ //calculating emi monthly.
+    public double calculateEMI(Loan loan){
         double tenure;
         double rate;
         double emi;

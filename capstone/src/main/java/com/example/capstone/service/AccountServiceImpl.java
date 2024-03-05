@@ -27,14 +27,11 @@ public class AccountServiceImpl implements AccountService {
     private AccountRequestRepository accountRequestRepository;
 
     @Autowired
-    public AccountServiceImpl(UserRepository userRepository, AccountRepository accountRepository, AccountRequestRepository accountRequestRepository) {
+    public AccountServiceImpl(UserRepository userRepository, AccountRepository accountRepository,
+            AccountRequestRepository accountRequestRepository) {
         this.userRepository = userRepository;
         this.accountRepository = accountRepository;
         this.accountRequestRepository = accountRequestRepository;
-    }
-
-    private long addAccount(Account accounts) {
-        return accountRepository.save(accounts).getAccountId();
     }
 
     @Override
@@ -55,18 +52,7 @@ public class AccountServiceImpl implements AccountService {
             AccountDetails accountDetails = new AccountDetails(account.get());
             return accountDetails;
         }
-
         throw new AccountNotFoundException("No accounts found linked with this accountId");
-    }
-
-    
-
-    @Override
-    public void updateAccount(Account accounts) {
-        Account account = accountRepository.findByAccountId(accounts.getAccountId());
-        account.setAccountType(accounts.getAccountType());
-        account.setBalance(accounts.getBalance());
-        accountRepository.save(account);
     }
 
     @Override
@@ -76,7 +62,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public long addAccountRequest(NewAccountRequest newAccountRequest) {
-        System.out.println(newAccountRequest.getUserId());
         User user = userRepository.findById(newAccountRequest.getUserId()).orElseThrow(BadDataException::new);
 
         AccountRequest accountRequest = new AccountRequest();
@@ -89,10 +74,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<AccountRequestDto> getAllAccountRequests() {
-        // List<AccountRequestDto> AccountRequestDtos = new ArrayList<AccountRequestDto>();
+        // List<AccountRequestDto> AccountRequestDtos = new
+        // ArrayList<AccountRequestDto>();
         // List<AccountRequest> accountRequests = accountRequestRepository.findAll();
         // for(AccountRequest accountRequest: accountRequests){
-        //     AccountRequestDtos.add(new AccountRequestDto(accountRequest));
+        // AccountRequestDtos.add(new AccountRequestDto(accountRequest));
         // }
         // return AccountRequestDtos;
         return accountRequestRepository.findAll().stream().map(AccountRequestDto::new).toList();
@@ -101,21 +87,18 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<AccountRequestDto> getAccountRequestsByUser(long userId) {
-        // List<AccountRequestDto> AccountRequestDtos = new ArrayList<AccountRequestDto>();
-        // List<AccountRequest> accountRequests = accountRequestRepository.findAll();
-        // for(AccountRequest accountRequest: accountRequests){
-        //     AccountRequestDtos.add(new AccountRequestDto(accountRequest));
-        // }
-        // return AccountRequestDtos;
-        return accountRequestRepository.getAccountRequestsByCustomerUserId(userId).stream().map(AccountRequestDto::new).toList();
+        return accountRequestRepository.getAccountRequestsByCustomerUserId(userId).stream().map(AccountRequestDto::new)
+                .toList();
     }
 
     @Override
     public void approveAccountRequest(long accountRequestId) {
         System.out.println(accountRequestId);
-        AccountRequest accountRequest = accountRequestRepository.findById(accountRequestId).orElseThrow(BadDataException::new);
+        AccountRequest accountRequest = accountRequestRepository.findById(accountRequestId)
+                .orElseThrow(BadDataException::new);
         accountRequest.approve();
-        Account account = new Account(accountRequest.getCustomer(), accountRequest.getAccountType(), accountRequest.getBalance());
+        Account account = new Account(accountRequest.getCustomer(), accountRequest.getAccountType(),
+                accountRequest.getBalance());
         accountRepository.save(account);
         System.out.println(accountRequest.getStatus());
         accountRequestRepository.save(accountRequest);
@@ -123,7 +106,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void declineAccountRequest(long accountRequestId) {
-        AccountRequest accountRequest = accountRequestRepository.findById(accountRequestId).orElseThrow(BadDataException::new);
+        AccountRequest accountRequest = accountRequestRepository.findById(accountRequestId)
+                .orElseThrow(BadDataException::new);
         accountRequest.decline();
         accountRequestRepository.save(accountRequest);
     }
@@ -135,7 +119,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<AccountRequestDto> getApprovedAccountRequestsByUser(long userId) {
-        return accountRequestRepository.getApprovedAccountRequestsByCustomerUserId(userId).stream().map(AccountRequestDto::new).toList();
+        return accountRequestRepository.getApprovedAccountRequestsByCustomerUserId(userId).stream()
+                .map(AccountRequestDto::new).toList();
     }
 
     @Override
@@ -145,7 +130,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<AccountRequestDto> getRequestedAccountRequestsByUser(long userId) {
-        return accountRequestRepository.getRequestedAccountRequestsByCustomerUserId(userId).stream().map(AccountRequestDto::new).toList();
+        return accountRequestRepository.getRequestedAccountRequestsByCustomerUserId(userId).stream()
+                .map(AccountRequestDto::new).toList();
     }
 
     @Override
@@ -155,6 +141,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<AccountRequestDto> getDeclinedAccountRequestsByUser(long userId) {
-        return accountRequestRepository.getDeclinedAccountRequestsByCustomerUserId(userId).stream().map(AccountRequestDto::new).toList();
+        return accountRequestRepository.getDeclinedAccountRequestsByCustomerUserId(userId).stream()
+                .map(AccountRequestDto::new).toList();
     }
 }

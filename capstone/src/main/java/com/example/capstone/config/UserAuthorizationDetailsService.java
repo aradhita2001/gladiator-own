@@ -19,11 +19,8 @@ public class UserAuthorizationDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email)  {
-        // TODO Auto-generated method stub
         Optional<User> user = userRepository.findByEmail(email);
-
         return user.map(UserAuthorizationDetails::new).orElseThrow(()-> new UserNameNotFoundException()); 
-
     }
     
 }

@@ -2,7 +2,6 @@ package com.example.capstone.config;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,8 +14,6 @@ public class UserAuthorizationDetails implements UserDetails{
     private String email;
     private String password;
     private String role;
-
-    
 
     public UserAuthorizationDetails(User user) {
         email = user.getEmail();
@@ -60,5 +57,4 @@ public class UserAuthorizationDetails implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
-    
 }

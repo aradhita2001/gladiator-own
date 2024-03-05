@@ -68,5 +68,4 @@ public class Loan {
     public void setCustomer(User customer) {
         this.customer = customer;
     }
-
 }

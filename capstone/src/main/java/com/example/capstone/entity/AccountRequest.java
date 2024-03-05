@@ -13,8 +13,6 @@ public class AccountRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long accountRequestId;
     @ManyToOne
-    // @JoinColumn(name = "customerId") // one customer can be mapped to many
-    // accounts
     private User customer;
     private String accountType;
     private double balance;
@@ -79,7 +77,6 @@ public class AccountRequest {
 
             return true;
         }
-
         return false;
     }
 
@@ -88,7 +85,6 @@ public class AccountRequest {
             this.status = "DECLINED";
             return true;
         }
-
         return false;
     }
 }

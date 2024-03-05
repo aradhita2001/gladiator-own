@@ -21,7 +21,6 @@ public interface AccountService {
     List<AccountRequestDto> getDeclinedAccountRequestsByUser(long userId);
     void approveAccountRequest(long accountRequestId);
     void declineAccountRequest(long accountRequestId);
-    void updateAccount(Account accounts);
     void deleteAccount(long accountId);
     List<Account> getAccountsByUser(long userId);
 }

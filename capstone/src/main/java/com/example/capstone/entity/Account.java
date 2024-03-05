@@ -15,13 +15,9 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long accountId;
     @ManyToOne
-    // @JoinColumn(name = "customerId") // one customer can be mapped to many
-    // accounts
     private User customer;
     private String accountType;
     private double balance;
-   
- 
  
     public Account() {
     }
@@ -58,10 +54,6 @@ public class Account {
  
     public double getBalance() {
         return balance;
-    }
- 
-    public void setBalance(double balance) {
-        this.balance = balance;
     }
  
     public void credit(double amount){

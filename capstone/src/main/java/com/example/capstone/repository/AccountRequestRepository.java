@@ -2,10 +2,8 @@ package com.example.capstone.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.capstone.entity.Account;
 import com.example.capstone.entity.AccountRequest;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,7 +30,4 @@ public interface AccountRequestRepository extends JpaRepository<AccountRequest, 
     
     @Query("select a from AccountRequest a where a.status = 'REQUESTED'")
     List<AccountRequest> getRequestedAccountRequests();
-
-    // List<AccountRequest> findbyCustomerUserId(long userId);
-
 }
