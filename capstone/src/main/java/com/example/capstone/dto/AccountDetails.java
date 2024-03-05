@@ -1,16 +1,16 @@
 package com.example.capstone.dto;
 
-import java.util.List;
+// import java.util.List;
 
 import com.example.capstone.entity.Account;
-import com.example.capstone.entity.Transaction;
+// import com.example.capstone.entity.Transaction;
 
 public class AccountDetails {
     private long id;
     private String userName;
     private double balance;
     private String accountType;
-    private List<Transaction> transactions;
+    // private List<Transaction> transactions;
 
     public AccountDetails(Account account){
         this.id = account.getAccountId();
@@ -51,11 +51,11 @@ public class AccountDetails {
         this.accountType = accountType;
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
+    // public List<Transaction> getTransactions() {
+    //     return transactions;
+    // }
 
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-    }
+    // public void setTransactions(List<Transaction> transactions) {
+    //     this.transactions = transactions;
+    // }
 }

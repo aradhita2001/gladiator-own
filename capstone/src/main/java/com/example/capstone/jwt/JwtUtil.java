@@ -4,6 +4,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
+import com.example.capstone.dto.Constants;
+import com.example.capstone.entity.Account;
+import com.example.capstone.entity.AccountRequest;
+import com.example.capstone.entity.Loan;
 import com.example.capstone.entity.User;
+import com.example.capstone.repository.AccountRepository;
+import com.example.capstone.repository.AccountRequestRepository;
+import com.example.capstone.repository.LoanRepository;
 import com.example.capstone.repository.UserRepository;
 
 @Component
@@ -26,6 +34,14 @@ public class JwtUtil {
     @Autowired
     private UserRepository UserRepository; 
 
+    @Autowired
+    private AccountRepository accountRepository;
+    
+    @Autowired
+    private LoanRepository loanRepository; 
+
+    @Autowired
+    private AccountRequestRepository accountRequestRepository;
     
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -81,5 +97,52 @@ public class JwtUtil {
     private Key getSignKey() {
         byte[] keyBytes= Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public boolean validateUser(String authHeader, long userId){
+        if (authHeader != null && authHeader.startsWith(Constants.JWT_TOKEN_PREFIX)) {
+            String token = authHeader.substring(Constants.JWT_TOKEN_PREFIX.length());
+            Claims claims = extractAllClaims(token);
+            if(claims.get("role").equals("USER") && ((int) claims.get("userId") == userId)) return true;
+        }
+        return false;
+    }
+
+    public boolean validateUserByAccountId(String authHeader, Long accountId){
+
+        Optional<Account> account = accountRepository.findById(accountId);
+        if(!account.isPresent()) return false;
+        long userId = account.get().getCustomer().getUserId();
+        return validateUser(authHeader, userId);
+    }
+
+    public boolean validateUserByAccountRequestId(String authHeader, Long accountRequestId){
+
+        Optional<AccountRequest> accountRequest = accountRequestRepository.findById(accountRequestId);
+        if(!accountRequest.isPresent()) return false;
+        long userId = accountRequest.get().getCustomer().getUserId();
+        return validateUser(authHeader, userId);
+    }
+
+    public boolean validateUserByLoanId(String authHeader, Long loanId){
+
+        Optional<Loan> loan = loanRepository.findById(loanId);
+        if(!loan.isPresent()) return false;
+        long userId = loan.get().getCustomer().getUserId();
+        return validateUser(authHeader, userId);
+    }
+
+    public boolean validateAdmin(String authHeader){
+        
+        if (authHeader != null && authHeader.startsWith(Constants.JWT_TOKEN_PREFIX)) {
+            String token = authHeader.substring(Constants.JWT_TOKEN_PREFIX.length());
+            Claims claims = extractAllClaims(token);
+            System.out.println(claims.get("role"));
+
+            if(claims.get("role").equals("ADMIN")) return true;
+
+        }
+        
+        return false;
     }
 }

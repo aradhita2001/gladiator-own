@@ -8,11 +8,11 @@ import com.example.capstone.entity.Transaction;
 
 public interface TransactionService {
     List<Transaction> getAllTransactions();
-    Transaction getTransactionById(long transactionId);
+    // Transaction getTransactionById(long transactionId);
     long addTransaction(Transaction transaction);
     // List<Transaction> getTransactionsByCustomerId(int customerId) throws SQLException;
-    List<Transaction> getAllCreditTransactionsByAccountId(long accountId);
-    List<Transaction> getAllDebitTransactionsByAccountId(long accountId);
+    // List<Transaction> getAllCreditTransactionsByAccountId(long accountId);
+    // List<Transaction> getAllDebitTransactionsByAccountId(long accountId);
     List<TransactionForAccount> getDebitTransactionsByAccountId(long accountId);
     List<TransactionForAccount> getCreditTransactionsByAccountId(long accountId);
     List<TransactionForAccount> getAllTransactionsByAccountId(long accountId);
