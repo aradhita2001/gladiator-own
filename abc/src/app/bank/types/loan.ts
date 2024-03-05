@@ -7,7 +7,6 @@ export class Loan {
     tenure: number;
     customer: User;
 
-
     constructor(data: any) {
         this.customer = new User({userId: undefined});
         this.customer.userId = Number(localStorage.getItem("user_id"));

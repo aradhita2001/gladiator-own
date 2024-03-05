@@ -14,7 +14,7 @@ import { AccountRequest } from '../../types/Account-request';
 })
 export class AccountCreationComponent implements OnInit {
 
-  role: String ="";
+  role: String = "";
   userId!: Number;
   accountType!: String;
   accountForm: any = { AccountType: null }
@@ -28,8 +28,7 @@ export class AccountCreationComponent implements OnInit {
     private customValidators: CustomValidators,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private bankService: BankService,
-    private router: Router
+    private bankService: BankService
   ) { }
 
 
@@ -61,10 +60,10 @@ export class AccountCreationComponent implements OnInit {
     }
     else {
       const data = this.accountForm.value;
-      console.log(data);
+
 
       const account: AccountRequest = new AccountRequest(data);
-      console.log(account);
+
       this.bankService.addAccountRequest(account).subscribe(
         () => {
           this.accountSuccess$ = of("Account creation request raised successfully");

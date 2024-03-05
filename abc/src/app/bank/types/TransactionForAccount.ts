@@ -11,6 +11,5 @@ export class TransactionForAccount {
         this.transactionType = data.transactionType;
         this.amount = data.amount;
         this.transactionDate = data.transactionDate
-
     }
 }

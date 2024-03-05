@@ -77,11 +77,11 @@ public class AccountController {
     //     return new ResponseEntity<>(accountId, HttpStatus.CREATED);
     // }
 
-    // @PostMapping("/account-request")
-    // public ResponseEntity<Long> addAccountRequest(@RequestBody NewAccountRequest newAccountRequest){
-    //     System.out.println(newAccountRequest.getUserId());
-    //     return new ResponseEntity<Long>(accountService.addAccountRequest(newAccountRequest), HttpStatus.CREATED);
-    // }
+    @PostMapping("/account-request")
+    public ResponseEntity<Long> addAccountRequest(@RequestBody NewAccountRequest newAccountRequest){
+        System.out.println(newAccountRequest.getUserId());
+        return new ResponseEntity<Long>(accountService.addAccountRequest(newAccountRequest), HttpStatus.CREATED);
+    }
 
     @GetMapping("/account-request")
     @PreAuthorize("hasAuthority('ADMIN')")

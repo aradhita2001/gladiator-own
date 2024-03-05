@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Observable, of } from "rxjs";
 import { User } from "../../types/user";
 import { AuthService } from "../../services/auth.service";
@@ -41,13 +41,7 @@ export class UserComponent implements OnInit {
     this.errorMsg = "";
   }
 
-  hasSpecialCharacters(inputString: string): boolean {
-    // Define a regular expression for special characters
-    const specialCharactersRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
 
-    // Test if the inputString contains any special characters
-    return specialCharactersRegex.test(inputString);
-  }
 
   onSubmit() {
     this.isFormSubmitted = true;
@@ -57,18 +51,9 @@ export class UserComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     } else {
-      const { username, password, email } = this.userForm.value;
-      if (password.length < 8) {
-        this.userError$ = of("Password must be of 8 characters");
-        return;
-      }
-      if (this.hasSpecialCharacters(username)) {
-        this.userError$ = of("User Name must consist of letter and number only!!");
-        return;
-      }
 
       const data = this.userForm.value;
-      console.log(data);
+
       const customer: User = new User(data);
       customer.role = "USER";
 
@@ -77,7 +62,7 @@ export class UserComponent implements OnInit {
           this.userSuccess$ = of("User created successfully");
         },
         (error) => {
-          this.userError$ = of("User Alreay Exists:");
+          this.userError$ = of("User Alreay Exists");
         }
       );
     }

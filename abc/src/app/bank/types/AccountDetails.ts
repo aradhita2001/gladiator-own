@@ -1,6 +1,4 @@
-import { Transaction } from "./transaction";
 import { TransactionForAccount } from "./TransactionForAccount";
-
  
 export class AccountDetails {
     id: number;
@@ -8,15 +6,12 @@ export class AccountDetails {
     balance: number;
     accountType: string;
     transactions?: TransactionForAccount[];
- 
- 
-  // transactionType: "CREDIT" | "DEBIT";
-  constructor(data: any) {
+
+    constructor(data: any) {
     this.id=data.id;
     this.userName=data.userName;
     this.balance=data.balance;
     this.accountType=data.accountType;
     this.transactions=data.transactions;
-    
   }
 }

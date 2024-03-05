@@ -1,48 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, Observable, of, tap } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
- 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent {
   errorMessage: String = "";
   loginForm: FormGroup;
-    
-  constructor(private fb:FormBuilder, private authService : AuthService, private router: Router) {
+
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       username: ["", [Validators.required]],
       password: ["", [Validators.required]]
     });
   }
- 
+
   onSubmit() {
-    if(this.loginForm.valid) {
+    if (this.loginForm.valid) {
       console.log(this.loginForm.value);
       this.authService.login(this.loginForm.value).subscribe(
-        (response)=>{
-          // console.log(response);
-          
-            this.authService.saveUserInfo(response);
-            // console.log(localStorage.getItem("role"));
-            this.router.navigate(["bank/dashboard"]);
+        (response) => {
+
+
+          this.authService.saveUserInfo(response);
+
+          this.router.navigate(["bank/dashboard"]);
         },
-        (error) => {
+        () => {
           this.errorMessage = "Wrong credentials";
-          
+
         });
-        
-      // this.authService.login(this.loginForm.value).subscribe(
-      //   (data:any) => {console.log(data)},
-      //   (error:Error) => {console.log(error.message)});
-      
-      // console.log("after request");
+
     }
   }
- 
- 
+
+
 }

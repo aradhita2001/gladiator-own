@@ -10,7 +10,7 @@
 
         <label for="accountType" class="form-label ">Select Account Type</label>
 
-        <select name="accountType" formControlName="accountType" class="form-control" id="accountType" >
+        <select name="accountType" formControlName="accountType" class="form-control" id="accountType">
 
           <option value="" selected>Select</option>
 
@@ -49,23 +49,23 @@
         </div>
       </div>
 
-  <div>
-    <button type="submit" class=" btn btn-success mt-3">Create Account</button>
+      <div>
+        <button type="submit" class=" btn btn-success mt-3">Create Account</button>
 
-    <ng-container>
-      <div *ngIf="accountError$ | async as error" class="error text-danger">
-        {{ error }}
+        <ng-container>
+          <div *ngIf="accountError$ | async as error" class="error text-danger">
+            {{ error }}
+          </div>
+          <div *ngIf="accountSuccess$ | async as msg" class="success text-success">
+            {{ msg }}
+          </div>
+        </ng-container>
       </div>
-      <div *ngIf="accountSuccess$ | async as msg" class="success text-success">
-        {{ msg }}
-      </div>
-    </ng-container>
+
+
+
+      <button [routerLink]="['/bank/dashboard']" class=" btn btn-success task-list mt-3">Dashboard</button>
+
+    </form>
   </div>
-
-
-
-  <button [routerLink]="['/bank/dashboard']" class=" btn btn-success task-list mt-3">Dashboard</button>
-
-  </form>
-</div>
 </div>

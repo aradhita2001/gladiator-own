@@ -8,7 +8,6 @@ export class User {
     phone:string
  
   constructor(data: any) {
-    // if(this.accountId)
     this.username=data.username;
     this.password=data.password;
     this.role=data.role;

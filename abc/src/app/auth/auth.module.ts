@@ -20,4 +20,4 @@ import { EmiCalculatorComponent } from './components/emi-calculator/emi-calculat
   exports: [
   ]
 })
-export class AuthModule {}
+export class AuthModule { }

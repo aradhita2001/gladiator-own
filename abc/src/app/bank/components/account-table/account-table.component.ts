@@ -21,9 +21,6 @@ export class AccountTableComponent {
     this.role = this.authSercive.getRole();;
     this.userId = this.authSercive.getUserId();
 
-
-    console.log(this.role);
-
     if (this.role === 'USER') {
       this.accounts$ = this.bankService.getAccountsByUser(this.userId);
     }
@@ -31,9 +28,9 @@ export class AccountTableComponent {
       this.accounts$ = this.bankService.getAccounts();
     }
 
-}
-viewDetails(id: number) {
-  this.router.navigateByUrl(`/bank/account/${id}`);
-}
+  }
+  viewDetails(id: number) {
+    this.router.navigateByUrl(`/bank/account/${id}`);
+  }
 
 }

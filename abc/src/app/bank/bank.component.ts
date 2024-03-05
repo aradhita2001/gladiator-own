@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
 import { User } from '../auth/types/user';
-import { BankService } from './services/bank.service';
 import { Account } from './types/account';
 import { Transaction } from './types/transaction';
 
@@ -17,18 +16,13 @@ export class BankComponent {
   transactions$: Observable<Transaction[]> = of();
   users$: Observable<User[]> = of();
   role: string = "";
-  // name$: Observable<string> = of();
-  // userId: number = 0;
 
-
-  constructor(private authService: AuthService, private bankService: BankService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
     if (!authService.validateLogin()) this.logout();
   }
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
-    // this.userId = this.authService.getUserId();
-    // this.name$ = this.bankService.getName(this.userId);
   }
 
   viewDetails(id: number) {

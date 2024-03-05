@@ -5,8 +5,7 @@ import { BankRoutingModule } from './bank-routing.module';
 import { TransactionComponent } from './components/transaction/transaction.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AccountCreationComponent } from './components/account-creation/account-creation.component';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import {  ReactiveFormsModule } from '@angular/forms';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { TransactionTableComponent } from './components/transaction-table/transaction-table.component';
@@ -22,7 +21,6 @@ import { LoanComponent } from "./components/loan/loan.component";
     TransactionComponent,
     DashboardComponent,
     AccountCreationComponent,
-    NavbarComponent,
     AccountDetailsComponent,
     AddUserComponent,
     TransactionTableComponent,
@@ -37,7 +35,7 @@ import { LoanComponent } from "./components/loan/loan.component";
     CommonModule,
     BankRoutingModule,
     ReactiveFormsModule,
-    // FormGroup
   ]
 })
+
 export class BankModule { }

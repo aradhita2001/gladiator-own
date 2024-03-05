@@ -1,39 +1,39 @@
 <div class="card col-6 mt-3 mx-auto p-2">
-        <div class="card-body">
-            <h5 class="card-title">Account request</h5>
-            <table class="table ">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Balance</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Handle</th>
+    <div class="card-body">
+        <h5 class="card-title">Account request</h5>
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Balance</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Handle</th>
 
-                    </tr>
-                </thead>
-                <tbody>
+                </tr>
+            </thead>
+            <tbody>
 
-                    <tr *ngFor="let accountRequest of accountRequests; index as i">
-                        <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.username}}</td>
-                        <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.email}}</td>
-                        <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.balance}}</td>
-                        <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.accountType}}</td>
-                        <td *ngIf="accountRequest.status==='REQUESTED'">
-                            <button class="btn btn-outline-warning" (click)="approve(i)">Approve</button>
-                            
-                        </td>
-                        <td *ngIf="accountRequest.status==='REQUESTED'">
-                            <button class="btn btn-outline-warning" (click)="decline(i)">Decline</button>
-                        </td>
-                    </tr>
-                    <div *ngIf="approvalMessage !== ''" class="alert alert-info mt-2" role="alert">
-                        {{approvalMessage}}
-                    </div>
+                <tr *ngFor="let accountRequest of accountRequests; index as i">
+                    <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.username}}</td>
+                    <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.email}}</td>
+                    <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.balance}}</td>
+                    <td *ngIf="accountRequest.status==='REQUESTED'">{{accountRequest.accountType}}</td>
+                    <td *ngIf="accountRequest.status==='REQUESTED'">
+                        <button class="btn btn-outline-warning" (click)="approve(i)">Approve</button>
 
-                </tbody>
+                    </td>
+                    <td *ngIf="accountRequest.status==='REQUESTED'">
+                        <button class="btn btn-outline-warning" (click)="decline(i)">Decline</button>
+                    </td>
+                </tr>
+                <div *ngIf="approvalMessage !== ''" class="alert alert-info mt-2" role="alert">
+                    {{approvalMessage}}
+                </div>
 
-            </table>
-            
- </div>
+            </tbody>
+
+        </table>
+
+    </div>
 </div>

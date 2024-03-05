@@ -5,7 +5,7 @@
     <div class="col-md-6 col-xl-7">
 
       <div class="text-center pt-md-5 pb-5 my-md-5" style="padding-right: 24px;">
-        <!-- <i class="fas-fa-laptop" style="color: #D6D6D6;"></i> -->
+
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbHcPiJku54mDqbfKfEmiuu8rcZgOTaz5xqA&usqp=CAU"
           width="260" height="260">
       </div>
@@ -35,7 +35,7 @@
         <div
           *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
           <span *ngIf="loginForm.controls['password'].errors" class="text-danger">
-           Please Enter password</span>
+            Please Enter password</span>
         </div>
       </div>
       <div class="text-danger">
@@ -43,9 +43,9 @@
       </div>
       <div class="text-center">
         <button type="submit"> Login </button><br>
-        <!-- <p class="small mt-3 mb-4 text-muted">Forgot <span class="fw-bold"><a href="#!" class="text-muted">Username</a> / <a href="#!" class="text-muted">Password</a>?</span></p> -->
         <br>
-        <a [routerLink]="['/sign-up']" routerLinkActive="router-link-active" >First Time User? REGISTER HERE <i class="fas fa-long-arrow-alt-right"></i></a>
+        <a [routerLink]="['/sign-up']" routerLinkActive="router-link-active">First Time User? REGISTER HERE <i
+            class="fas fa-long-arrow-alt-right"></i></a>
       </div>
 
     </div>

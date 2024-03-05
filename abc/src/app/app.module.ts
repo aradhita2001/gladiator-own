@@ -9,7 +9,6 @@ import { AuthComponent } from './auth/auth.component';
 import { BankComponent } from './bank/bank.component';
 import { AuthInterceptor } from './auth.interceptors';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +22,9 @@ import { AuthInterceptor } from './auth.interceptors';
     HttpClientModule,
     ReactiveFormsModule
   ],
+
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -12,12 +12,12 @@ import { Transaction } from '../../types/transaction';
 })
 export class TransactionTableComponent implements OnInit {
   transactions$: Observable<Transaction[]> = of();
-  role: String= "";
+  role: String = "";
   userId: number = 0;
 
-  constructor(private authService : AuthService, private bankService: BankService, private router: Router) { }
+  constructor(private authService: AuthService, private bankService: BankService) { }
 
-  
+
   ngOnInit(): void {
     this.role = this.authService.getRole();
 
@@ -28,10 +28,5 @@ export class TransactionTableComponent implements OnInit {
     if (this.role === 'ADMIN') {
       this.transactions$ = this.bankService.getAllTranactions();
     }
-    this.transactions$.subscribe((data) => {
-      data.forEach(m => { console.log(m) });
-    })
   }
-  
-
 }

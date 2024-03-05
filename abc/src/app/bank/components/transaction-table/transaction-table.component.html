@@ -1,43 +1,40 @@
-<div>
-    <div class="card col-7 mt-3 mx-auto p-2">
-        <div class="card-body">
-            <h5 class="card-title">Transactions</h5>
-            <table class="table ">
+<div class="card col-7 mt-3 mx-auto p-2">
+    <div class="card-body">
+        <h5 class="card-title">Transactions</h5>
+        <table class="table ">
 
-                <thead>
+            <thead>
 
-                    <tr>
+                <tr>
 
-                        <th scope="col">Account Id</th>
+                    <th scope="col">Account Id</th>
 
-                        <th scope="col">Destination Account</th>
+                    <th scope="col">Destination Account</th>
 
-                        <th scope="col">Amount</th>
+                    <th scope="col">Amount</th>
 
-                        <th scope="col">Time</th>
+                    <th scope="col">Time</th>
 
-                    </tr>
+                </tr>
 
-                </thead>
+            </thead>
 
-                <tbody>
+            <tbody>
 
-                    <tr *ngFor="let transaction of transactions$ | async">
+                <tr *ngFor="let transaction of transactions$ | async">
 
-                        <td>{{ transaction.sourceAccountId }}</td>
-                        <td>{{ transaction.destinationAccountId }}</td>
-                        <td>{{transaction.amount | currency:'INR'}}</td>
-                        <td>{{transaction.transactionDate | date:'longDate'}}</td>
-                        <!-- <td *ngIf="role==='USER'">{{transaction.transactionDate | date:'longDate'}}</td> -->
+                    <td>{{ transaction.sourceAccountId }}</td>
+                    <td>{{ transaction.destinationAccountId }}</td>
+                    <td>{{transaction.amount | currency:'INR'}}</td>
+                    <td>{{transaction.transactionDate | date:'longDate'}}</td>
 
-                    </tr>
+                </tr>
 
-                </tbody>
+            </tbody>
 
-            </table>
+        </table>
 
-
-        </div>
 
     </div>
+
 </div>

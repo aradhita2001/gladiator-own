@@ -7,7 +7,6 @@ export class Account {
  balance: number;
  
   constructor(data: any) {
-    // if(this.accountId)
     this.accountId=data.accountId;
     this.user=data.user;
     this.accountType = data.accountType;

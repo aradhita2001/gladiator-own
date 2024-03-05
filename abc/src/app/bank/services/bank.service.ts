@@ -11,35 +11,11 @@ import { Loan } from '../types/loan';
 import { AccountCreationRequest } from '../types/AccountCreationRequest';
 import { AccountRequest } from '../types/Account-request';
 import { AccountRequestDetails } from '../types/Account-request-details';
+
 @Injectable({
   providedIn: 'root'
 })
 export class BankService {
-  // getName(userId: number): Observable<string> {
-  //   return this.http.get<string>(`${this.baseUrl}/users/name/${userId}`);
-  // }
-  getActiveAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
-    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/requested/user/${userId}`);
-  }
-  
-  getActiveAccountRequests(): Observable<AccountRequestDetails[]> {
-    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/requested`);
-  }
-  getApprovedAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
-    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/approved/user/${userId}`);
-  }
-  getApprovedAccountRequests(): Observable<AccountRequestDetails[]> {
-    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/approved`);
-    
-  }
-  getDeclinedAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
-    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/declined/user/${userId}`);
-
-  }
-  getDeclinedAccountRequests(): Observable<AccountRequestDetails[]> {
-    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/declined`);
-  }
- 
 
   private baseUrl = `${environment.apiUrl}`
 
@@ -100,29 +76,35 @@ export class BankService {
   }
 
   addAccount(account: AccountCreationRequest) {
-    return this.http.post<Account>(`${this.baseUrl}/accounts`,account);
+    return this.http.post<Account>(`${this.baseUrl}/accounts`, account);
   }
-  addTransaction(transaction:Transaction)
-  {
-    return this.http.post<Transaction>(`${this.baseUrl}/transactions`,transaction)
+  addTransaction(transaction: Transaction) {
+    return this.http.post<Transaction>(`${this.baseUrl}/transactions`, transaction)
   }
- 
-  // performTransaction(transaction: Transaction): Observable<Transaction> {
-  //   return this.http.post<Transaction>(`${this.baseUrl}/transactions`,transaction);
-  // }
- 
- 
-  // getOutstandingBalance(userId: string): Observable<number> {
-  //   return this.http.get<number>(`${this.baseUrl}/out-standing?userId=${userId}`);
- 
-  // }
- 
-  // getTranactionsByUser(userId: string): Observable<Transaction[]> {
-  //  return this.http.get<Transaction[]>(`${this.baseUrl}/transactions/${userId}`);
-  // }
 
-  getAccountByUserId(userId:number):Observable<Account[]>
-  {    
+  getActiveAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/requested/user/${userId}`);
+  }
+
+  getActiveAccountRequests(): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/requested`);
+  }
+  getApprovedAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/approved/user/${userId}`);
+  }
+  getApprovedAccountRequests(): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/approved`);
+
+  }
+  getDeclinedAccountRequestsByUser(userId: number): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/declined/user/${userId}`);
+
+  }
+  getDeclinedAccountRequests(): Observable<AccountRequestDetails[]> {
+    return this.http.get<AccountRequestDetails[]>(`${this.baseUrl}/accounts/account-request/declined`);
+  }
+
+  getAccountByUserId(userId: number): Observable<Account[]> {
     return this.http.get<Account[]>(`${this.baseUrl}/accounts/user/${userId}`);
   }
 

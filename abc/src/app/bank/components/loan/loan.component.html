@@ -12,8 +12,6 @@
                     <option value="Education Loan">Education Loan</option>
                     <option value="Personal Loan">Personal Loan</option>
                     <option value="Car Loan">Car Loan</option>
-                    <!-- <option *ngFor="let account of accounts$ | async" [value]="account.accountId">{{account.accountId + " " +
-              account.accountType}}</option> -->
                 </select><br>
 
                 <div *ngIf="loanForm.get('loanType')?.hasError('required') && (loanForm.get('loanType')?.touched || loanForm.get('loanType')?.dirty)"
@@ -54,10 +52,10 @@
             <div>
                 <button type="submit" class="btn btn-success ">Submit</button>
                 <ng-container>
-                    <div *ngIf="loanError$ | async as error" class="error">
+                    <div *ngIf="loanError$ | async as error" class="error text-danger">
                         {{ error }}
                     </div>
-                    <div *ngIf="loanSuccess$ | async as msg" class="success">
+                    <div *ngIf="loanSuccess$ | async as msg" class="success text-success">
                         {{ msg }}
                     </div>
                 </ng-container>

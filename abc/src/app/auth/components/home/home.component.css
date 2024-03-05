@@ -6,51 +6,51 @@ body {
     /* background-size: 1275px 1800px; */
     color: #fff;
 }
- 
+
 .navbar {
     background-color: rgba(0, 0, 0, 0.5);
 }
- 
+
 .navbar-brand,
 .nav-link {
     color: #4A8BDF !important;
 }
- 
+
 */ .navbar-toggler {
     border-color: #fff;
 }
- 
+
 .card {
     background-color: #4A8BDF;
     color: #fff;
 }
- 
+
 .card-title {
     color: #fff;
 }
- 
+
 .about-section {
     display: none;
 }
- 
+
 .cards {
     display: flex;
     flex-direction: coloumn;
     gap: 15px;
 }
- 
+
 .cards .red {
     background-color: #f43f5e;
 }
- 
+
 .cards .blue {
     background-color: #3b82f6;
 }
- 
+
 .cards .green {
     background-color: #22c55e;
 }
- 
+
 .cards .card {
     display: flex;
     align-items: center;
@@ -65,29 +65,29 @@ body {
     transition: 400ms transform, 400ms box-shadow, 400ms background-color;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
- 
+
 .cards .card p.tip {
     font-size: 1em;
     font-weight: 700;
 }
- 
+
 .cards .card p.second-text {
     font-size: 0.7em;
 }
- 
+
 .cards .card:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     background-color: rgba(255, 255, 255, 0.1);
     color: #333;
 }
- 
+
 .cards:hover>.card:not(:hover) {
     filter: blur(10px);
     transform: scale(0.9);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
- 
+
 .button {
     padding: 0.5em 1em;
     border: none;
@@ -103,14 +103,14 @@ body {
     overflow: hidden;
     outline: 2px solid #2c9caf;
 }
- 
+
 button:hover {
     color: #ffffff;
     transform: scale(1.1);
     outline: 2px solid #70bdca;
     box-shadow: 4px 5px 17px -4px #268391;
 }
- 
+
 button::before {
     content: "";
     position: absolute;
@@ -123,8 +123,7 @@ button::before {
     z-index: -1;
     transition: width 1000ms;
 }
- 
+
 button:hover::before {
     width: 250%;
 }
- 

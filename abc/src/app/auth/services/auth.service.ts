@@ -28,7 +28,7 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${this.loginUrl}/login`, user, this.httpOptions);
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
     console.log("hello");
   }
@@ -61,7 +61,7 @@ export class AuthService {
 
   validateLogin(): boolean {
     //role must be USER or ADMIN
-    // token and userId must be preent
+    // token and userId must be present
     if (!(localStorage.getItem('role') == 'ADMIN' || localStorage.getItem('role') == 'USER')) return false;
     return !!localStorage.getItem('token') && !!localStorage.getItem('userId');
   }

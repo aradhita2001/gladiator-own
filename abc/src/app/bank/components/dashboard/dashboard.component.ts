@@ -1,10 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { Account } from '../../types/account';
-import { Transaction } from '../../types/transaction';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { BankService } from "../../services/bank.service";
-import { User } from 'src/app/auth/types/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,21 +9,12 @@ import { User } from 'src/app/auth/types/user';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  role: String | null = "";
+  role: string = "";
 
-
-  constructor(private bankService: BankService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.role = localStorage.getItem("role");
-    const strUserId = localStorage.getItem("user_id");
-    console.log(this.role);
+    this.role = this.authService.getRole();
   }
-
-  
-
-  
-
-  
 
 }

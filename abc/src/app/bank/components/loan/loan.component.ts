@@ -44,40 +44,29 @@ export class LoanComponent implements OnInit {
       });
   }
   onSubmit(): void {
-    console.log(this.loanForm.value);
-    console.log(this.loanForm.valid);
-
     
     this.isFormSubmitted = true;
     if (this.loanForm.invalid) {
       return;
 
     } else {
-
       const data = this.loanForm.value;
-      console.log(data);
-
       const loan: Loan = new Loan(data);
       loan.customer.userId = this.authService.getUserId();
-      console.log(loan);
 
       this.bankService.saveLoan(loan).subscribe(
-        (res: any) => {
+        () => {
           this.loanSuccess$ = of("Loan Approved");
         },
         () => {
           this.loanError$ = of("Loan Not Approved");
         }
       );
-
-      
-
     }
 
   }
   callChange()
   {
-
     if(this.loanForm.value.loanType == "Home Loan"){
       this.interest = 9;
     }
@@ -92,23 +81,17 @@ export class LoanComponent implements OnInit {
     }
 
     const data = this.loanForm.value;
-      console.log(data);
-      console.log(data);
-
       const loan: Loan = new Loan(data);
 
     this.emi$ = this.bankService.getEMI(loan)
         this.emi$.subscribe(
           (res: any) => {
             this.emi = res;//of("Success");
-            console.log(this.emi);
 
           },
           () => {
             this.emiCalculatorError$ = of("fail");
           }
         );
-    
   }
-
 }

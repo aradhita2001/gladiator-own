@@ -22,15 +22,13 @@ const routes: Routes = [
       { path: "account/:id", component: AccountDetailsComponent },
       {path: "account-requests", component: HandleAccountRequestComponent},
       {path: "apply-loan", component: LoanComponent}
-
-
     ]
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class BankRoutingModule { }
