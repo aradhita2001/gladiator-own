@@ -107,19 +107,19 @@ export class BankService {
     return this.http.post<Transaction>(`${this.baseUrl}/transactions`,transaction)
   }
  
-  performTransaction(transaction: Transaction): Observable<Transaction> {
-    return this.http.post<Transaction>(`${this.baseUrl}/transactions`,transaction);
-  }
+  // performTransaction(transaction: Transaction): Observable<Transaction> {
+  //   return this.http.post<Transaction>(`${this.baseUrl}/transactions`,transaction);
+  // }
  
  
-  getOutstandingBalance(userId: string): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/out-standing?userId=${userId}`);
+  // getOutstandingBalance(userId: string): Observable<number> {
+  //   return this.http.get<number>(`${this.baseUrl}/out-standing?userId=${userId}`);
  
-  }
+  // }
  
-  getTranactionsByUser(userId: string): Observable<Transaction[]> {
-   return this.http.get<Transaction[]>(`${this.baseUrl}/transactions/${userId}`);
-  }
+  // getTranactionsByUser(userId: string): Observable<Transaction[]> {
+  //  return this.http.get<Transaction[]>(`${this.baseUrl}/transactions/${userId}`);
+  // }
 
   getAccountByUserId(userId:number):Observable<Account[]>
   {    
