@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Event, NavigationStart, Router } from '@angular/router';
+import { filter, Observable, of } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
 import { User } from '../auth/types/user';
 import { Account } from './types/account';
@@ -11,6 +11,7 @@ import { Transaction } from './types/transaction';
   templateUrl: './bank.component.html',
   styleUrls: ['./bank.component.css']
 })
+
 export class BankComponent {
   accounts$: Observable<Account[]> = of();
   transactions$: Observable<Transaction[]> = of();
@@ -19,6 +20,21 @@ export class BankComponent {
 
   constructor(private authService: AuthService, private router: Router) {
     if (!authService.validateLogin()) this.logout();
+
+    router.events
+			.pipe(
+				filter(
+					( event: Event ) => {
+						return( event instanceof NavigationStart );
+					}
+				)
+			).subscribe(
+				( event: Event ) => {
+        if((event as NavigationStart).restoredState) {
+         this.logout(); 
+        }
+      }
+    )
   }
 
   ngOnInit(): void {
